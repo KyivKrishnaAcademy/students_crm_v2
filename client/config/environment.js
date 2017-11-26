@@ -4,6 +4,7 @@
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'students-crm-v2',
+    podModulePrefix: 'students-crm-v2/pods',
     environment,
     rootURL: '/',
     locationType: 'auto',
