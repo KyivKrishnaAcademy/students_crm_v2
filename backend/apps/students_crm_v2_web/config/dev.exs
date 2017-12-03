@@ -40,5 +40,3 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
       ~r{lib/students_crm_v2_web/templates/.*(eex)$}
     ]
   ]
-
-

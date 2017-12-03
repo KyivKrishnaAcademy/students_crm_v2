@@ -37,7 +37,9 @@ defmodule StudentsCrmV2.Mixfile do
   defp deps do
     [
       {:postgrex, ">= 0.0.0"},
-      {:ecto, "~> 2.1"}
+      {:ecto, "~> 2.1"},
+
+      {:nadia, "~> 0.4.2"},
     ]
   end
 

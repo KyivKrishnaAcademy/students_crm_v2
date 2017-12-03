@@ -13,14 +13,21 @@ defmodule StudentsCrmV2Web.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :webhooks do
+    plug :accepts, ["json"]
+  end
+
   scope "/", StudentsCrmV2Web do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", StudentsCrmV2Web do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
+    pipe_through :webhooks
+
+    scope "/webhooks", Webhooks, as: :webhooks do
+      post "/telegram/:token", TelegramController, :create
+    end
+  end
 end
