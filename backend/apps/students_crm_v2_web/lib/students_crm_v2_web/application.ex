@@ -1,5 +1,9 @@
 defmodule StudentsCrmV2Web.Application do
+  @moduledoc false
+
   use Application
+
+  alias StudentsCrmV2Web.Endpoint
 
   def start(_type, _args) do
     import Supervisor.Spec
@@ -7,7 +11,7 @@ defmodule StudentsCrmV2Web.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(StudentsCrmV2Web.Endpoint, []),
+      supervisor(Endpoint, []),
       # Start your own worker by calling: StudentsCrmV2Web.Worker.start_link(arg1, arg2, arg3)
       # worker(StudentsCrmV2Web.Worker, [arg1, arg2, arg3]),
     ]
@@ -21,7 +25,7 @@ defmodule StudentsCrmV2Web.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    StudentsCrmV2Web.Endpoint.config_change(changed, removed)
+    Endpoint.config_change(changed, removed)
     :ok
   end
 end

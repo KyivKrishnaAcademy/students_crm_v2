@@ -26,13 +26,15 @@ defmodule StudentsCrmV2Web.ConnCase do
     end
   end
 
+  alias Ecto.Adapters.SQL.Sandbox
+  alias Phoenix.ConnTest
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(StudentsCrmV2.Repo)
+    :ok = Sandbox.checkout(StudentsCrmV2.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(StudentsCrmV2.Repo, {:shared, self()})
+      Sandbox.mode(StudentsCrmV2.Repo, {:shared, self()})
     end
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    {:ok, conn: ConnTest.build_conn()}
   end
 
 end

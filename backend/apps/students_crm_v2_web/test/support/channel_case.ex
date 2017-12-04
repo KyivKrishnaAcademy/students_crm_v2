@@ -25,11 +25,13 @@ defmodule StudentsCrmV2Web.ChannelCase do
     end
   end
 
+  alias Ecto.Adapters.SQL.Sandbox
+  alias StudentsCrmV2.Repo
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(StudentsCrmV2.Repo)
+    :ok = Sandbox.checkout(Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(StudentsCrmV2.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
     :ok
   end
