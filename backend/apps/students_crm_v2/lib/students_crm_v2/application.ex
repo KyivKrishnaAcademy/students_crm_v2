@@ -13,6 +13,20 @@ defmodule StudentsCrmV2.Application do
     import Supervisor.Spec, warn: false
 
     Supervisor.start_link([
+      supervisor(
+        ConCache,
+        [
+          [
+            ttl: :timer.hours(48),
+            ttl_check: :timer.seconds(10),
+            touch_on_read: true
+          ],
+          [
+            name: :crm_cache,
+          ]
+        ]
+      ),
+
       supervisor(StudentsCrmV2.Repo, []),
     ], strategy: :one_for_one, name: StudentsCrmV2.Supervisor)
   end
