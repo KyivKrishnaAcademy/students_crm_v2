@@ -13,7 +13,8 @@ defmodule StudentsCrmV2.Mixfile do
       elixirc_paths: elixirc_paths(Mix.env),
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      compilers: [:gettext] ++ Mix.compilers,
     ]
   end
 

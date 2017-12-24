@@ -6,10 +6,16 @@ defmodule StudentsCrmV2.Interactions.TelegramBot do
     Start,
   }
 
+  def available_methods do
+    ~w[
+      login
+    ]
+  end
+
   def dispatch(%{"message" => %{"text" => text, "from" => %{"id" => user_id}}}) do
     locale = user_id |> cache_get() |> Map.get("locale")
 
-    if locale, do: handle_message(text, user_id), else: ask_for_locale(text, user_id)
+    if locale, do: handle_message(locale, text, user_id), else: ask_for_locale(text, user_id)
   end
 
   def dispatch(%{"callback_query" => %{"data" => serialized_data, "from" => %{"id" => user_id}}}) do
@@ -28,7 +34,7 @@ defmodule StudentsCrmV2.Interactions.TelegramBot do
 
   defp ask_for_locale(text, user_id), do: AskForLocale.execute(text, user_id)
 
-  defp handle_message("/start", user_id), do: Start.execute(user_id)
+  defp handle_message(locale, _, user_id), do: Start.execute(locale, user_id)
 
   defp cache_get(user_id), do: ConCache.get(:crm_cache, {:telegram, user_id}) || %{}
 
