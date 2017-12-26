@@ -41,8 +41,8 @@ defmodule StudentsCrmV2.Mixfile do
       {:ecto, "~> 2.1"},
 
       {:con_cache, "~> 0.12.1"},
-
       {:nadia, "~> 0.4.2"},
+      {:gettext, "~> 0.13"},
     ]
   end
 
