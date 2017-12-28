@@ -40,7 +40,7 @@ SET default_with_oids = false;
 
 CREATE TABLE phones (
     id bigint NOT NULL,
-    phone character varying(255),
+    phone character varying(255) NOT NULL,
     telegram_uid character varying(255),
     user_id bigint,
     inserted_at timestamp without time zone NOT NULL,
@@ -144,6 +144,20 @@ ALTER TABLE ONLY schema_migrations
 
 ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: phones_phone_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX phones_phone_index ON phones USING btree (phone);
+
+
+--
+-- Name: phones_telegram_uid_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX phones_telegram_uid_index ON phones USING btree (telegram_uid);
 
 
 --
