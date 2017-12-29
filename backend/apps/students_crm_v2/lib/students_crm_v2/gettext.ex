@@ -11,5 +11,9 @@ defmodule StudentsCrmV2.Gettext do
     |> MapSet.to_list
   end
 
+  def supported?(locale) do
+    Enum.any? supported_locales, &(&1 == locale)
+  end
+
   defp config, do: Application.get_env(:students_crm_v2, __MODULE__)
 end

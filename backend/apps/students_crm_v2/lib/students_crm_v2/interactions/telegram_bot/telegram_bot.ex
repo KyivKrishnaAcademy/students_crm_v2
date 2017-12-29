@@ -1,6 +1,8 @@
 defmodule StudentsCrmV2.Interactions.TelegramBot do
   @moduledoc false
 
+  alias StudentsCrmV2.Gettext
+
   alias StudentsCrmV2.Interactions.TelegramBot.{
     AskForLocale,
     Start,
@@ -12,10 +14,12 @@ defmodule StudentsCrmV2.Interactions.TelegramBot do
     ]
   end
 
-  def dispatch(%{"message" => %{"text" => text, "from" => %{"id" => user_id}}}) do
-    locale = user_id |> cache_get() |> Map.get("locale")
+  def dispatch(%{"message" => %{"text" => text, "from" => %{"id" => uid}}}) do
+    cached_user = cache_get(uid)
 
-    if locale, do: handle_message(locale, text, user_id), else: ask_for_locale(text, user_id)
+    if cached_user |> Map.get("locale") |> Gettext.supported?(),
+      do: handle_message(cached_user, text),
+      else: ask_for_locale(text, uid)
   end
 
   def dispatch(%{"callback_query" => %{"data" => serialized_data, "from" => %{"id" => user_id}}}) do
@@ -34,11 +38,11 @@ defmodule StudentsCrmV2.Interactions.TelegramBot do
 
   defp ask_for_locale(text, user_id), do: AskForLocale.execute(text, user_id)
 
-  defp handle_message(locale, _, user_id), do: Start.execute(locale, user_id)
+  defp handle_message(%{"uid" => uid, "locale" => locale}, _), do: Start.execute(locale, uid)
 
   defp cache_get(user_id), do: ConCache.get(:crm_cache, {:telegram, user_id}) || %{}
 
-  defp cache_update(user_id, key, value) do
-    ConCache.update(:crm_cache, {:telegram, user_id}, &({:ok, Map.put(&1 || %{}, key, value)}))
+  defp cache_update(uid, key, value) do
+    ConCache.update(:crm_cache, {:telegram, uid}, &({:ok, Map.put(&1 || %{"uid" => uid}, key, value)}))
   end
 end
