@@ -1,9 +1,9 @@
 defmodule StudentsCrmV2.Interactions.TelegramBot.AskForLocale do
   @moduledoc false
 
-  def execute(text, user_id) do
+  def execute(text, uid) do
     Nadia.send_message(
-      user_id,
+      uid,
       """
       🇺🇦 Оберіть мову будь ласка
 

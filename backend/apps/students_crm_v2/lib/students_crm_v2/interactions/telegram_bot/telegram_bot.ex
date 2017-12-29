@@ -22,12 +22,12 @@ defmodule StudentsCrmV2.Interactions.TelegramBot do
       else: ask_for_locale(text, uid)
   end
 
-  def dispatch(%{"callback_query" => %{"data" => serialized_data, "from" => %{"id" => user_id}}}) do
+  def dispatch(%{"callback_query" => %{"data" => serialized_data, "from" => %{"id" => uid}}}) do
     data = Poison.decode!(serialized_data)
 
-    cache_update(user_id, "locale", Map.get(data, "locale"))
+    cache_update(uid, "locale", Map.get(data, "locale"))
 
-    dispatch(%{"message" => %{"text" => Map.get(data, "text"), "from" => %{"id" => user_id}}})
+    dispatch(%{"message" => %{"text" => Map.get(data, "text"), "from" => %{"id" => uid}}})
   end
 
   def dispatch(params) do
@@ -36,11 +36,11 @@ defmodule StudentsCrmV2.Interactions.TelegramBot do
     Logger.info(fn -> "Dunno how to handle telegram webhook #{inspect(params)}" end)
   end
 
-  defp ask_for_locale(text, user_id), do: AskForLocale.execute(text, user_id)
+  defp ask_for_locale(text, uid), do: AskForLocale.execute(text, uid)
 
   defp handle_message(%{"uid" => uid, "locale" => locale}, _), do: Start.execute(locale, uid)
 
-  defp cache_get(user_id), do: ConCache.get(:crm_cache, {:telegram, user_id}) || %{}
+  defp cache_get(uid), do: ConCache.get(:crm_cache, {:telegram, uid}) || %{}
 
   defp cache_update(uid, key, value) do
     ConCache.update(:crm_cache, {:telegram, uid}, &({:ok, Map.put(&1 || %{"uid" => uid}, key, value)}))
