@@ -4,7 +4,7 @@ defmodule StudentsCrmV2.Models.User do
   use Ecto.Schema
 
   schema "users" do
-    field :email, :string
+    field :locale, :string
 
     timestamps()
   end
