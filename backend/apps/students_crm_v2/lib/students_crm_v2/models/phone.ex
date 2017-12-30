@@ -7,7 +7,7 @@ defmodule StudentsCrmV2.Models.Phone do
 
   schema "phones" do
     field :phone, :string
-    field :telegram_uid, :string
+    field :telegram_uid, :integer
 
     belongs_to :user, User
 

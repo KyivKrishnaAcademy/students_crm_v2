@@ -41,10 +41,10 @@ SET default_with_oids = false;
 CREATE TABLE phones (
     id bigint NOT NULL,
     phone character varying(255) NOT NULL,
-    telegram_uid character varying(255),
     user_id bigint,
     inserted_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    telegram_uid integer
 );
 
 
@@ -172,5 +172,5 @@ ALTER TABLE ONLY phones
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO "schema_migrations" (version) VALUES (20171226050842), (20171228051744);
+INSERT INTO "schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724);
 
