@@ -1,7 +1,7 @@
-defmodule StudentsCrmV2.Gettext do
+defmodule TelegramBot.Gettext do
   @moduledoc false
 
-  use Gettext, otp_app: :students_crm_v2
+  use Gettext, otp_app: :telegram_bot
 
   def supported_locales do
     __MODULE__
@@ -15,5 +15,5 @@ defmodule StudentsCrmV2.Gettext do
     Enum.any? supported_locales(), &(&1 == locale)
   end
 
-  defp config, do: Application.get_env(:students_crm_v2, __MODULE__)
+  defp config, do: Application.get_env(:telegram_bot, __MODULE__)
 end

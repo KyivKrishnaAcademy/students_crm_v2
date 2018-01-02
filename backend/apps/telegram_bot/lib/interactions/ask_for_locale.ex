@@ -1,4 +1,4 @@
-defmodule StudentsCrmV2.Interactions.TelegramBot.AskForLocale do
+defmodule TelegramBot.Interactions.AskForLocale do
   @moduledoc false
 
   def execute(text, uid) do

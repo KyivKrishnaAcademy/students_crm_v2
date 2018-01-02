@@ -14,7 +14,6 @@ defmodule StudentsCrmV2.Mixfile do
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
       deps: deps(),
-      compilers: [:gettext] ++ Mix.compilers,
     ]
   end
 
@@ -39,10 +38,6 @@ defmodule StudentsCrmV2.Mixfile do
     [
       {:postgrex, ">= 0.0.0"},
       {:ecto, "~> 2.1"},
-
-      {:con_cache, "~> 0.12.1"},
-      {:nadia, "~> 0.4.2"},
-      {:gettext, "~> 0.13"},
     ]
   end
 
