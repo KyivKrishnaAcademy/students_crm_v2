@@ -2,7 +2,6 @@ defmodule TelegramBot do
   @moduledoc false
 
   alias TelegramBot.Gettext
-  alias StudentsCrmV2.Repo
 
   alias TelegramBot.Interactions.{
     AskForLocale,
@@ -69,13 +68,7 @@ defmodule TelegramBot do
   defp handle_message(%{"uid" => uid, "locale" => locale}, _), do: Start.execute(locale, uid)
 
   defp set_from_db(uid) do
-    import Ecto.Query, only: [join: 5, where: 3, select: 3]
-
-    user_data = "phones"
-    |> join(:inner, [p], u in "users", p.user_id == u.id)
-    |> where([p, u], p.telegram_uid == type(^uid, :integer))
-    |> select([p, u], %{"locale" => u.locale, "phone" => p.phone, "uid" => type(^uid, :integer)})
-    |> Repo.one()
+    user_data = StudentsCrmV2.show_user_for_telegram_bot(uid)
 
     if user_data, do: ConCache.put(:crm_cache, {:telegram, uid}, user_data)
 

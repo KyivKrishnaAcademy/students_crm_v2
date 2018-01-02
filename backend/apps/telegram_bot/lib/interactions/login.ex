@@ -4,19 +4,9 @@ defmodule TelegramBot.Interactions.Login do
   import TelegramBot.Gettext
 
   alias Nadia.Model.{KeyboardButton, ReplyKeyboardMarkup}
-  alias StudentsCrmV2.Repo
-  alias StudentsCrmV2.Models.{User, Phone}
 
   def execute(%{"uid" => uid, "locale" => locale, "telegram_phone" => phone_number}) do
-    Repo.insert(%User{
-      locale: locale,
-      phones: [
-        %Phone{
-          phone: phone_number,
-          telegram_uid: uid,
-        }
-      ],
-    })
+    StudentsCrmV2.create_user_for_telegram_bot(locale, phone_number, uid)
 
     TelegramBot.cache_update(uid, "phone", phone_number)
     TelegramBot.cache_update(uid, "telegram_phone", nil)
