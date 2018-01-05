@@ -17,7 +17,7 @@ defmodule TelegramBot.Application do
             touch_on_read: true
           ],
           [
-            name: :crm_cache,
+            name: :telegram_bot_cache,
           ]
         ]
       ),

@@ -52,14 +52,14 @@ defmodule TelegramBot do
     Logger.info(fn -> "Dunno how to handle telegram webhook #{inspect(params)}" end)
   end
 
-  def cache_get(uid), do: ConCache.get(:crm_cache, {:telegram, uid}) || set_from_db(uid) || %{"uid" => uid}
+  def cache_get(uid), do: ConCache.get(:telegram_bot_cache, {:telegram, uid}) || set_from_db(uid) || %{"uid" => uid}
 
   def cache_update(uid, key, nil) do
-    ConCache.update(:crm_cache, {:telegram, uid}, &({:ok, Map.drop(&1 || %{"uid" => uid}, [key])}))
+    ConCache.update(:telegram_bot_cache, {:telegram, uid}, &({:ok, Map.drop(&1 || %{"uid" => uid}, [key])}))
   end
 
   def cache_update(uid, key, value) do
-    ConCache.update(:crm_cache, {:telegram, uid}, &({:ok, Map.put(&1 || %{"uid" => uid}, key, value)}))
+    ConCache.update(:telegram_bot_cache, {:telegram, uid}, &({:ok, Map.put(&1 || %{"uid" => uid}, key, value)}))
   end
 
   defp ask_for_locale(text, uid), do: AskForLocale.execute(text, uid)
@@ -70,7 +70,7 @@ defmodule TelegramBot do
   defp set_from_db(uid) do
     user_data = StudentsCrmV2.show_user_for_telegram_bot(uid)
 
-    if user_data, do: ConCache.put(:crm_cache, {:telegram, uid}, user_data)
+    if user_data, do: ConCache.put(:telegram_bot_cache, {:telegram, uid}, user_data)
 
     user_data
   end
