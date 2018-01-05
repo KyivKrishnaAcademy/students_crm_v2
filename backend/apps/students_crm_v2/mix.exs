@@ -36,8 +36,9 @@ defmodule StudentsCrmV2.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:postgrex, ">= 0.0.0"},
+      {:con_cache, "~> 0.12.1"},
       {:ecto, "~> 2.1"},
+      {:postgrex, ">= 0.0.0"},
     ]
   end
 
