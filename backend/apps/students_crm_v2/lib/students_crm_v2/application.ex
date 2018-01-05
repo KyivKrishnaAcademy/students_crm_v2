@@ -16,12 +16,11 @@ defmodule StudentsCrmV2.Application do
       supervisor(StudentsCrmV2.Repo, []),
       supervisor(ConCache, [
         [
-          ttl: :timer.hours(48),
+          ttl: :timer.hours(1),
           ttl_check: :timer.seconds(10),
-          touch_on_read: true
         ],
         [
-          name: :crm_cache,
+          name: :login_tokens,
         ]
       ]),
     ]
