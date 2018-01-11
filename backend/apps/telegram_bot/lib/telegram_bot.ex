@@ -54,12 +54,16 @@ defmodule TelegramBot do
 
   def cache_get(uid), do: ConCache.get(:telegram_bot_cache, {:telegram, uid}) || set_from_db(uid) || %{"uid" => uid}
 
-  def cache_update(uid, key, nil) do
-    ConCache.update(:telegram_bot_cache, {:telegram, uid}, &({:ok, Map.drop(&1 || %{"uid" => uid}, [key])}))
-  end
-
   def cache_update(uid, key, value) do
     ConCache.update(:telegram_bot_cache, {:telegram, uid}, &({:ok, Map.put(&1 || %{"uid" => uid}, key, value)}))
+  end
+
+  def cache_update(uid, map) do
+    ConCache.update(
+      :telegram_bot_cache,
+      {:telegram, uid},
+      &({:ok, map |> Enum.into(&1 || %{"uid" => uid}) |> Enum.filter(fn {_, v} -> v != nil end)})
+    )
   end
 
   defp ask_for_locale(text, uid), do: AskForLocale.execute(text, uid)
