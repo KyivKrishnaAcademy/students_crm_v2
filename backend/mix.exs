@@ -5,7 +5,15 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
     [
       apps_path: "apps",
       start_permanent: Mix.env == :prod,
-      deps: deps()
+      deps: deps(),
+      aliases: aliases(),
+      dialyzer: dialyzer(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        "coveralls": :test,
+        "lint_n_test": :test,
+        "coveralls.detail": :test,
+      ],
     ]
   end
 
@@ -24,6 +32,21 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
   defp deps do
     [
       {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.7", only: [:dev, :test], runtime: false},
+    ]
+  end
+
+  defp aliases do
+    [
+      "lint_n_test": ["credo --strict", "dialyzer", "test"],
+    ]
+  end
+
+  defp dialyzer do
+    [
+      flags: [:error_handling, :race_conditions, :underspecs, :unmatched_returns],
+      plt_add_apps: [:ex_unit, :mix],
     ]
   end
 end

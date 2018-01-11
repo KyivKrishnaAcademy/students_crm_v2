@@ -26,7 +26,7 @@ defmodule TelegramBot do
   def dispatch(%{"callback_query" => %{"data" => serialized_data, "from" => %{"id" => uid}}}) do
     data = Poison.decode!(serialized_data)
 
-    cache_update(uid, "locale", Map.get(data, "locale"))
+    :ok = cache_update(uid, "locale", Map.get(data, "locale"))
 
     dispatch(%{"message" => %{"text" => Map.get(data, "text"), "from" => %{"id" => uid}}})
   end
@@ -37,7 +37,7 @@ defmodule TelegramBot do
       "from" => %{"id" => uid}
     }
   }) when uid == user_id do
-    cache_update(uid, "telegram_phone", phone_number)
+    :ok = cache_update(uid, "telegram_phone", phone_number)
 
     cached_user = cache_get(uid)
 

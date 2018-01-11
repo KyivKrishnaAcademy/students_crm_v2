@@ -8,7 +8,7 @@ defmodule TelegramBot.Interactions.Login do
   def execute(%{"uid" => uid, "locale" => locale, "telegram_phone" => phone_number}) do
     StudentsCrmV2.create_user_for_telegram_bot(locale, phone_number, uid)
 
-    TelegramBot.cache_update(uid, %{"phone" => phone_number, "telegram_phone" => nil})
+    :ok = TelegramBot.cache_update(uid, %{"phone" => phone_number, "telegram_phone" => nil})
 
     Gettext.with_locale TelegramBot.Gettext, locale, fn ->
       message = gettext("will register")
