@@ -17,18 +17,14 @@ msgstr ""
 msgid "How can I serve you?\n"
 msgstr ""
 
-#: lib/interactions/login.ex:31
+#: lib/interactions/login.ex:30
 msgid "Share your phone number to register"
 msgstr ""
 
-#: lib/interactions/login.ex:32
+#: lib/interactions/login.ex:31
 msgid "Yes, send send my phone number!"
 msgstr ""
 
-#: lib/interactions/login.ex:22
-msgid "will login"
-msgstr ""
-
-#: lib/interactions/login.ex:14
-msgid "will register"
+#: lib/interactions/login.ex:46
+msgid "Use this token to login: %{token}"
 msgstr ""

@@ -5,24 +5,25 @@ defmodule TelegramBot.Interactions.Login do
 
   alias Nadia.Model.{KeyboardButton, ReplyKeyboardMarkup}
 
+  @spec execute(map()) :: {:ok, map()}
   def execute(%{"uid" => uid, "locale" => locale, "telegram_phone" => phone_number}) do
-    StudentsCrmV2.create_user_for_telegram_bot(locale, phone_number, uid)
+    {:ok, %{id: user_id}} = StudentsCrmV2.create_user_for_telegram_bot(locale, phone_number, uid)
 
-    :ok = TelegramBot.cache_update(uid, %{"phone" => phone_number, "telegram_phone" => nil})
+    :ok = TelegramBot.cache_update(uid, %{
+      "id" => user_id,
+      "phone" => phone_number,
+      "telegram_phone" => nil,
+    })
 
-    Gettext.with_locale TelegramBot.Gettext, locale, fn ->
-      message = gettext("will register")
+    token = StudentsCrmV2.create_login_token(user_id)
 
-      Nadia.send_message(uid, message)
-    end
+    send_token(token, locale, uid)
   end
 
-  def execute(%{"uid" => uid, "locale" => locale, "phone" => phone_number}) do
-    Gettext.with_locale TelegramBot.Gettext, locale, fn ->
-      message = gettext("will login")
+  def execute(%{"id" => id, "uid" => uid, "locale" => locale, "phone" => _}) do
+    token = StudentsCrmV2.create_login_token(id)
 
-      Nadia.send_message(uid, message)
-    end
+    send_token(token, locale, uid)
   end
 
   def execute(%{"uid" => uid, "locale" => locale}) do
@@ -38,6 +39,15 @@ defmodule TelegramBot.Interactions.Login do
           keyboard: [[%KeyboardButton{request_contact: true, text: button_label}]]
         }
       )
+    end
+  end
+
+  @spec send_token(String.t(), String.t(), integer) :: {:ok, map()}
+  defp send_token(token, locale, uid) do
+    Gettext.with_locale TelegramBot.Gettext, locale, fn ->
+      message = gettext("Use this token to login: %{token}", token: token)
+
+      Nadia.send_message(uid, message)
     end
   end
 end

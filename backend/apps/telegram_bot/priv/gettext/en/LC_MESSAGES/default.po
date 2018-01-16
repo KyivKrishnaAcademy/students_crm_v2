@@ -26,10 +26,14 @@ msgstr "/login - generate a token to login to the application"
 msgid "How can I serve you?\n"
 msgstr ""
 
-#: lib/interactions/login.ex:31
+#: lib/interactions/login.ex:30
 msgid "Share your phone number to register"
 msgstr "Looks like you are not registered yet. Share your phone number by clicking the button in the bottom of the screen, please"
 
-#: lib/interactions/login.ex:32
+#: lib/interactions/login.ex:31
 msgid "Yes, send send my phone number!"
+msgstr ""
+
+#: lib/interactions/login.ex:46
+msgid "Use this token to login: %{token}"
 msgstr ""

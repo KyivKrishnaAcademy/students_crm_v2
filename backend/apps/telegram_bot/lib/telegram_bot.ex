@@ -62,7 +62,12 @@ defmodule TelegramBot do
     ConCache.update(
       :telegram_bot_cache,
       {:telegram, uid},
-      &({:ok, map |> Enum.into(&1 || %{"uid" => uid}) |> Enum.filter(fn {_, v} -> v != nil end)})
+      &({:ok,
+        map
+        |> Enum.into(&1 || %{"uid" => uid})
+        |> Enum.filter(fn {_, v} -> v != nil end)
+        |> Enum.into(%{})
+      })
     )
   end
 
