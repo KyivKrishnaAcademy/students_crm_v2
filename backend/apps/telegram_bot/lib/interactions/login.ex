@@ -27,7 +27,6 @@ defmodule TelegramBot.Interactions.Login do
 
   def execute(%{"uid" => uid, "locale" => locale}) do
     Gettext.with_locale TelegramBot.Gettext, locale, fn ->
-      # message = gettext("Looks like you are not registered yet. Share your phone by clicking the button")
       message = gettext("Share your phone number to register")
       button_label = gettext("Yes, send send my phone number!")
 

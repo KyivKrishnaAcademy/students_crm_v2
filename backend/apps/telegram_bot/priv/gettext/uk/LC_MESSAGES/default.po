@@ -22,6 +22,14 @@ msgstr ""
 msgid "telegram login - description"
 msgstr "/login - генерувати токен для входу у додаток"
 
-#: lib/students_crm_v2/interactions/telegram_bot/start.ex:10
+#: lib/interactions/start.ex:8
 msgid "How can I serve you?\n"
 msgstr "Як я можу служити Вам?\n"
+
+#: lib/interactions/login.ex:31
+msgid "Share your phone number to register"
+msgstr "Схоже що Вас ще не зареєстровано. Надішліть будь ласка Ваш номер телефону, натиснувши кнопку унизу екрану"
+
+#: lib/interactions/login.ex:32
+msgid "Yes, send send my phone number!"
+msgstr "Так, надіслати мій номер!"

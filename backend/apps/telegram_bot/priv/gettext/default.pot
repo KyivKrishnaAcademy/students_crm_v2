@@ -13,6 +13,22 @@ msgstr ""
 msgid "telegram login - description"
 msgstr ""
 
-#: lib/students_crm_v2/interactions/telegram_bot/start.ex:10
+#: lib/interactions/start.ex:8
 msgid "How can I serve you?\n"
+msgstr ""
+
+#: lib/interactions/login.ex:31
+msgid "Share your phone number to register"
+msgstr ""
+
+#: lib/interactions/login.ex:32
+msgid "Yes, send send my phone number!"
+msgstr ""
+
+#: lib/interactions/login.ex:22
+msgid "will login"
+msgstr ""
+
+#: lib/interactions/login.ex:14
+msgid "will register"
 msgstr ""
