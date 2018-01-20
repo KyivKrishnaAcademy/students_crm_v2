@@ -13,4 +13,6 @@ defmodule StudentsCrmV2 do
 
   defdelegate show_user_for_telegram_bot(uid), to: Interactions.TelegramBot.ShowUser, as: :execute
   defdelegate create_user_for_telegram_bot(locale, phone, uid), to: Interactions.TelegramBot.CreateUser, as: :execute
+
+  defdelegate list_users(), to: Interactions.User.List, as: :execute
 end

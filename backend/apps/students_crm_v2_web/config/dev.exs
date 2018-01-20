@@ -14,6 +14,8 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../assets", __DIR__)]]
 
+config :cors_plug, origin: ["http://localhost:4200"]
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

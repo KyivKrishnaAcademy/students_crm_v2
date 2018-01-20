@@ -10,7 +10,8 @@ defmodule StudentsCrmV2Web.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json-api"]
+    plug CORSPlug
   end
 
   pipeline :webhooks do
@@ -29,5 +30,11 @@ defmodule StudentsCrmV2Web.Router do
     scope "/webhooks", Webhooks, as: :webhooks do
       post "/telegram/:token", TelegramController, :create
     end
+  end
+
+  scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
+    pipe_through :api
+
+    resources "/users", UserController, only: [:index]
   end
 end

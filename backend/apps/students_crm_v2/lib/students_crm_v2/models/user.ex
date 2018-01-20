@@ -5,6 +5,8 @@ defmodule StudentsCrmV2.Models.User do
 
   alias StudentsCrmV2.Models.Phone
 
+  @type t :: %__MODULE__{}
+
   schema "users" do
     field :locale, :string
 
