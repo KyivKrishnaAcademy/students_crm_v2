@@ -1,4 +1,6 @@
 defmodule StudentsCrmV2Web.Guardian do
+  @moduledoc false
+
   use Guardian, otp_app: :students_crm_v2_web
 
   alias StudentsCrmV2.Models.User
