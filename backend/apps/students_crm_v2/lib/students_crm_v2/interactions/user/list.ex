@@ -4,7 +4,7 @@ defmodule StudentsCrmV2.Interactions.User.List do
   alias StudentsCrmV2.Repo
   alias StudentsCrmV2.Models.User
 
-  @spec execute() :: User.t()
+  @spec execute() :: [User.t()] | no_return()
   def execute do
     Repo.all(User)
   end
