@@ -10,8 +10,9 @@ defmodule StudentsCrmV2Web.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json-api"]
-    plug CORSPlug
+    plug :accepts, ["json-api", "json"]
+    plug Guardian.Plug.VerifyHeader, module: StudentsCrmV2Web.Guardian
+    plug Guardian.Plug.LoadResource, module: StudentsCrmV2Web.Guardian, allow_blank: true
   end
 
   pipeline :webhooks do
@@ -36,5 +37,6 @@ defmodule StudentsCrmV2Web.Router do
     pipe_through :api
 
     resources "/users", UserController, only: [:index]
+    resources "/login", LoginController, only: [:create]
   end
 end

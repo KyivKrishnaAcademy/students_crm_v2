@@ -16,6 +16,9 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
 
 config :cors_plug, origin: ["http://localhost:4200"]
 
+config :students_crm_v2_web, StudentsCrmV2Web.Guardian,
+       secret_key: "TMjEPCFMsWViGnKBeYzest4Hm/zmuf10KoiuZPu7wVO5FPuFQok8Kzo2vfwQew70"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

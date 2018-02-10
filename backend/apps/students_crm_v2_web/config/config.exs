@@ -33,6 +33,10 @@ config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
+config :students_crm_v2_web, StudentsCrmV2Web.Guardian,
+       issuer: "students_crm_v2_web",
+       error_handler: StudentsCrmV2Web.AuthErrorHandler
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

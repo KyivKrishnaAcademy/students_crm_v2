@@ -46,6 +46,7 @@ defmodule StudentsCrmV2Web.Mixfile do
       {:students_crm_v2, in_umbrella: true},
       {:cowboy, "~> 1.0"},
 
+      {:guardian, "~> 1.0"},
       {:cors_plug, "~> 1.2"},
       {:ja_serializer, "~> 0.12"},
     ]

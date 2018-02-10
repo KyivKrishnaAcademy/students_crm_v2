@@ -13,10 +13,12 @@ defmodule StudentsCrmV2 do
     User,
   }
 
+  defdelegate login_by_token(user_id), to: Auth.LoginByToken, as: :execute
   defdelegate create_login_token(user_id), to: Auth.CreateLoginToken, as: :execute
 
   defdelegate show_user_for_telegram_bot(uid), to: TelegramBot.ShowUser, as: :execute
   defdelegate create_user_for_telegram_bot(locale, phone, uid), to: TelegramBot.CreateUser, as: :execute
 
   defdelegate list_users(), to: User.List, as: :execute
+  defdelegate show_user(id), to: User.Show, as: :execute
 end
