@@ -25,6 +25,9 @@ module.exports = function(environment) {
 
     API_HOST: process.env.API_HOST,
     API_NAMESPACE: process.env.API_NAMESPACE,
+
+    TELEGRAM_BOT: "KrishnaAcademyBot",
+    TELEGRAM_LINK: "https://telegram.me/",
   };
 
   if (environment === 'development') {
@@ -53,6 +56,12 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+
+  ENV['ember-simple-auth-token'] = {
+    tokenPropertyName: 'auth_token',
+    serverTokenEndpoint: `${ENV.API_HOST}/${ENV.API_NAMESPACE}/login`,
+    refreshTokenPropertyName: 'auth_token',
+  };
 
   return ENV;
 };
