@@ -7,7 +7,7 @@ defmodule StudentsCrmV2Web.LoginController do
 
   def create(conn, %{"token" => token}) do
     with  user <- StudentsCrmV2.login_by_token(token),
-          {:ok, auth_token, claims} <- Guardian.encode_and_sign(user)
+          {:ok, auth_token, _claims} <- Guardian.encode_and_sign(user)
     do
       render(conn, "show_token.json", auth_token: auth_token)
     end

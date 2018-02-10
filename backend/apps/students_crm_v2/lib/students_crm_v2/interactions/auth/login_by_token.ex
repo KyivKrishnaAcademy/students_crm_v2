@@ -12,7 +12,7 @@ defmodule StudentsCrmV2.Interactions.Auth.LoginByToken do
     do
       user
     else
-      err -> nil
+      _ -> nil
     end
   end
 end
