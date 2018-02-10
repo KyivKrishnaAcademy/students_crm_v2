@@ -24,6 +24,7 @@ module.exports = function(environment) {
     },
 
     API_HOST: process.env.API_HOST,
+    API_NAMESPACE: process.env.API_NAMESPACE,
   };
 
   if (environment === 'development') {
@@ -33,7 +34,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
-    ENV.API_HOST = "http://api.localhost:4000"
+    ENV.API_HOST = 'http://api.localhost:4000';
+    ENV.API_NAMESPACE = 'api/v1';
   }
 
   if (environment === 'test') {
