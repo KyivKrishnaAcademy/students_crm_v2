@@ -1,4 +1,4 @@
-defmodule StudentsCrmV2.Interactions.CreateLoginToken do
+defmodule StudentsCrmV2.Interactions.Auth.CreateLoginToken do
   @moduledoc false
 
   @spec execute(integer) :: String.t()
