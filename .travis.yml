@@ -52,6 +52,7 @@ install:
 script:
   - cd $TRAVIS_BUILD_DIR/client
   - yarn test
+  - yarn lint:js
   - cd $TRAVIS_BUILD_DIR/backend
   - mix credo --strict
   - mix dialyzer
