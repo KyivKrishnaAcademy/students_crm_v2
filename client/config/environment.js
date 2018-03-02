@@ -28,6 +28,8 @@ module.exports = function(environment) {
     API_HOST: process.env.API_HOST,
     API_NAMESPACE: process.env.API_NAMESPACE,
 
+    TELEGRAM_BOT: 'KrishnaAcademyBot',
+    TELEGRAM_LINK: 'https://telegram.me/',
 
     autoprefixer: browsers,
   };
