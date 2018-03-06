@@ -1,0 +1,28 @@
+{{#paper-sidenav
+  class="md-whiteframe-z2"
+  open=sidebarOpen
+  lockedOpen=sidebarOpenState.lockedOpen
+  onToggle=(action (mut sidebarOpen))
+}}
+  {{#paper-list}}
+    {{#paper-link-item "index" class="paper-link-item md-2-line"}}
+      {{paper-icon "home" size=36}}
+
+      <div class="md-list-item-text">Home</div>
+    {{/paper-link-item}}
+
+    {{#paper-link-item "users" class="paper-link-item md-2-line"}}
+      {{paper-icon "people" size=36}}
+
+      <div class="md-list-item-text">Users</div>
+    {{/paper-link-item}}
+
+    {{#if session.isAuthenticated}}
+      {{#paper-item onClick=(action "invalidateSession") class="md-2-line"}}
+        {{paper-icon "directions-run" size=36}}
+
+        <div class="md-list-item-text">Logout</div>
+      {{/paper-item}}
+    {{/if}}
+  {{/paper-list}}
+{{/paper-sidenav}}

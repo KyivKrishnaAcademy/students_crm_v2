@@ -1,9 +1,11 @@
 {{header-toolbar}}
 
-{{#if session.isAuthenticated}}
-  <button {{action 'invalidateSession'}}>Logout</button>
-{{/if}}
+{{#paper-sidenav-container}}
+  {{main-sidenav}}
 
-{{link-to 'Users' 'users'}}
-
-{{outlet}}
+  {{#paper-card-content class="flex"}}
+    <div class="layout-column">
+      {{outlet}}
+    </div>
+  {{/paper-card-content}}
+{{/paper-sidenav-container}}
