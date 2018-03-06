@@ -1,8 +1,7 @@
+{{header-toolbar}}
 
 {{#if session.isAuthenticated}}
   <button {{action 'invalidateSession'}}>Logout</button>
-{{else}}
-  {{#link-to 'login'}}Login{{/link-to}}
 {{/if}}
 
 {{link-to 'Users' 'users'}}

@@ -1,0 +1,11 @@
+{{#paper-toolbar as |toolbar|}}
+  {{#toolbar.tools}}
+    {{#paper-button iconButton=true onClick=(action "toggle" "sidebarOpenState.lockedOpen")}}
+      {{paper-icon "menu"}}
+    {{/paper-button}}
+
+    {{#unless session.isAuthenticated}}
+      {{paper-link "Login" "login" raised=true}}
+    {{/unless}}
+  {{/toolbar.tools}}
+{{/paper-toolbar}}
