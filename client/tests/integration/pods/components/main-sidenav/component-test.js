@@ -12,6 +12,6 @@ module('Integration | Component | main-sidenav', function(hooks) {
 
     await render(hbs`{{main-sidenav}}`);
 
-    assert.equal(this.element.textContent.trim().replace(/\s+/g, ''), 'homeHomepeopleUsers');
+    assert.equal(this.element.textContent.trim().replace(/\s+/g, ''), 'homeДомашняpeopleЛюди');
   });
 });

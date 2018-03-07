@@ -12,6 +12,6 @@ module('Integration | Component | header-toolbar', function(hooks) {
 
     await render(hbs`{{header-toolbar}}`);
 
-    assert.equal(this.element.textContent.trim().replace(/\s+/g, ''), 'menuLogin');
+    assert.equal(this.element.textContent.trim().replace(/\s+/g, ''), 'menuУвійти');
   });
 });
