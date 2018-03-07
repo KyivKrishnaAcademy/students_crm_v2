@@ -32,6 +32,10 @@ module.exports = function(environment) {
     TELEGRAM_LINK: 'https://telegram.me/',
 
     autoprefixer: browsers,
+
+    i18n: {
+      defaultLocale: 'uk',
+    },
   };
 
   if (environment === 'development') {
