@@ -5,7 +5,11 @@
 
   {{#paper-card-content class="flex"}}
     <div class="layout-column">
-      {{outlet}}
+      <div class="main-content">
+        {{outlet}}
+      </div>
+
+      {{main-footer}}
     </div>
   {{/paper-card-content}}
 {{/paper-sidenav-container}}
