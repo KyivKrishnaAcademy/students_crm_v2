@@ -3,33 +3,7 @@
 </div>
 
 <div class="layout-column layout-gt-sm-row layout-align-space-around-center">
-  {{#link-to "login.telegram"}}
-    {{#paper-card as |card|}}
-      {{#card.content}}
-        {{#card.media size="xl"}}
-          {{svg-jar "telegram"}}
-        {{/card.media}}
-      {{/card.content}}
-    {{/paper-card}}
-  {{/link-to}}
-
-  {{#link-to "login.telegram"}}
-    {{#paper-card as |card|}}
-      {{#card.content}}
-        {{#card.media size="xl"}}
-          {{svg-jar "viber"}}
-        {{/card.media}}
-      {{/card.content}}
-    {{/paper-card}}
-  {{/link-to}}
-
-  {{#link-to "login.telegram"}}
-    {{#paper-card as |card|}}
-      {{#card.content}}
-        {{#card.media size="xl"}}
-          {{svg-jar "sms"}}
-        {{/card.media}}
-      {{/card.content}}
-    {{/paper-card}}
-  {{/link-to}}
+  {{svg-card-to routeTo="login.telegram" svgName="telegram"}}
+  {{svg-card-to routeTo="login.telegram" svgName="viber"}}
+  {{svg-card-to routeTo="login.telegram" svgName="sms"}}
 </div>
