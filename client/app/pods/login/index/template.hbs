@@ -1,0 +1,35 @@
+<div class="layout-row layout-align-space-around-center">
+  <h1 class="text-center">{{t "login.index.chooseMethod"}}</h1>
+</div>
+
+<div class="layout-column layout-gt-sm-row layout-align-space-around-center">
+  {{#link-to "login.telegram"}}
+    {{#paper-card as |card|}}
+      {{#card.content}}
+        {{#card.media size="xl"}}
+          {{svg-jar "telegram"}}
+        {{/card.media}}
+      {{/card.content}}
+    {{/paper-card}}
+  {{/link-to}}
+
+  {{#link-to "login.telegram"}}
+    {{#paper-card as |card|}}
+      {{#card.content}}
+        {{#card.media size="xl"}}
+          {{svg-jar "viber"}}
+        {{/card.media}}
+      {{/card.content}}
+    {{/paper-card}}
+  {{/link-to}}
+
+  {{#link-to "login.telegram"}}
+    {{#paper-card as |card|}}
+      {{#card.content}}
+        {{#card.media size="xl"}}
+          {{svg-jar "sms"}}
+        {{/card.media}}
+      {{/card.content}}
+    {{/paper-card}}
+  {{/link-to}}
+</div>
