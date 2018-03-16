@@ -1,17 +1,16 @@
 import config from 'students-crm-v2/config/environment';
-import Controller from '@ember/controller';
+import Component from '@ember/component';
 
 import { inject as service } from "@ember/service";
 
 const { TELEGRAM_BOT, TELEGRAM_LINK } = config;
 
-export default Controller.extend({
+export default Component.extend({
   TELEGRAM_BOT,
   TELEGRAM_LINK,
 
   token: '',
-  errorMessage: '',
-
+  tagName: '',
   session: service(),
 
   actions: {
@@ -22,3 +21,4 @@ export default Controller.extend({
     },
   },
 });
+

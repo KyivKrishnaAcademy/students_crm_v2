@@ -1,0 +1,22 @@
+<div class="flex text-center">
+  {{t "login-step/telegram.goTalkWith"}}
+  <a href="{{TELEGRAM_LINK}}/{{TELEGRAM_BOT}}" target="_blank">@{{TELEGRAM_BOT}}</a>
+  {{t "login-step/telegram.toObtainKey"}}
+</div>
+
+{{#paper-form onSubmit=(action "authenticate" token) class="layout-column" as |form|}}
+  {{form.input
+    value=token
+    onChange=(action (mut token))
+    required=true
+    placeholder=(t "login-step/telegram.enterToken")
+  }}
+
+  {{#if errorMessage}}
+    <p>{{errorMessage}}</p>
+  {{/if}}
+
+  {{#form.submit-button raised=true primary=true}}
+    {{t "login-step/telegram.continue"}}
+  {{/form.submit-button}}
+{{/paper-form}}

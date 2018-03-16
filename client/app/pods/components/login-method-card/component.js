@@ -1,5 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  tagName: '',
+  click() {
+    return this.get('onClick')();
+  },
 });
