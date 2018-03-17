@@ -8,7 +8,7 @@ defmodule StudentsCrmV2.Interactions.Auth.LoginByToken do
   def execute(token) do
     with  user_id <- ConCache.get(:login_tokens, token),
           :ok <- ConCache.delete(:login_tokens, token),
-          user <- Repo.get!(User, user_id || 0)
+          user <- Repo.get(User, user_id || 0)
     do
       user
     else

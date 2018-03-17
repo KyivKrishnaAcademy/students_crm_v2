@@ -17,4 +17,10 @@ defmodule StudentsCrmV2Web.FallbackController do
     |> put_status(:not_found)
     |> render(StudentsCrmV2Web.ErrorView, :"404", [])
   end
+
+  def call(conn, {:error, :unauthorized}) do
+    conn
+    |> put_status(:unauthorized)
+    |> render(StudentsCrmV2Web.ErrorView, "401.json", [])
+  end
 end
