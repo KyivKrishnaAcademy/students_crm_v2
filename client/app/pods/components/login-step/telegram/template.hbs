@@ -6,15 +6,17 @@
 
 {{#paper-form onSubmit=(action "authenticate" token) class="layout-column" as |form|}}
   {{form.input
-    value=token
+    isInvalid=isInvalidToken
+    isTouched=isTokenTouched
     onChange=(action (mut token))
-    required=true
     placeholder=(t "login-step/telegram.enterToken")
+    required=true
+    value=token
+    errors=translatedErrors
+    errorMessages=(hash
+      required=(t 'login-step/telegram.tokenReuired')
+    )
   }}
-
-  {{#if errorMessage}}
-    <p>{{errorMessage}}</p>
-  {{/if}}
 
   {{#form.submit-button raised=true primary=true}}
     {{t "login-step/telegram.continue"}}

@@ -7,7 +7,9 @@ export default {
   'login-step/telegram.continue': 'Продовжити',
   'login-step/telegram.enterToken': 'Введіть токен',
   'login-step/telegram.goTalkWith': 'Поспілкуйтеся з нашим',
+  'login-step/telegram.tokenReuired': 'Небхідно заповнити',
   'login-step/telegram.toObtainKey': 'щоб отримати токен для входу',
+  'login-step/telegram.unauthorized': 'Такого токену не існує або його термін придатності сплив',
 
   'main-sidenav.home': 'Домашня',
   'main-sidenav.logout': 'Вийти',
