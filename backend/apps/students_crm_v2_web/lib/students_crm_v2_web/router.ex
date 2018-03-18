@@ -36,6 +36,8 @@ defmodule StudentsCrmV2Web.Router do
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
     pipe_through :api
 
+    get "/users/me", CurrentUserController, :show
+
     resources "/users", UserController, only: [:index]
     resources "/login", LoginController, only: [:create]
   end
