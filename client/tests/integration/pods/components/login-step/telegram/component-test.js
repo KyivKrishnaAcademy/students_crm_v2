@@ -14,6 +14,6 @@ module('Integration | Component | login-step/telegram', function(hooks) {
 
     let content = 'Поспілкуйтесязнашим@KrishnaAcademyBotщоботриматитокендлявходуПродовжити';
 
-    assert.equal(this.element.textContent.trim().replace(/\s+/g, ''), content);
+    assert.equal(this.element.textContent.trim().replace(/[^A-Za-z0-9_@А-Яа-яІіЇї]+/g, ''), content);
   });
 });
