@@ -17,6 +17,18 @@
       <div class="md-list-item-text">{{t "main-sidenav.users"}}</div>
     {{/paper-link-item}}
 
+    {{#paper-link-item "privacy" class="paper-link-item md-2-line"}}
+      {{fa-icon "handshake-o"
+        size="lg"
+        fixedWidth=true
+        tagName="md-icon"
+        class="paper-icon md-font material-icons md-default-theme"
+        style="height: 36px; min-height: 36px; min-width: 36px; font-size: 36px; line-height: 36px;"
+      }}
+
+      <div class="md-list-item-text">{{t "main-sidenav.privacyAgreement"}}</div>
+    {{/paper-link-item}}
+
     {{#if session.isAuthenticated}}
       {{#paper-item onClick=(action "invalidateSession") class="md-2-line"}}
         {{paper-icon "directions-run" size=36}}

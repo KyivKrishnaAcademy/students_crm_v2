@@ -13,5 +13,6 @@ export default {
 
   'main-sidenav.home': 'Домашня',
   'main-sidenav.logout': 'Вийти',
+  'main-sidenav.privacyAgreement': 'Згода на обробку персональних даних',
   'main-sidenav.users': 'Люди',
 };
