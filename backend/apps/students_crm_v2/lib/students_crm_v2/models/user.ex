@@ -9,6 +9,7 @@ defmodule StudentsCrmV2.Models.User do
 
   schema "users" do
     field :locale, :string
+    field :privacy_agreed, :boolean
 
     has_many :phones, Phone
 
