@@ -38,7 +38,10 @@ defmodule StudentsCrmV2Web.Router do
 
     get "/users/me", CurrentUserController, :show
 
-    resources "/users", UserController, only: [:index]
+    resources "/users", UserController, only: [:index] do
+      post "/agree", PrivacyAgreementController, :post
+    end
+
     resources "/login", LoginController, only: [:create]
   end
 end
