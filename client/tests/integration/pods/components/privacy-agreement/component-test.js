@@ -12,6 +12,6 @@ module('Integration | Component | privacy-agreement', function(hooks) {
 
     await render(hbs`{{privacy-agreement}}`);
 
-    assert.ok(this.element.textContent.trim().startsWith('Згода на обробку персональних даних'));
+    assert.ok(this.element.textContent.trim().startsWith('Проставивши позначку на сторінці реєстрації'));
   });
 });
