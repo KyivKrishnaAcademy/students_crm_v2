@@ -1,3 +1,5 @@
+var PRIVACY_AGREEMENT = 'Згода на обробку персональних даних';
+
 export default {
   'header-toolbar.login': 'Увійти',
 
@@ -13,6 +15,8 @@ export default {
 
   'main-sidenav.home': 'Домашня',
   'main-sidenav.logout': 'Вийти',
-  'main-sidenav.privacyAgreement': 'Згода на обробку персональних даних',
+  'main-sidenav.privacyAgreement': PRIVACY_AGREEMENT,
   'main-sidenav.users': 'Люди',
+
+  'privacy.privacyAgreement': PRIVACY_AGREEMENT,
 };
