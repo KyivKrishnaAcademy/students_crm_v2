@@ -5,9 +5,10 @@ defmodule StudentsCrmV2.Interactions.User.Agree do
   alias StudentsCrmV2.Models.User
   alias Ecto.Changeset
 
-  @spec execute(id :: number(), author :: User.t()) :: {:ok, User.t()} | {:error, :unauthorized}
+  @spec execute(id :: String.t(), author :: User.t()) :: {:ok, User.t()} | {:error, :unauthorized}
   def execute(id, author) do
     id
+    |> String.to_integer
     |> authorize(author)
     |> agree_to_privacy
   end
