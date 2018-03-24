@@ -3,4 +3,5 @@ import Model from 'ember-data/model';
 
 export default Model.extend({
   locale: attr('string'),
+  registered: attr('boolean'),
 });
