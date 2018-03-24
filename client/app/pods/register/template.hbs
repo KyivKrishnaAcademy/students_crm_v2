@@ -1,1 +1,28 @@
-{{outlet}}
+<div class="main-content layout-wrap">
+  <h1 class="text-center">{{t "register.title"}}</h1>
+
+  {{#paper-stepper
+    vertical=true
+    currentStep=currentStep
+    onStepChange=(action (mut currentStep))
+    class="flex-xs flex-offset-gt-xs-10 flex-gt-xs-80 flex-offset-gt-sm-20 flex-gt-sm-60 flex-offset-gt-md-30 flex-gt-md-40"
+  as |stepper|}}
+    {{#stepper.step label=(t "register.privacyAgreement") as |step|}}
+      {{#step.body}}
+        {{privacy-agreement}}
+      {{/step.body}}
+
+      <div class="layout-column layout-align-start-center">
+        {{#paper-checkbox value=iAgree onChange=(action (mut iAgree))}}
+          <strong>{{t "register.iAgree"}}</strong>
+        {{/paper-checkbox}}
+
+        {{#step.actions as |nextStep|}}
+          {{#paper-button primary=true raised=true onClick=(action "agreeToPrivacy" nextStep) disabled=(not iAgree)}}
+            {{t "register.next"}}
+          {{/paper-button}}
+        {{/step.actions}}
+      </div>
+    {{/stepper.step}}
+  {{/paper-stepper}}
+</div>

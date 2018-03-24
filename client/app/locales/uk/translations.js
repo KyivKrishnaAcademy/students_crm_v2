@@ -19,4 +19,9 @@ export default {
   'main-sidenav.users': 'Люди',
 
   'privacy.privacyAgreement': PRIVACY_AGREEMENT,
+
+  'register.iAgree': 'Я прочитав(ла) і згоден(на) з цією згодою на обробку персональних даних',
+  'register.next': 'Далі',
+  'register.privacyAgreement': PRIVACY_AGREEMENT,
+  'register.title': 'Реєстрація',
 };
