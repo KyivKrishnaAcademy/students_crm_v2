@@ -13,6 +13,7 @@ defmodule StudentsCrmV2Web.Router do
     plug :accepts, ["json-api", "json"]
     plug Guardian.Plug.VerifyHeader, module: StudentsCrmV2Web.Guardian
     plug Guardian.Plug.LoadResource, module: StudentsCrmV2Web.Guardian, allow_blank: true
+    plug JaSerializer.Deserializer
   end
 
   pipeline :webhooks do
@@ -38,7 +39,7 @@ defmodule StudentsCrmV2Web.Router do
 
     get "/users/me", CurrentUserController, :show
 
-    resources "/users", UserController, only: [:index] do
+    resources "/users", UserController, only: [:index, :update] do
       post "/agree", PrivacyAgreementController, :post
     end
 

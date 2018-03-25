@@ -21,5 +21,6 @@ defmodule StudentsCrmV2 do
 
   defdelegate list_users(), to: User.List, as: :execute
   defdelegate show_user(id), to: User.Show, as: :execute
+  defdelegate update_user(user_id, params, author), to: User.Update, as: :execute
   defdelegate agree_to_privacy_policy(id, author), to: User.Agree, as: :execute
 end
