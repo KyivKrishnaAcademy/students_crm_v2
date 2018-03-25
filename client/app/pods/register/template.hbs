@@ -24,5 +24,31 @@
         {{/step.actions}}
       </div>
     {{/stepper.step}}
+
+    {{#stepper.step
+      error=(if isInvalid (t "register.generalInfo.pleaseFix"))
+      label=(t "register.generalInfo")
+    as |step|}}
+      {{#paper-form onValidityChange=(action "validityChange") as |form|}}
+        {{#step.body class="layout-column"}}
+          {{form.input
+            class="flex"
+            label=(t 'register.generalInfo.displayName')
+            onChange=(action (mut currentUser.user.displayName))
+            required=true
+            value=currentUser.user.displayName
+            errorMessages=(hash
+              required=(t 'register.generalInfo.displayNameReuired')
+            )
+          }}
+        {{/step.body}}
+
+        {{#step.actions class="layout-column layout-align-start-center" as |nextStep|}}
+          {{#paper-button primary=true raised=true onClick=(action "saveUser" nextStep) disabled=form.isInvalid}}
+            {{t "register.next"}}
+          {{/paper-button}}
+        {{/step.actions}}
+      {{/paper-form}}
+    {{/stepper.step}}
   {{/paper-stepper}}
 </div>

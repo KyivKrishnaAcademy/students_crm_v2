@@ -1,3 +1,4 @@
+var NEED_TO_FILL = 'Небхідно заповнити';
 var PRIVACY_AGREEMENT = 'Згода на обробку персональних даних';
 
 export default {
@@ -6,7 +7,7 @@ export default {
   'login-step/telegram.continue': 'Продовжити',
   'login-step/telegram.enterToken': 'Введіть токен',
   'login-step/telegram.goTalkWith': 'Поспілкуйтеся з нашим',
-  'login-step/telegram.tokenReuired': 'Небхідно заповнити',
+  'login-step/telegram.tokenReuired': NEED_TO_FILL,
   'login-step/telegram.toObtainKey': 'щоб отримати токен для входу',
   'login-step/telegram.unauthorized': 'Такого токену не існує або його термін придатності сплив',
 
@@ -20,6 +21,10 @@ export default {
 
   'privacy.privacyAgreement': PRIVACY_AGREEMENT,
 
+  'register.generalInfo': 'Основна інформація',
+  'register.generalInfo.displayName': "Ім'я для відображення",
+  'register.generalInfo.displayNameReuired': NEED_TO_FILL,
+  'register.generalInfo.pleaseFix': "Виправте помилки будь ласка",
   'register.iAgree': 'Я прочитав(ла) і згоден(на) з цією згодою на обробку персональних даних',
   'register.next': 'Далі',
   'register.privacyAgreement': PRIVACY_AGREEMENT,

@@ -9,5 +9,13 @@ export default Controller.extend({
     agreeToPrivacy(nextStep) {
       this.get('currentUser.user').agreeToPrivacyPolicy().then(() => nextStep());
     },
+
+    saveUser(nextStep) {
+      this.get('currentUser.user').save().then(() => nextStep());
+    },
+
+    validityChange(isValid, isTouched, isInvalidAndTouched) {
+      this.set('isInvalid', isInvalidAndTouched);
+    },
   },
 });
