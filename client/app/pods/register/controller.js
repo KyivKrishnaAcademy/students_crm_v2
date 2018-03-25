@@ -5,6 +5,8 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
   currentUser: service(),
 
+  isInvalid: false,
+
   actions: {
     agreeToPrivacy(nextStep) {
       this.get('currentUser.user').agreeToPrivacyPolicy().then(() => nextStep());
