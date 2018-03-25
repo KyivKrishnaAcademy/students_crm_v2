@@ -8,6 +8,7 @@ defmodule StudentsCrmV2.Models.User do
   @type t :: %__MODULE__{}
 
   schema "users" do
+    field :display_name, :string
     field :locale, :string
     field :privacy_agreed, :boolean
 
