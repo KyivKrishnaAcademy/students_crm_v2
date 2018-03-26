@@ -5,6 +5,7 @@ import { modelAction } from 'ember-custom-actions';
 
 export default Model.extend({
   displayName: attr('string'),
+  gender: attr('string'),
   locale: attr('string'),
   privacyAgreed: attr('boolean'),
   registered: attr('boolean'),

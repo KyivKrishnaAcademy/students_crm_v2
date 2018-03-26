@@ -21,6 +21,10 @@ export default {
 
   'privacy.privacyAgreement': PRIVACY_AGREEMENT,
 
+  'register.generalInfo.gender.female': 'Жіноча',
+  'register.generalInfo.gender.male': 'Чоловіча',
+  'register.generalInfo.gender.required': 'Небхідно обрати',
+  'register.generalInfo.gender': 'Стать',
   'register.generalInfo.displayName': "Ім'я для відображення",
   'register.generalInfo.displayNameReuired': NEED_TO_FILL,
   'register.generalInfo.pleaseFix': "Виправте помилки будь ласка",

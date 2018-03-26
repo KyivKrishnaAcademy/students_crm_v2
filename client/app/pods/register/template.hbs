@@ -41,6 +41,19 @@
               required=(t 'register.generalInfo.displayNameReuired')
             )
           }}
+
+          {{#paper-select
+            label=(t 'register.generalInfo.gender')
+            onChange=(action "selectGender")
+            options=model.genders
+            required=true
+            selected=selectedGender
+            errorMessages=(hash
+              required=(t 'register.generalInfo.gender.required')
+            )
+          as |gender|}}
+            {{gender.label}}
+          {{/paper-select}}
         {{/step.body}}
 
         {{#step.actions class="layout-column layout-align-start-center" as |nextStep|}}
