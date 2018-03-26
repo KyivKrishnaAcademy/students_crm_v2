@@ -87,7 +87,8 @@ CREATE TABLE users (
     inserted_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     privacy_agreed boolean DEFAULT false,
-    display_name character varying(255)
+    display_name character varying(255),
+    gender character varying(255)
 );
 
 
@@ -174,5 +175,5 @@ ALTER TABLE ONLY phones
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO "schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350);
+INSERT INTO "schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416);
 
