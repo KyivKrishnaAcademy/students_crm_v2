@@ -5,11 +5,12 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
   currentUser: service(),
 
-  setupController(controller, model) {
-    this._super(controller, model);
-
+  model() {
     let step = + this.get('currentUser.user.privacyAgreed');
 
-    controller.set('currentStep', step);
-  }
+    return {
+      currentStep: step,
+      user: this.get('currentUser.user'),
+    };
+  },
 });

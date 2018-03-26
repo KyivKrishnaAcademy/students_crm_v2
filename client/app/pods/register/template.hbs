@@ -3,8 +3,8 @@
 
   {{#paper-stepper
     vertical=true
-    currentStep=currentStep
-    onStepChange=(action (mut currentStep))
+    currentStep=model.currentStep
+    onStepChange=(action (mut model.currentStep))
     class="flex-xs flex-offset-gt-xs-10 flex-gt-xs-80 flex-offset-gt-sm-20 flex-gt-sm-60 flex-offset-gt-md-30 flex-gt-md-40"
   as |stepper|}}
     {{#stepper.step label=(t "register.privacyAgreement") as |step|}}
@@ -34,9 +34,9 @@
           {{form.input
             class="flex"
             label=(t 'register.generalInfo.displayName')
-            onChange=(action (mut currentUser.user.displayName))
+            onChange=(action (mut model.user.displayName))
             required=true
-            value=currentUser.user.displayName
+            value=model.user.displayName
             errorMessages=(hash
               required=(t 'register.generalInfo.displayNameReuired')
             )

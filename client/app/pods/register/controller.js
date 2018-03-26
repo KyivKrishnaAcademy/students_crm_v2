@@ -1,19 +1,15 @@
 import Controller from '@ember/controller';
 
-import { inject as service } from '@ember/service';
-
 export default Controller.extend({
-  currentUser: service(),
-
   isInvalid: false,
 
   actions: {
     agreeToPrivacy(nextStep) {
-      this.get('currentUser.user').agreeToPrivacyPolicy().then(() => nextStep());
+      this.model.user.agreeToPrivacyPolicy().then(() => nextStep());
     },
 
     saveUser(nextStep) {
-      this.get('currentUser.user').save().then(() => nextStep());
+      this.model.user.save().then(() => nextStep());
     },
 
     validityChange(isValid, isTouched, isInvalidAndTouched) {
