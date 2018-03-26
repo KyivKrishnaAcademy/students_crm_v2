@@ -21,10 +21,10 @@ export default {
 
   'privacy.privacyAgreement': PRIVACY_AGREEMENT,
 
-  'register.generalInfo': 'Основна інформація',
   'register.generalInfo.displayName': "Ім'я для відображення",
   'register.generalInfo.displayNameReuired': NEED_TO_FILL,
   'register.generalInfo.pleaseFix': "Виправте помилки будь ласка",
+  'register.generalInfo': 'Основна інформація',
   'register.iAgree': 'Я прочитав(ла) і згоден(на) з цією згодою на обробку персональних даних',
   'register.next': 'Далі',
   'register.privacyAgreement': PRIVACY_AGREEMENT,
