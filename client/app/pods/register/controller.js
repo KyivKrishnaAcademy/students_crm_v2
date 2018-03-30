@@ -3,7 +3,7 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-  isInvalid: false,
+  isGeneralFormInvalid: false,
 
   selectedGender: computed('model.user.gender', function() {
     let selectedValue = this.get('model.user.gender');
@@ -20,8 +20,8 @@ export default Controller.extend({
       this.model.user.save().then(() => nextStep());
     },
 
-    validityChange(isValid, isTouched, isInvalidAndTouched) {
-      this.set('isInvalid', isInvalidAndTouched);
+    generalFormValidityChange(isValid, isTouched, isInvalidAndTouched) {
+      this.set('isGeneralFormInvalid', isInvalidAndTouched);
     },
 
     selectGender(gender) {

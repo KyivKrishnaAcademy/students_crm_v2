@@ -26,10 +26,10 @@
     {{/stepper.step}}
 
     {{#stepper.step
-      error=(if isInvalid (t "register.generalInfo.pleaseFix"))
+      error=(if isGeneralFormInvalid (t "register.generalInfo.pleaseFix"))
       label=(t "register.generalInfo")
     as |step|}}
-      {{#paper-form onValidityChange=(action "validityChange") as |form|}}
+      {{#paper-form onValidityChange=(action "generalFormValidityChange") as |form|}}
         {{#step.body class="layout-column"}}
           {{form.input
             class="flex"
