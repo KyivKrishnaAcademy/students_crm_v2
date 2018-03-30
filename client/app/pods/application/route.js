@@ -5,8 +5,11 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
+  moment: service(),
 
   beforeModel() {
+    this.get('moment').setLocale('uk');
+
     return this._loadCurrentUser();
   },
 

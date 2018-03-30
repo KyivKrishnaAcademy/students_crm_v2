@@ -3,6 +3,11 @@ var NEED_TO_SELECT = 'Небхідно обрати';
 var PRIVACY_AGREEMENT = 'Згода на обробку персональних даних';
 
 export default {
+  errors: {
+    before: "{{description}} повинно бути до {{before}}",
+    wrongDateFormat: "{{description}} повинно бути у форматі {{format}}",
+  },
+
   'header-toolbar.login': 'Увійти',
 
   'login-step/telegram.continue': 'Продовжити',

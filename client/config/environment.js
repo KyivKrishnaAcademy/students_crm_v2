@@ -36,6 +36,10 @@ module.exports = function(environment) {
     i18n: {
       defaultLocale: 'uk',
     },
+
+    moment: {
+      includeLocales: ['uk'],
+    },
   };
 
   if (environment === 'development') {

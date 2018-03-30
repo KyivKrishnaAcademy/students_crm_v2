@@ -61,6 +61,7 @@
             required=true
             value=model.user.birthday
             yearRange='1900,currentYear'
+            errors=model.user.validations.attrs.birthday.messages
             errorMessages=(hash
               required=(t 'register.generalInfo.birthday.required')
             )
