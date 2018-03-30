@@ -12,7 +12,7 @@ module('Integration | Component | main-sidenav', function(hooks) {
 
     await render(hbs`{{main-sidenav}}`);
 
-    let content = 'home‫Домашня‬people‫Люди‬‫Згоданаобробкуперсональнихданих‬';
+    let content = 'homeДомашняpeopleЛюдиЗгоданаобробкуперсональнихданих';
 
     assert.equal(this.element.textContent.trim().replace(/\s+/g, ''), content);
   });

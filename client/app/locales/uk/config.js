@@ -1,5 +1,5 @@
 export default {
-  rtl: true,
+  rtl: false,
 
   pluralForm: function(count) {
     if (count === 0) { return 'zero'; }
