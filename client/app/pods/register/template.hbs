@@ -29,7 +29,7 @@
       error=(if isGeneralFormInvalid (t "register.generalInfo.pleaseFix"))
       label=(t "register.generalInfo")
     as |step|}}
-      {{#paper-form onValidityChange=(action "generalFormValidityChange") as |form|}}
+      {{#extended-paper-form onValidityChange=(action "generalFormValidityChange") as |form|}}
         {{#step.body class="layout-column"}}
           {{form.input
             class="flex"
@@ -54,6 +54,17 @@
           as |gender|}}
             {{gender.label}}
           {{/form.select}}
+
+          {{form.date-picker
+            label=(t 'register.generalInfo.birthday')
+            onChange=(action (mut model.user.birthday))
+            required=true
+            value=model.user.birthday
+            yearRange='1900,currentYear'
+            errorMessages=(hash
+              required=(t 'register.generalInfo.birthday.required')
+            )
+          }}
         {{/step.body}}
 
         {{#step.actions class="layout-column layout-align-start-center" as |nextStep|}}
@@ -61,7 +72,7 @@
             {{t "register.next"}}
           {{/paper-button}}
         {{/step.actions}}
-      {{/paper-form}}
+      {{/extended-paper-form}}
     {{/stepper.step}}
   {{/paper-stepper}}
 </div>

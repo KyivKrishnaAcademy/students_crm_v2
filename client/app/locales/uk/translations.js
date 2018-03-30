@@ -1,4 +1,5 @@
 var NEED_TO_FILL = 'Небхідно заповнити';
+var NEED_TO_SELECT = 'Небхідно обрати';
 var PRIVACY_AGREEMENT = 'Згода на обробку персональних даних';
 
 export default {
@@ -21,9 +22,11 @@ export default {
 
   'privacy.privacyAgreement': PRIVACY_AGREEMENT,
 
+  'register.generalInfo.birthday': 'День народження',
+  'register.generalInfo.birthday.required': NEED_TO_SELECT,
   'register.generalInfo.gender.female': 'Жіноча',
   'register.generalInfo.gender.male': 'Чоловіча',
-  'register.generalInfo.gender.required': 'Небхідно обрати',
+  'register.generalInfo.gender.required': NEED_TO_SELECT,
   'register.generalInfo.gender': 'Стать',
   'register.generalInfo.displayName': "Ім'я для відображення",
   'register.generalInfo.displayNameReuired': NEED_TO_FILL,
