@@ -42,7 +42,7 @@
             )
           }}
 
-          {{#paper-select
+          {{#form.select
             label=(t 'register.generalInfo.gender')
             onChange=(action "selectGender")
             options=model.genders
@@ -53,7 +53,7 @@
             )
           as |gender|}}
             {{gender.label}}
-          {{/paper-select}}
+          {{/form.select}}
         {{/step.body}}
 
         {{#step.actions class="layout-column layout-align-start-center" as |nextStep|}}
