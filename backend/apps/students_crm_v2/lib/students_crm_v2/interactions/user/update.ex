@@ -33,7 +33,7 @@ defmodule StudentsCrmV2.Interactions.User.Update do
   defp validate_birthday(changeset) do
     case Changeset.fetch_field(changeset, :birthday) do
       {_, date} ->
-        if Timex.shift(Date.utc_today, years: -10) < date do
+        if Timex.today |> Timex.shift(years: -10) |> Timex.after?(date) do
           changeset
         else
           Changeset.add_error(changeset, :birthday, "Should be more than 10 years ago")
