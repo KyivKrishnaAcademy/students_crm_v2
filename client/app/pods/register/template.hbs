@@ -29,7 +29,10 @@
       error=(if isGeneralFormInvalid (t "register.generalInfo.pleaseFix"))
       label=(t "register.generalInfo")
     as |step|}}
-      {{#extended-paper-form onValidityChange=(action "generalFormValidityChange") as |form|}}
+      {{#extended-paper-form
+        onValidityChange=(action "generalFormValidityChange")
+        onSubmit=(action "generalInfoSubmit" step.nextStep)
+      as |form|}}
         {{#step.body class="layout-column"}}
           {{form.input
             class="flex"
@@ -68,11 +71,11 @@
           }}
         {{/step.body}}
 
-        {{#step.actions class="layout-column layout-align-start-center" as |nextStep|}}
-          {{#paper-button primary=true raised=true onClick=(action "saveUser" nextStep) disabled=form.isInvalid}}
+        <div class="layout-column layout-align-start-center">
+          {{#form.submit-button raised=true primary=true disabled=form.isInvalid}}
             {{t "register.next"}}
-          {{/paper-button}}
-        {{/step.actions}}
+          {{/form.submit-button}}
+        </div>
       {{/extended-paper-form}}
     {{/stepper.step}}
   {{/paper-stepper}}

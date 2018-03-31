@@ -16,7 +16,7 @@ export default Controller.extend({
       this.model.user.agreeToPrivacyPolicy().then(() => nextStep());
     },
 
-    saveUser(nextStep) {
+    generalInfoSubmit(nextStep) {
       this.model.user.save().then(() => nextStep());
     },
 
