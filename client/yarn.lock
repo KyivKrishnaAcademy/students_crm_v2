@@ -3235,9 +3235,9 @@ ember-paper-link@^0.0.2:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.1.1"
 
-ember-paper-stepper@^0.0.6:
+ember-paper-stepper@KyivKrishnaAcademy/ember-paper-stepper#expose_step_actions:
   version "0.0.6"
-  resolved "https://registry.yarnpkg.com/ember-paper-stepper/-/ember-paper-stepper-0.0.6.tgz#7fc6dcc2e2c2c699dff15917a82492f1a5d979a3"
+  resolved "https://codeload.github.com/KyivKrishnaAcademy/ember-paper-stepper/tar.gz/23bdbeecd8f447754181884e66af35e65f2cb7a4"
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.1.1"

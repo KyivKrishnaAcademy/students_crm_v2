@@ -47,7 +47,7 @@
     "ember-moment": "^7.6.0",
     "ember-paper": "^1.0.0-beta.4",
     "ember-paper-link": "^0.0.2",
-    "ember-paper-stepper": "^0.0.6",
+    "ember-paper-stepper": "KyivKrishnaAcademy/ember-paper-stepper#expose_step_actions",
     "ember-resolver": "^4.0.0",
     "ember-simple-auth": "^1.4.2",
     "ember-simple-auth-token": "^3.0.0",
