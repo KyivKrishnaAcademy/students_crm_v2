@@ -5,7 +5,7 @@ defmodule StudentsCrmV2.Interactions.User.Update do
   alias StudentsCrmV2.Models.User
   alias Ecto.Changeset
 
-  @fields ~w[display_name gender]
+  @fields [:birthday, :display_name, :gender]
 
   @spec execute(id :: String.t(), params :: map(), author :: User.t()) :: {:ok, User.t()} | {:error, :unauthorized}
   def execute(id, params, author) do
@@ -25,7 +25,21 @@ defmodule StudentsCrmV2.Interactions.User.Update do
     import Changeset, only: [validate_required: 2, validate_inclusion: 3]
 
     changeset
-    |> validate_required([:display_name])
+    |> validate_required(@fields)
     |> validate_inclusion(:gender, ~w[male female])
+    |> validate_birthday
+  end
+
+  defp validate_birthday(changeset) do
+    case Changeset.fetch_field(changeset, :birthday) do
+      {_, date} ->
+        if Timex.shift(Date.utc_today, years: -10) < date do
+          changeset
+        else
+          Changeset.add_error(changeset, :birthday, "Should be more than 10 years ago")
+        end
+      _ ->
+        changeset
+    end
   end
 end

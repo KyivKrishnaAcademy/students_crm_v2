@@ -39,6 +39,7 @@ defmodule StudentsCrmV2.Mixfile do
       {:con_cache, "~> 0.12.1"},
       {:ecto, "~> 2.1"},
       {:postgrex, ">= 0.0.0"},
+      {:timex, "~> 3.1"},
     ]
   end
 
