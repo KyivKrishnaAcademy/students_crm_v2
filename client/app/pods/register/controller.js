@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 
 import { computed } from '@ember/object';
+import { task } from 'ember-concurrency';
 
 export default Controller.extend({
   isGeneralFormInvalid: false,
@@ -11,15 +12,19 @@ export default Controller.extend({
     return this.model.genders.find(gender => gender.value === selectedValue);
   }),
 
+  agreeToPrivacy: task(function * (nextStep) {
+    yield this.model.user.agreeToPrivacyPolicy();
+
+    nextStep();
+  }).drop(),
+
+  generalInfoSubmit: task(function * (nextStep) {
+    yield this.model.user.save();
+
+    nextStep();
+  }).drop(),
+
   actions: {
-    agreeToPrivacy(nextStep) {
-      this.model.user.agreeToPrivacyPolicy().then(() => nextStep());
-    },
-
-    generalInfoSubmit(nextStep) {
-      this.model.user.save().then(() => nextStep());
-    },
-
     generalFormValidityChange(isValid, isTouched, isInvalidAndTouched) {
       this.set('isGeneralFormInvalid', isInvalidAndTouched);
     },

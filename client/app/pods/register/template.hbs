@@ -18,7 +18,7 @@
         {{/paper-checkbox}}
 
         {{#step.actions as |nextStep|}}
-          {{#paper-button primary=true raised=true onClick=(action "agreeToPrivacy" nextStep) disabled=(not iAgree)}}
+          {{#paper-button primary=true raised=true onClick=(perform agreeToPrivacy nextStep) disabled=(not iAgree)}}
             {{t "register.next"}}
           {{/paper-button}}
         {{/step.actions}}
@@ -31,7 +31,7 @@
     as |step|}}
       {{#extended-paper-form
         onValidityChange=(action "generalFormValidityChange")
-        onSubmit=(action "generalInfoSubmit" step.nextStep)
+        onSubmit=(perform generalInfoSubmit step.nextStep)
       as |form|}}
         {{#step.body class="layout-column"}}
           {{form.input
