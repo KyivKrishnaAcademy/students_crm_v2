@@ -9,7 +9,7 @@ defmodule StudentsCrmV2Web.FallbackController do
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> render(StudentsCrmV2Web.ChangesetView, "error.json", changeset: changeset)
+    |> render(StudentsCrmV2Web.ChangesetView, "error.json-api", changeset: changeset)
   end
 
   def call(conn, {:error, :not_found}) do

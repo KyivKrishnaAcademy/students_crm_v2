@@ -14,7 +14,7 @@ config :students_crm_v2_web,
 config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Iy7j+9GEXPxQ8YlHGIQDLsBDUB9oFNda7wmIfl/sNBiCk97xZQFsx3MPHcPzNBaF",
-  render_errors: [view: StudentsCrmV2Web.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: StudentsCrmV2Web.ErrorView, accepts: ~w(html json json-api)],
   pubsub: [name: StudentsCrmV2Web.PubSub,
            adapter: Phoenix.PubSub.PG2]
 

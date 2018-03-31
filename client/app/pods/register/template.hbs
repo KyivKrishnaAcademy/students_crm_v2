@@ -35,7 +35,8 @@
       as |form|}}
         {{#step.body class="layout-column"}}
           {{form.input
-            class="flex"
+            errors=model.user.validations.attrs.displayName.messages
+            isTouched=(gt model.user.errors.displayName.length 0)
             label=(t 'register.generalInfo.displayName')
             onChange=(action (mut model.user.displayName))
             required=true
@@ -46,6 +47,8 @@
           }}
 
           {{#form.select
+            errors=model.user.validations.attrs.gender.messages
+            isTouched=(gt model.user.errors.gender.length 0)
             label=(t 'register.generalInfo.gender')
             onChange=(action "selectGender")
             options=model.genders
@@ -59,12 +62,13 @@
           {{/form.select}}
 
           {{form.date-picker
+            errors=model.user.validations.attrs.birthday.messages
+            isTouched=(gt model.user.errors.birthday.length 0)
             label=(t 'register.generalInfo.birthday')
             onChange=(action (mut model.user.birthday))
             required=true
             value=model.user.birthday
             yearRange='1900,currentYear'
-            errors=model.user.validations.attrs.birthday.messages
             errorMessages=(hash
               required=(t 'register.generalInfo.birthday.required')
             )
