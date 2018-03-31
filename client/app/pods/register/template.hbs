@@ -76,9 +76,7 @@
         {{/step.body}}
 
         <div class="layout-column layout-align-start-center">
-          {{#form.submit-button raised=true primary=true disabled=form.isInvalid}}
-            {{t "register.next"}}
-          {{/form.submit-button}}
+          {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
         </div>
       {{/extended-paper-form}}
     {{/stepper.step}}
