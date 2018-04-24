@@ -43,6 +43,7 @@ defmodule StudentsCrmV2Web.Router do
       post "/agree", PrivacyAgreementController, :post
     end
 
+    resources "/documents", DocumentController, only: [:create]
     resources "/login", LoginController, only: [:create]
   end
 end
