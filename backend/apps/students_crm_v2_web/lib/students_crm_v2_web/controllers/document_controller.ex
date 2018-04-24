@@ -19,4 +19,12 @@ defmodule StudentsCrmV2Web.DocumentController do
       render(conn, "show.json-api", data: document)
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    with  current_user <- GuardianPlug.current_resource(conn),
+          {:ok, document} <- StudentsCrmV2.show_document(id, current_user)
+    do
+      render(conn, "show.json-api", data: document)
+    end
+  end
 end
