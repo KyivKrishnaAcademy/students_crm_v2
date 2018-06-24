@@ -19,9 +19,9 @@ const Validations = buildValidations({
 });
 
 export default Model.extend(Validations, {
-  birthday: attr('string'),
-  displayName: attr('string'),
-  gender: attr('string'),
+  birthday: attr('string', { defaultValue: '' }),
+  displayName: attr('string', { defaultValue: '' }),
+  gender: attr('string', { defaultValue: '' }),
   locale: attr('string'),
   privacyAgreed: attr('boolean'),
   registered: attr('boolean'),
