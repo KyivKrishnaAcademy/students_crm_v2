@@ -27,8 +27,12 @@ export default {
 
   'privacy.privacyAgreement': PRIVACY_AGREEMENT,
 
-  'register.generalInfo.birthday': 'День народження',
+  'register.back': 'Назад',
+  'register.ducumentsUpload.identificationDocument': 'Документ що ідентифікує особу (фото першої сторінки паспорта або водійского посвідчення)',
+  'register.ducumentsUpload.selectFile': 'Завантажити файл',
+  'register.ducumentsUpload': 'Завантаження документів',
   'register.generalInfo.birthday.required': NEED_TO_SELECT,
+  'register.generalInfo.birthday': 'День народження',
   'register.generalInfo.gender.female': 'Жіноча',
   'register.generalInfo.gender.male': 'Чоловіча',
   'register.generalInfo.gender.required': NEED_TO_SELECT,
