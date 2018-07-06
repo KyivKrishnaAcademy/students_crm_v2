@@ -9,12 +9,9 @@ defmodule StudentsCrmV2Web.DocumentController do
     module: StudentsCrmV2Web.Guardian,
     error_handler: StudentsCrmV2Web.AuthErrorHandler
 
-  def create(
-    conn,
-    %{"data" => %{"attributes" => %{"kind" => kind}, "relationships" => %{"user" => %{"data" => %{"id" => user_id}}}}}
-  ) do
+  def create(conn, %{"kind" => kind, "file" => file}) do
     with  author <- GuardianPlug.current_resource(conn),
-          {:ok, document} <- StudentsCrmV2.create_document(kind, user_id, author)
+          {:ok, document} <- StudentsCrmV2.create_document(kind, file, author.id, author)
     do
       render(conn, "show.json-api", data: document)
     end

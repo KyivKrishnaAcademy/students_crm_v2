@@ -9,14 +9,15 @@ defmodule StudentsCrmV2.Interactions.Document.Create do
 
   @spec execute(
     kind :: String.t(),
-    user_id :: String.t(),
+    file :: Plug.Upload.t(),
+    user_id :: Integer.t(),
     author :: User.t()
   ) :: {:ok, Document.t()} | {:error, :unauthorized}
-  def execute(kind, user_id, author) do
+  def execute(kind, file, user_id, author) do
     user_id
-    |> String.to_integer
     |> authorize(author)
     |> create_document(kind)
+    |> attach_file(file)
   end
 
   defp authorize(user_id, user = %User{id: author_id}) when user_id == author_id, do: {:ok, user}
@@ -30,4 +31,12 @@ defmodule StudentsCrmV2.Interactions.Document.Create do
   end
 
   defp create_document(error, _), do: error
+
+  defp attach_file({:ok, document}, file) do
+    document
+    |> Document.attach_asset(file)
+    |> Repo.update
+  end
+
+  defp attach_file(error, _), do: error
 end

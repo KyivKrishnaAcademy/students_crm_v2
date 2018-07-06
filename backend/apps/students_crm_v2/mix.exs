@@ -36,6 +36,8 @@ defmodule StudentsCrmV2.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:arc_ecto, github: "mpugach/arc_ecto", branch: "explicit_cast"},
+      {:arc, "~> 0.10.0"},
       {:con_cache, "~> 0.12.1"},
       {:ecto, "~> 2.1"},
       {:postgrex, ">= 0.0.0"},
