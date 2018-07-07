@@ -18,7 +18,6 @@ defmodule StudentsCrmV2.Models.Document do
     timestamps()
   end
 
-  def attach_asset(changeset, asset) do
-    cast_attachments(changeset, %{asset: asset}, [:asset])
-  end
+  @spec attach_asset(changeset :: Ecto.Changeset.t(), asset :: Plug.Upload.t()) :: Ecto.Changeset.t() | no_return()
+  def attach_asset(changeset, asset), do: cast_attachments(changeset, %{asset: asset}, [:asset])
 end

@@ -10,7 +10,7 @@ defmodule StudentsCrmV2.Interactions.Document.Create do
   @spec execute(
     kind :: String.t(),
     file :: Plug.Upload.t(),
-    user_id :: Integer.t(),
+    user_id :: integer(),
     author :: User.t()
   ) :: {:ok, Document.t()} | {:error, :unauthorized}
   def execute(kind, file, user_id, author) do

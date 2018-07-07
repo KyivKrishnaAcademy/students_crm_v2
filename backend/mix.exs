@@ -47,6 +47,7 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
     [
       flags: [:error_handling, :race_conditions, :underspecs, :unmatched_returns],
       plt_add_apps: [:ex_unit, :mix],
+      ignore_warnings: ".dialyzer_ignore",
     ]
   end
 end
