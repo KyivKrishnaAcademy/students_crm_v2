@@ -8,7 +8,7 @@ export default Route.extend(ApplicationRouteMixin, {
   moment: service(),
 
   beforeModel() {
-    this.get('moment').setLocale('uk');
+    this.moment.setLocale('uk');
 
     return this._loadCurrentUser();
   },
@@ -19,9 +19,8 @@ export default Route.extend(ApplicationRouteMixin, {
   },
 
   _loadCurrentUser() {
-    return this
-      .get('currentUser')
+    return this.currentUser
       .load()
-      .catch(() => this.get('session').invalidate());
+      .catch(() => this.session.invalidate());
   },
 });

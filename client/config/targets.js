@@ -1,3 +1,5 @@
+'use strict';
+
 const browsers = [
   'last 3 iOS version',
   'last 2 Edge versions',

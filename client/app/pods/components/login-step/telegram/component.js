@@ -29,7 +29,7 @@ export default Component.extend({
     if (!this.errorMessages.length) return this.errorMessages;
 
     return this.errorMessages.map(message => {
-      let translated = this.get('i18n').t(`login-step/telegram.${message}`);
+      let translated = this.i18n.t(`login-step/telegram.${message}`);
 
       return translated.string ? translated.string : message;
     });
@@ -37,7 +37,7 @@ export default Component.extend({
 
   actions: {
     authenticate(token) {
-      this.get('session').authenticate('authenticator:pswdls-jwt', token).catch(reason => {
+      this.session.authenticate('authenticator:pswdls-jwt', token).catch(reason => {
         this.setProperties({
           errorMessages: [reason.error || reason],
           isInvalidToken: true,

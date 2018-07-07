@@ -2,6 +2,6 @@ import Component from '@ember/component';
 
 export default Component.extend({
   click() {
-    return this.get('onClick')();
+    return this.onClick();
   },
 });

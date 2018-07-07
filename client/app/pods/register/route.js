@@ -17,8 +17,8 @@ export default Route.extend({
       currentStep: step,
       user: this.get('currentUser.user'),
       genders: [
-        { value: 'female', label: this.get('female') },
-        { value: 'male', label: this.get('male') },
+        { value: 'female', label: this.female },
+        { value: 'male', label: this.male },
       ],
     };
   },
