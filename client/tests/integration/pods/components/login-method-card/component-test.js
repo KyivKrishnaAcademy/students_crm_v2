@@ -12,6 +12,6 @@ module('Integration | Component | login-method-card', function(hooks) {
 
     await render(hbs`{{login-method-card svgName="sms"}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });
