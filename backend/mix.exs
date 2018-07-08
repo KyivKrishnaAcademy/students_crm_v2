@@ -4,16 +4,16 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
   def project do
     [
       apps_path: "apps",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
       dialyzer: dialyzer(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
-        "coveralls": :test,
-        "lint_n_test": :test,
-        "coveralls.detail": :test,
-      ],
+        coveralls: :test,
+        lint_n_test: :test,
+        "coveralls.detail": :test
+      ]
     ]
   end
 
@@ -33,13 +33,13 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
     [
       {:credo, "~> 0.9.3", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.3", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.9.1", only: [:dev, :test], runtime: false},
+      {:excoveralls, "~> 0.9.1", only: [:dev, :test], runtime: false}
     ]
   end
 
   defp aliases do
     [
-      "lint_n_test": ["credo --strict", "dialyzer", "test"],
+      lint_n_test: ["credo --strict", "format --check-formatted", "dialyzer", "test"]
     ]
   end
 
@@ -47,7 +47,7 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
     [
       flags: [:error_handling, :race_conditions, :underspecs, :unmatched_returns],
       plt_add_apps: [:ex_unit, :mix],
-      ignore_warnings: ".dialyzer_ignore",
+      ignore_warnings: ".dialyzer_ignore"
     ]
   end
 end

@@ -2,4 +2,5 @@
 use Mix.Config
 
 config :nadia,
-  token: "<token>" # Telegram token
+  # Telegram token
+  token: "<token>"

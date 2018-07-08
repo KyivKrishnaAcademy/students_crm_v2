@@ -15,28 +15,25 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Iy7j+9GEXPxQ8YlHGIQDLsBDUB9oFNda7wmIfl/sNBiCk97xZQFsx3MPHcPzNBaF",
   render_errors: [view: StudentsCrmV2Web.ErrorView, accepts: ~w(html json json-api)],
-  pubsub: [name: StudentsCrmV2Web.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: StudentsCrmV2Web.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :students_crm_v2_web, :generators,
-  context_app: :students_crm_v2
+config :students_crm_v2_web, :generators, context_app: :students_crm_v2
 
-config :phoenix, :format_encoders,
-  "json-api": Poison
+config :phoenix, :format_encoders, "json-api": Poison
 
 config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
 config :students_crm_v2_web, StudentsCrmV2Web.Guardian,
-       issuer: "students_crm_v2_web",
-       error_handler: StudentsCrmV2Web.AuthErrorHandler
+  issuer: "students_crm_v2_web",
+  error_handler: StudentsCrmV2Web.AuthErrorHandler
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

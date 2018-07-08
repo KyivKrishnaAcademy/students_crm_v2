@@ -31,10 +31,11 @@ defmodule StudentsCrmV2Web.ConnCase do
 
   setup tags do
     :ok = Sandbox.checkout(StudentsCrmV2.Repo)
+
     unless tags[:async] do
       Sandbox.mode(StudentsCrmV2.Repo, {:shared, self()})
     end
+
     {:ok, conn: ConnTest.build_conn()}
   end
-
 end

@@ -3,8 +3,9 @@ defmodule StudentsCrmV2.Interactions.TelegramBot.CreateUser do
 
   alias StudentsCrmV2.Models.{
     Phone,
-    User,
+    User
   }
+
   alias StudentsCrmV2.Repo
 
   def execute(locale, phone_number, uid) do
@@ -13,9 +14,9 @@ defmodule StudentsCrmV2.Interactions.TelegramBot.CreateUser do
       phones: [
         %Phone{
           phone: phone_number,
-          telegram_uid: uid,
+          telegram_uid: uid
         }
-      ],
+      ]
     })
   end
 end

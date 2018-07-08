@@ -10,9 +10,9 @@ defmodule StudentsCrmV2Web.Mixfile do
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
       elixir: "~> 1.4",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
@@ -30,7 +30,7 @@ defmodule StudentsCrmV2Web.Mixfile do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -45,10 +45,9 @@ defmodule StudentsCrmV2Web.Mixfile do
       {:gettext, "~> 0.11"},
       {:students_crm_v2, in_umbrella: true},
       {:cowboy, "~> 1.0"},
-
       {:guardian, "~> 1.0"},
       {:cors_plug, "~> 1.2"},
-      {:ja_serializer, "~> 0.12"},
+      {:ja_serializer, "~> 0.12"}
     ]
   end
 
@@ -57,6 +56,6 @@ defmodule StudentsCrmV2Web.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+    [test: ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

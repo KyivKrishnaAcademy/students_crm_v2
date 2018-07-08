@@ -5,10 +5,10 @@ defmodule StudentsCrmV2Web.ChangesetView do
   alias JaSerializer.Formatter.Utils
 
   def json_api_error_element({key, msgs}) do
-    Enum.map(msgs, fn(msg) ->
+    Enum.map(msgs, fn msg ->
       %{
         "detail" => msg,
-        "source" => %{"pointer" => "data/attributes/#{Utils.format_key(key)}"},
+        "source" => %{"pointer" => "data/attributes/#{Utils.format_key(key)}"}
       }
     end)
   end
@@ -21,9 +21,9 @@ defmodule StudentsCrmV2Web.ChangesetView do
   """
   def translate_errors(changeset) do
     changeset
-      |> Changeset.traverse_errors(&translate_error/1)
-      |> Enum.map(&json_api_error_element/1)
-      |> List.flatten
+    |> Changeset.traverse_errors(&translate_error/1)
+    |> Enum.map(&json_api_error_element/1)
+    |> List.flatten()
   end
 
   def render("error.json-api", %{changeset: changeset}) do

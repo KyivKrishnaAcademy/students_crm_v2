@@ -10,10 +10,10 @@ defmodule StudentsCrmV2.Models.Document do
   @type t :: %__MODULE__{}
 
   schema "documents" do
-    field :kind, :string
-    field :asset, Document.Type
+    field(:kind, :string)
+    field(:asset, Document.Type)
 
-    belongs_to :user, User
+    belongs_to(:user, User)
 
     timestamps()
   end

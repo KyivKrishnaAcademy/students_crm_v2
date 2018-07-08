@@ -6,10 +6,10 @@ defmodule StudentsCrmV2.Models.Phone do
   alias StudentsCrmV2.Models.User
 
   schema "phones" do
-    field :phone, :string
-    field :telegram_uid, :integer
+    field(:phone, :string)
+    field(:telegram_uid, :integer)
 
-    belongs_to :user, User
+    belongs_to(:user, User)
 
     timestamps()
   end

@@ -3,7 +3,7 @@ defmodule TelegramBot.Interactions.AskForLocale do
 
   alias Nadia.Model.{
     InlineKeyboardButton,
-    InlineKeyboardMarkup,
+    InlineKeyboardMarkup
   }
 
   def execute(text, uid) do
@@ -21,9 +21,9 @@ defmodule TelegramBot.Interactions.AskForLocale do
           [
             %InlineKeyboardButton{url: "", callback_data: encode("uk", text), text: "🇺🇦 Українська"},
             %InlineKeyboardButton{url: "", callback_data: encode("ru", text), text: "🇷🇺 Русский"},
-            %InlineKeyboardButton{url: "", callback_data: encode("en", text), text: "🇬🇧 English"},
-          ],
-        ],
+            %InlineKeyboardButton{url: "", callback_data: encode("en", text), text: "🇬🇧 English"}
+          ]
+        ]
       }
     )
   end
@@ -31,7 +31,7 @@ defmodule TelegramBot.Interactions.AskForLocale do
   defp encode(locale, text) do
     Poison.encode!(%{
       "text" => text,
-      "locale" => locale,
+      "locale" => locale
     })
   end
 end

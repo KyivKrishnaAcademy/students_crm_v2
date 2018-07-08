@@ -6,7 +6,7 @@ defmodule TelegramBot do
   alias TelegramBot.Interactions.{
     AskForLocale,
     Login,
-    Start,
+    Start
   }
 
   def available_methods do
@@ -32,11 +32,12 @@ defmodule TelegramBot do
   end
 
   def dispatch(%{
-    "message" => %{
-      "contact" => %{"phone_number" => phone_number, "user_id" => user_id},
-      "from" => %{"id" => uid}
-    }
-  }) when uid == user_id do
+        "message" => %{
+          "contact" => %{"phone_number" => phone_number, "user_id" => user_id},
+          "from" => %{"id" => uid}
+        }
+      })
+      when uid == user_id do
     :ok = cache_update(uid, "telegram_phone", phone_number)
 
     cached_user = cache_get(uid)
@@ -55,19 +56,18 @@ defmodule TelegramBot do
   def cache_get(uid), do: ConCache.get(:telegram_bot_cache, {:telegram, uid}) || set_from_db(uid) || %{"uid" => uid}
 
   def cache_update(uid, key, value) do
-    ConCache.update(:telegram_bot_cache, {:telegram, uid}, &({:ok, Map.put(&1 || %{"uid" => uid}, key, value)}))
+    ConCache.update(:telegram_bot_cache, {:telegram, uid}, &{:ok, Map.put(&1 || %{"uid" => uid}, key, value)})
   end
 
   def cache_update(uid, map) do
     ConCache.update(
       :telegram_bot_cache,
       {:telegram, uid},
-      &({:ok,
-        map
-        |> Enum.into(&1 || %{"uid" => uid})
-        |> Enum.filter(fn {_, v} -> v != nil end)
-        |> Enum.into(%{})
-      })
+      &{:ok,
+       map
+       |> Enum.into(&1 || %{"uid" => uid})
+       |> Enum.filter(fn {_, v} -> v != nil end)
+       |> Enum.into(%{})}
     )
   end
 

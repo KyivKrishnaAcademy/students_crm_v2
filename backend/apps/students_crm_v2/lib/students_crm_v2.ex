@@ -11,7 +11,7 @@ defmodule StudentsCrmV2 do
     Auth,
     Document,
     TelegramBot,
-    User,
+    User
   }
 
   alias StudentsCrmV2.Uploaders

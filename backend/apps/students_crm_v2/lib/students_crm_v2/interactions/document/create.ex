@@ -8,11 +8,11 @@ defmodule StudentsCrmV2.Interactions.Document.Create do
   @valid_kinds ["identification", "parents_permission"]
 
   @spec execute(
-    kind :: String.t(),
-    file :: Plug.Upload.t(),
-    user_id :: integer(),
-    author :: User.t()
-  ) :: {:ok, Document.t()} | {:error, :unauthorized}
+          kind :: String.t(),
+          file :: Plug.Upload.t(),
+          user_id :: integer(),
+          author :: User.t()
+        ) :: {:ok, Document.t()} | {:error, :unauthorized}
   def execute(kind, file, user_id, author) do
     user_id
     |> authorize(author)
@@ -35,7 +35,7 @@ defmodule StudentsCrmV2.Interactions.Document.Create do
   defp attach_file({:ok, document}, file) do
     document
     |> Document.attach_asset(file)
-    |> Repo.update
+    |> Repo.update()
   end
 
   defp attach_file(error, _), do: error

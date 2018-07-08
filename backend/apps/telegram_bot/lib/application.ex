@@ -17,10 +17,10 @@ defmodule TelegramBot.Application do
             touch_on_read: true
           ],
           [
-            name: :telegram_bot_cache,
+            name: :telegram_bot_cache
           ]
         ]
-      ),
+      )
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: TelegramBot.Supervisor)

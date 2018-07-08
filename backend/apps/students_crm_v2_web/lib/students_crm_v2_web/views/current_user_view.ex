@@ -2,7 +2,7 @@ defmodule StudentsCrmV2Web.CurrentUserView do
   use StudentsCrmV2Web, :view
   use JaSerializer.PhoenixView
 
-  attributes [:birthday, :display_name, :gender, :locale, :privacy_agreed, :registered]
+  attributes([:birthday, :display_name, :gender, :locale, :privacy_agreed, :registered])
 
   def type, do: "user"
 

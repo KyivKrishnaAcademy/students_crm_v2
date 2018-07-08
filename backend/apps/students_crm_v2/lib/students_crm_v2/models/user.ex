@@ -8,13 +8,13 @@ defmodule StudentsCrmV2.Models.User do
   @type t :: %__MODULE__{}
 
   schema "users" do
-    field :birthday, :date
-    field :display_name, :string
-    field :gender, :string
-    field :locale, :string
-    field :privacy_agreed, :boolean
+    field(:birthday, :date)
+    field(:display_name, :string)
+    field(:gender, :string)
+    field(:locale, :string)
+    field(:privacy_agreed, :boolean)
 
-    has_many :phones, Phone
+    has_many(:phones, Phone)
 
     timestamps()
   end

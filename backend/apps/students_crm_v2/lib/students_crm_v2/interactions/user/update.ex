@@ -10,7 +10,7 @@ defmodule StudentsCrmV2.Interactions.User.Update do
   @spec execute(id :: String.t(), params :: map(), author :: User.t()) :: {:ok, User.t()} | {:error, :unauthorized}
   def execute(id, params, author) do
     id
-    |> String.to_integer
+    |> String.to_integer()
     |> authorize(author)
     |> update_user(params)
   end
@@ -18,7 +18,7 @@ defmodule StudentsCrmV2.Interactions.User.Update do
   defp authorize(user_id, user = %User{id: author_id}) when user_id == author_id, do: {:ok, user}
   defp authorize(_, _), do: {:error, :unauthorized}
 
-  defp update_user({:ok, user}, params), do: user |> Changeset.cast(params, @fields) |> validate |> Repo.update
+  defp update_user({:ok, user}, params), do: user |> Changeset.cast(params, @fields) |> validate |> Repo.update()
   defp update_user(error, _), do: error
 
   defp validate(changeset) do
@@ -33,11 +33,12 @@ defmodule StudentsCrmV2.Interactions.User.Update do
   defp validate_birthday(changeset) do
     case Changeset.fetch_field(changeset, :birthday) do
       {_, date} ->
-        if Timex.today |> Timex.shift(years: -10) |> Timex.after?(date) do
+        if Timex.today() |> Timex.shift(years: -10) |> Timex.after?(date) do
           changeset
         else
           Changeset.add_error(changeset, :birthday, "Should be more than 10 years ago")
         end
+
       _ ->
         changeset
     end

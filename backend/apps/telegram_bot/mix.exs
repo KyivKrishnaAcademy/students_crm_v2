@@ -10,9 +10,9 @@ defmodule TelegramBot.Mixfile do
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
       elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
-      compilers: [:gettext] ++ Mix.compilers,
+      compilers: [:gettext] ++ Mix.compilers()
     ]
   end
 
@@ -29,7 +29,7 @@ defmodule TelegramBot.Mixfile do
     [
       {:con_cache, "~> 0.12.1"},
       {:gettext, "~> 0.13"},
-      {:nadia, "~> 0.4.2"},
+      {:nadia, "~> 0.4.2"}
     ]
   end
 end

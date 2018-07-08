@@ -14,5 +14,6 @@ defmodule StudentsCrmV2.Interactions.Document.Show do
 
   defp authorize(document = %Document{user_id: user_id}, %User{id: current_user_id}) when user_id == current_user_id,
     do: {:ok, document}
+
   defp authorize(_, _), do: {:error, :unauthorized}
 end
