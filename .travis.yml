@@ -52,6 +52,5 @@ script:
   - npm test
   - npm run lint:js
   - cd $TRAVIS_BUILD_DIR/backend
-  - mix credo --strict
-  - mix dialyzer
+  - mix lint_n_test
   - mix coveralls.travis
