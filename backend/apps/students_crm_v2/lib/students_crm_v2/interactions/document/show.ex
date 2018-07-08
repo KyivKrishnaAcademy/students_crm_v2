@@ -1,8 +1,8 @@
 defmodule StudentsCrmV2.Interactions.Document.Show do
   @moduledoc false
 
-  alias StudentsCrmV2.Repo
   alias StudentsCrmV2.Models.{Document, User}
+  alias StudentsCrmV2.Repo
 
   @spec execute(id :: term(), current_user :: User.t()) :: {:ok, Document.t()} | {:error, :unauthorized}
   def execute(id, current_user) do

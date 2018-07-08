@@ -1,9 +1,9 @@
 defmodule StudentsCrmV2.Interactions.Document.Create do
   @moduledoc false
 
-  alias StudentsCrmV2.Repo
-  alias StudentsCrmV2.Models.{Document, User}
   alias Ecto.Changeset
+  alias StudentsCrmV2.Models.{Document, User}
+  alias StudentsCrmV2.Repo
 
   @valid_kinds ["identification", "parents_permission"]
 

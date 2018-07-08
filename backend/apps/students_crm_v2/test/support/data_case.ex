@@ -25,8 +25,8 @@ defmodule StudentsCrmV2.DataCase do
     end
   end
 
-  alias Ecto.{Adapters, Changeset}
   alias Adapters.SQL.Sandbox
+  alias Ecto.{Adapters, Changeset}
   alias StudentsCrmV2.Repo
 
   setup tags do

@@ -1,9 +1,9 @@
 defmodule StudentsCrmV2.Interactions.User.Update do
   @moduledoc false
 
-  alias StudentsCrmV2.Repo
-  alias StudentsCrmV2.Models.User
   alias Ecto.Changeset
+  alias StudentsCrmV2.Models.User
+  alias StudentsCrmV2.Repo
 
   @fields [:birthday, :display_name, :gender]
 

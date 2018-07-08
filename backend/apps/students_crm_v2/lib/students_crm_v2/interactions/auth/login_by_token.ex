@@ -1,8 +1,8 @@
 defmodule StudentsCrmV2.Interactions.Auth.LoginByToken do
   @moduledoc false
 
-  alias StudentsCrmV2.Repo
   alias StudentsCrmV2.Models.User
+  alias StudentsCrmV2.Repo
 
   @spec execute(token :: String.t()) :: User.t() | nil
   def execute(token) do

@@ -1,9 +1,9 @@
 defmodule StudentsCrmV2.Interactions.User.Agree do
   @moduledoc false
 
-  alias StudentsCrmV2.Repo
-  alias StudentsCrmV2.Models.User
   alias Ecto.Changeset
+  alias StudentsCrmV2.Models.User
+  alias StudentsCrmV2.Repo
 
   @spec execute(id :: String.t(), author :: User.t()) :: {:ok, User.t()} | {:error, :unauthorized}
   def execute(id, author) do
