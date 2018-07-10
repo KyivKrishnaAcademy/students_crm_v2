@@ -39,15 +39,15 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
 
   defp aliases do
     [
-      lint_n_test: ["credo --strict", "format --check-formatted", "dialyzer", "test"]
+      lint_n_test: ["credo --strict", "format --check-formatted", "dialyzer --halt-exit-status", "test"]
     ]
   end
 
   defp dialyzer do
     [
       flags: [:error_handling, :race_conditions, :underspecs, :unmatched_returns],
-      plt_add_apps: [:ex_unit, :mix],
-      ignore_warnings: ".dialyzer_ignore"
+      plt_add_deps: :transitive,
+      ignore_warnings: ".dialyzer_ignore.exs"
     ]
   end
 end

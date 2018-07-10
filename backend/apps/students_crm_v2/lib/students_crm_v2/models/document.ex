@@ -19,5 +19,6 @@ defmodule StudentsCrmV2.Models.Document do
   end
 
   @spec attach_asset(changeset :: Ecto.Changeset.t(), asset :: Plug.Upload.t()) :: Ecto.Changeset.t() | no_return()
+  @dialyzer {:nowarn_function, attach_asset: 2}
   def attach_asset(changeset, asset), do: cast_attachments(changeset, %{asset: asset}, [:asset])
 end
