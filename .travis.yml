@@ -37,6 +37,7 @@ before_install:
   - psql -c "CREATE DATABASE travis OWNER travis;" -U postgres
 
   - nvm install 9.11.2
+  - npm i -g npm@6.2.0
 
 install:
   - cd $TRAVIS_BUILD_DIR/backend
