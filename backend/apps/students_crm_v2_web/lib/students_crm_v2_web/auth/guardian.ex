@@ -1,4 +1,4 @@
-defmodule StudentsCrmV2Web.Guardian do
+defmodule StudentsCrmV2Web.Auth.Guardian do
   @moduledoc false
 
   use Guardian, otp_app: :students_crm_v2_web
@@ -8,6 +8,6 @@ defmodule StudentsCrmV2Web.Guardian do
   def subject_for_token(%User{id: user_id}, _claims), do: {:ok, to_string(user_id)}
   def subject_for_token(_, _), do: {:error, :unauthorized}
 
-  def resource_from_claims(%{"sub" => user_id}), do: {:ok, StudentsCrmV2.show_user(user_id)}
+  def resource_from_claims(%{"sub" => sub}), do: {:ok, StudentsCrmV2.show_user(%{"authentication_sub" => sub})}
   def resource_from_claims(_claims), do: {:error, :unauthorized}
 end

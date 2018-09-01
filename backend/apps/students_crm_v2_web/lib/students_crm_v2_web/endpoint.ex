@@ -31,21 +31,11 @@ defmodule StudentsCrmV2Web.Endpoint do
     Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
   )
 
   plug(Plug.MethodOverride)
   plug(Plug.Head)
-
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
-  plug(
-    Plug.Session,
-    store: :cookie,
-    key: "_students_crm_v2_web_key",
-    signing_salt: "KGR4w9yn"
-  )
 
   plug(StudentsCrmV2Web.Router)
 

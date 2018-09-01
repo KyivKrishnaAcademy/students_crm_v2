@@ -35,6 +35,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: authentications; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE authentications (
+    id bigint NOT NULL,
+    sub character varying(255),
+    user_id bigint,
+    inserted_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: authentications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE authentications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: authentications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE authentications_id_seq OWNED BY authentications.id;
+
+
+--
 -- Name: documents; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -116,11 +148,11 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE users (
     id bigint NOT NULL,
-    locale character varying(2),
     inserted_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     privacy_agreed boolean DEFAULT false,
     display_name character varying(255),
+    locale character varying(2),
     gender character varying(255),
     birthday date
 );
@@ -146,6 +178,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: authentications id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY authentications ALTER COLUMN id SET DEFAULT nextval('authentications_id_seq'::regclass);
+
+
+--
 -- Name: documents id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -164,6 +203,14 @@ ALTER TABLE ONLY phones ALTER COLUMN id SET DEFAULT nextval('phones_id_seq'::reg
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: authentications authentications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY authentications
+    ADD CONSTRAINT authentications_pkey PRIMARY KEY (id);
 
 
 --
@@ -213,6 +260,14 @@ CREATE INDEX phones_telegram_uid_index ON phones USING btree (telegram_uid);
 
 
 --
+-- Name: authentications authentications_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY authentications
+    ADD CONSTRAINT authentications_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: documents documents_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -232,5 +287,5 @@ ALTER TABLE ONLY phones
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO "schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807);
+INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726);
 

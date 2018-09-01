@@ -4,3 +4,4 @@ cover
 /uploads
 erl_crash.dump
 *.ez
+.env

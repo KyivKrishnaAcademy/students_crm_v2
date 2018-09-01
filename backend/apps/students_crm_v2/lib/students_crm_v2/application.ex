@@ -13,16 +13,7 @@ defmodule StudentsCrmV2.Application do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(StudentsCrmV2.Repo, []),
-      supervisor(ConCache, [
-        [
-          ttl: :timer.hours(1),
-          ttl_check: :timer.seconds(10)
-        ],
-        [
-          name: :login_tokens
-        ]
-      ])
+      supervisor(StudentsCrmV2.Repo, [])
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: StudentsCrmV2.Supervisor)

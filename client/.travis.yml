@@ -1,7 +1,7 @@
 ---
 language: node_js
 node_js:
-  - "9.11.2"
+  - "10.9.0"
 
 sudo: false
 dist: trusty
@@ -11,15 +11,15 @@ addons:
 
 cache:
   directories:
-    - node_modules
+    - $HOME/.npm
 
 env:
   global:
     # See https://git.io/vdao3 for details.
     - JOBS=1
 
-install:
-  - npm i --non-interactive
+before_install:
+  - npm config set spin false
 
 script:
   - npm run lint:js

@@ -3,17 +3,11 @@ defmodule StudentsCrmV2Web.PrivacyAgreementController do
 
   action_fallback(StudentsCrmV2Web.FallbackController)
 
-  alias StudentsCrmV2Web.Guardian.Plug, as: GuardianPlug
+  alias StudentsCrmV2Web.Auth.Guardian.Plug, as: AuthPlug
   alias StudentsCrmV2Web.CurrentUserView
 
-  plug(
-    Guardian.Plug.EnsureAuthenticated,
-    module: StudentsCrmV2Web.Guardian,
-    error_handler: StudentsCrmV2Web.AuthErrorHandler
-  )
-
   def post(conn, %{"user_id" => user_id}) do
-    with author <- GuardianPlug.current_resource(conn),
+    with author <- AuthPlug.current_resource(conn),
          {:ok, user} <- StudentsCrmV2.agree_to_privacy_policy(user_id, author) do
       conn
       |> put_view(CurrentUserView)

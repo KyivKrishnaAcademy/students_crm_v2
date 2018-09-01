@@ -24,15 +24,36 @@ config :logger, :console,
 
 config :students_crm_v2_web, :generators, context_app: :students_crm_v2
 
-config :phoenix, :format_encoders, "json-api": Poison
+config :phoenix, :format_encoders, "json-api": Jason
+config :phoenix, :json_library, Jason
 
 config :mime, :types, %{
   "application/vnd.api+json" => ["json-api"]
 }
 
-config :students_crm_v2_web, StudentsCrmV2Web.Guardian,
-  issuer: "students_crm_v2_web",
-  error_handler: StudentsCrmV2Web.AuthErrorHandler
+config :students_crm_v2_web, StudentsCrmV2Web.Auth.Guardian,
+  allowed_algos: ["RS256"],
+  issuer: System.get_env("AUTH0_API_IDENTIFIER"),
+  verify_issuer: true,
+  verify_module: Guardian.JWT,
+  secret_key: %{
+    "alg" => "RS256",
+    "kty" => "RSA",
+    "use" => "sig",
+    "x5c" => [System.get_env("AUTH0_PUBLIC_KEY_X5C")],
+    "n" => System.get_env("AUTH0_PUBLIC_KEY_N"),
+    "e" => System.get_env("AUTH0_PUBLIC_KEY_E"),
+    "kid" => System.get_env("AUTH0_PUBLIC_KEY_KID"),
+    "x5t" => System.get_env("AUTH0_PUBLIC_KEY_X5T")
+  }
+
+config :students_crm_v2_web, StudentsCrmV2Web.Auth.Pipeline,
+  error_handler: StudentsCrmV2Web.Auth.ErrorHandler,
+  module: StudentsCrmV2Web.Auth.Guardian
+
+config :students_crm_v2_web, StudentsCrmV2Web.Auth.BlankPipeline,
+  error_handler: StudentsCrmV2Web.Auth.ErrorHandler,
+  module: StudentsCrmV2Web.Auth.Guardian
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

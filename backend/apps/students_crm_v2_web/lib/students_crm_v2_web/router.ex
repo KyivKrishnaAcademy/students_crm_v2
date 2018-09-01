@@ -9,42 +9,37 @@ defmodule StudentsCrmV2Web.Router do
     plug(:put_secure_browser_headers)
   end
 
-  pipeline :api do
+  pipeline :api_authenticated do
     plug(:accepts, ["json-api", "json"])
-    plug(Guardian.Plug.VerifyHeader, module: StudentsCrmV2Web.Guardian)
-    plug(Guardian.Plug.LoadResource, module: StudentsCrmV2Web.Guardian, allow_blank: true)
+    plug(StudentsCrmV2Web.Auth.Pipeline)
     plug(JaSerializer.Deserializer)
   end
 
-  pipeline :webhooks do
-    plug(:accepts, ["json"])
+  pipeline :api_authenticated_blank do
+    plug(:accepts, ["json-api", "json"])
+    plug(StudentsCrmV2Web.Auth.BlankPipeline)
+    plug(JaSerializer.Deserializer)
   end
 
   scope "/", StudentsCrmV2Web do
-    # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
   end
 
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
-    pipe_through(:webhooks)
+    pipe_through(:api_authenticated_blank)
 
-    scope "/webhooks", Webhooks, as: :webhooks do
-      post("/telegram/:token", TelegramController, :create)
-    end
+    post("/sessions", SessionController, :post)
   end
 
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
-    pipe_through(:api)
-
-    get("/users/me", CurrentUserController, :show)
+    pipe_through(:api_authenticated)
 
     resources "/users", UserController, only: [:index, :update] do
       post("/agree", PrivacyAgreementController, :post)
     end
 
     resources("/documents", DocumentController, only: [:create, :show])
-    resources("/login", LoginController, only: [:create])
   end
 end
