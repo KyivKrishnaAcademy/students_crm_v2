@@ -30,11 +30,11 @@ export default Controller.extend({
 
   uploadFile: task(function * (file, kind) {
     const { API_HOST, API_NAMESPACE } = config;
-    const auth_token = get(this, 'session.session.content.authenticated.auth_token');
+    const accessToken = get(this, 'session.data.authenticated.accessToken');
 
     yield file.upload(`${API_HOST}/${API_NAMESPACE}/documents`, {
       data: { kind },
-      headers: { Authorization: `Bearer ${auth_token}` },
+      headers: { Authorization: `Bearer ${accessToken}` },
     });
   }).drop(),
 

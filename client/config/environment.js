@@ -1,7 +1,5 @@
 'use strict';
 
-const browsers = require('./targets');
-
 module.exports = function(environment) {
   let ENV = {
     modulePrefix: 'students-crm-v2',
@@ -20,6 +18,14 @@ module.exports = function(environment) {
       }
     },
 
+    'ember-simple-auth': {
+      authenticationRoute: 'login',
+      auth0: {
+        clientID: 'HxPuZr7OTTI6er0XXX3BX2xpGax39oDx',
+        domain: 'krishna-academy-ua.eu.auth0.com',
+      },
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -28,17 +34,30 @@ module.exports = function(environment) {
     API_HOST: process.env.API_HOST,
     API_NAMESPACE: process.env.API_NAMESPACE,
 
-    TELEGRAM_BOT: 'KrishnaAcademyBot',
-    TELEGRAM_LINK: 'https://telegram.me/',
-
-    autoprefixer: browsers,
-
     i18n: {
       defaultLocale: 'uk',
     },
 
     moment: {
       includeLocales: ['uk'],
+    },
+
+    lockOptions: {
+      auth: {
+        audience: 'http://dev.students-crm.localhost',
+        params: {
+          responseType: 'token id_token',
+          scope: 'openid profile email user_metadata',
+        },
+      },
+      // container: 'login-form',
+      language: 'ua',
+      languageDictionary: {
+        title: '',
+      },
+      theme: {
+        logo: 'https://res.cloudinary.com/dsd89mcu3/image/upload/v1532100648/Logo_Academy_2017_black_150px_ogcv0o.png'
+      },
     },
   };
 
@@ -68,12 +87,6 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
-
-  ENV['ember-simple-auth-token'] = {
-    tokenPropertyName: 'auth_token',
-    serverTokenEndpoint: `${ENV.API_HOST}/${ENV.API_NAMESPACE}/login`,
-    refreshTokenPropertyName: 'auth_token',
-  };
 
   return ENV;
 };

@@ -5,7 +5,9 @@
     {{/paper-button}}
 
     {{#unless session.isAuthenticated}}
-      {{paper-link (t "header-toolbar.login") "login" raised=true}}
+      {{#paper-button onClick=(action "login") raised=true}}
+        {{t "header-toolbar.login"}}
+      {{/paper-button}}
     {{/unless}}
   {{/toolbar.tools}}
 {{/paper-toolbar}}
