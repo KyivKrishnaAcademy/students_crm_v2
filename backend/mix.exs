@@ -10,9 +10,11 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
       dialyzer: dialyzer(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
+        "coveralls.detail": :test,
+        "coveralls.html": :test,
+        "coveralls.post": :test,
         coveralls: :test,
-        lint_n_test: :test,
-        "coveralls.detail": :test
+        lint_n_test: :test
       ]
     ]
   end
