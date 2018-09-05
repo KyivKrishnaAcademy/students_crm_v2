@@ -31,9 +31,9 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:credo, "~> 0.9.3", only: [:dev, :test], runtime: false},
+      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.3", only: [:dev, :test], runtime: false},
-      {:excoveralls, "~> 0.9.1", only: [:dev, :test], runtime: false}
+      {:excoveralls, "~> 0.10.0", only: [:dev, :test], runtime: false}
     ]
   end
 
