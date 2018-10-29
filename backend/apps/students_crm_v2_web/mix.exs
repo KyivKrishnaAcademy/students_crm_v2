@@ -37,18 +37,20 @@ defmodule StudentsCrmV2Web.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.0"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:bamboo, "~> 1.1"},
+      {:cors_plug, "~> 1.2"},
+      {:cowboy, "~> 1.0"},
+      {:gettext, "~> 0.11"},
+      {:guardian, "~> 1.0"},
+      {:ja_serializer, "~> 0.13"},
+      {:jason, "~> 1.1.0"},
+      {:login_token_cache, in_umbrella: true},
       {:phoenix_ecto, "~> 3.3"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:students_crm_v2, in_umbrella: true},
-      {:cowboy, "~> 1.0"},
-      {:guardian, "~> 1.0"},
-      {:cors_plug, "~> 1.2"},
-      {:ja_serializer, "~> 0.13"},
-      {:jason, "~> 1.1.0"}
+      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, "~> 1.3.0"},
+      {:students_crm_v2, in_umbrella: true}
     ]
   end
 

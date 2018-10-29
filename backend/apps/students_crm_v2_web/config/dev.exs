@@ -45,3 +45,5 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
       ~r{lib/students_crm_v2_web/templates/.*(eex)$}
     ]
   ]
+
+config :students_crm_v2_web, StudentsCrmV2Web.Mailer, adapter: Bamboo.LocalAdapter
