@@ -45,7 +45,6 @@ defmodule StudentsCrmV2Web.Mixfile do
       {:ja_serializer, "~> 0.13"},
       {:jason, "~> 1.1.0"},
       {:login_token_cache, in_umbrella: true},
-      {:phoenix_ecto, "~> 3.3"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
