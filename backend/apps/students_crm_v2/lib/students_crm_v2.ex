@@ -18,6 +18,7 @@ defmodule StudentsCrmV2 do
   defdelegate show_document(id, current_user), to: Document.Show, as: :execute
 
   defdelegate agree_to_privacy_policy(id, author), to: User.Agree, as: :execute
+  defdelegate get_user_by_contact(contact), to: User.GetByContact, as: :execute
   defdelegate list_users(), to: User.List, as: :execute
   defdelegate register_user(params), to: User.Register, as: :execute
   defdelegate show_user(id), to: User.Show, as: :execute

@@ -6,7 +6,7 @@ defmodule LoginTokenCache do
 
     ConCache.delete(:login_token_cache, key)
 
-    value
+    responce(value)
   end
 
   def generate(value) do
@@ -28,4 +28,7 @@ defmodule LoginTokenCache do
     |> Base.encode32()
     |> binary_part(0, length)
   end
+
+  defp responce(nil), do: {:error, :no_token_found}
+  defp responce(value), do: {:ok, value}
 end

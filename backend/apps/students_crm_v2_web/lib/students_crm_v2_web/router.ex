@@ -47,6 +47,7 @@ defmodule StudentsCrmV2Web.Router do
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
     pipe_through(:api_simple_json)
 
+    post("/token-auth", TokenController, :exchange)
     post("/token-generate", TokenController, :generate)
   end
 
