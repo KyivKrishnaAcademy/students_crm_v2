@@ -4,7 +4,7 @@ defmodule StudentsCrmV2Web.LoginTokenEmail do
   import Bamboo.Email
 
   def prepare(login_token, address) do
-    new_email
+    new_email()
     |> to(address)
     |> from("robodas@veda-kiev.org.ua")
     |> subject("Your login token!!!")

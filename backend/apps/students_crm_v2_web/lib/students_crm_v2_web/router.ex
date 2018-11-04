@@ -18,6 +18,10 @@ defmodule StudentsCrmV2Web.Router do
     plug(JaSerializer.Deserializer)
   end
 
+  pipeline :api_simple_json do
+    plug(:accepts, ["json"])
+  end
+
   scope "/", StudentsCrmV2Web do
     pipe_through(:browser)
 
@@ -38,6 +42,12 @@ defmodule StudentsCrmV2Web.Router do
     end
 
     resources("/documents", DocumentController, only: [:create, :show])
+  end
+
+  scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
+    pipe_through(:api_simple_json)
+
+    post("/token-generate", TokenController, :generate)
   end
 
   if Mix.env() == :dev do
