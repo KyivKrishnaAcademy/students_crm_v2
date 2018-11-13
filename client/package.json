@@ -55,6 +55,7 @@
     "ember-simple-auth": "^1.7.0",
     "ember-simple-auth-auth0": "<4.2.0",
     "ember-source": "~3.3.0",
+    "ember-svg-jar": "^1.2.2",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.6.2",
