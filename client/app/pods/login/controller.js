@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { computed, get, set } from '@ember/object';
+import { computed, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import fetch from 'fetch';
 import config from 'students-crm-v2/config/environment';
@@ -13,11 +13,11 @@ export default Controller.extend({
   mothodValue: '',
 
   loginMethodValueLabel: computed('loginMethod', function() {
-    return `login.methodValueStep.value.${get(this, 'loginMethod')}`;
+    return `login.methodValueStep.value.${this.loginMethod}`;
   }),
 
   loginMethodValueLabelRequired: computed('loginMethod', function() {
-    return `login.methodValueStep.required.${get(this, 'loginMethod')}`;
+    return `login.methodValueStep.required.${this.loginMethod}`;
   }),
 
   generateLoginToken: task(function * (nextStep, loginMethod, mothodValue) {
@@ -34,7 +34,7 @@ export default Controller.extend({
   }).drop(),
 
   verifyLoginToken: task(function * (loginToken) {
-    yield get(this, 'session').authenticate('authenticator:token', { loginToken });
+    yield this.session.authenticate('authenticator:token', { loginToken });
   }).drop(),
 
   actions: {
