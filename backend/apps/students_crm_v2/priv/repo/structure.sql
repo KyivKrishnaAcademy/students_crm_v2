@@ -35,38 +35,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: authentications; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE authentications (
-    id bigint NOT NULL,
-    sub character varying(255),
-    user_id bigint,
-    inserted_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: authentications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE authentications_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: authentications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE authentications_id_seq OWNED BY authentications.id;
-
-
---
 -- Name: contacts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -134,39 +102,6 @@ ALTER SEQUENCE documents_id_seq OWNED BY documents.id;
 
 
 --
--- Name: phones; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE phones (
-    id bigint NOT NULL,
-    phone character varying(255) NOT NULL,
-    user_id bigint,
-    inserted_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    telegram_uid integer
-);
-
-
---
--- Name: phones_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE phones_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: phones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE phones_id_seq OWNED BY phones.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -212,13 +147,6 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: authentications id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY authentications ALTER COLUMN id SET DEFAULT nextval('authentications_id_seq'::regclass);
-
-
---
 -- Name: contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -233,25 +161,10 @@ ALTER TABLE ONLY documents ALTER COLUMN id SET DEFAULT nextval('documents_id_seq
 
 
 --
--- Name: phones id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY phones ALTER COLUMN id SET DEFAULT nextval('phones_id_seq'::regclass);
-
-
---
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
-
-
---
--- Name: authentications authentications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY authentications
-    ADD CONSTRAINT authentications_pkey PRIMARY KEY (id);
 
 
 --
@@ -271,14 +184,6 @@ ALTER TABLE ONLY documents
 
 
 --
--- Name: phones phones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY phones
-    ADD CONSTRAINT phones_pkey PRIMARY KEY (id);
-
-
---
 -- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -295,39 +200,10 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: authentications_sub_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX authentications_sub_index ON authentications USING btree (sub);
-
-
---
 -- Name: contacts_kind_value_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX contacts_kind_value_index ON contacts USING btree (kind, value);
-
-
---
--- Name: phones_phone_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX phones_phone_index ON phones USING btree (phone);
-
-
---
--- Name: phones_telegram_uid_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX phones_telegram_uid_index ON phones USING btree (telegram_uid);
-
-
---
--- Name: authentications authentications_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY authentications
-    ADD CONSTRAINT authentications_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
@@ -347,16 +223,8 @@ ALTER TABLE ONLY documents
 
 
 --
--- Name: phones phones_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY phones
-    ADD CONSTRAINT phones_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439);
+INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047);
 
