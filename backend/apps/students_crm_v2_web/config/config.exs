@@ -32,20 +32,10 @@ config :mime, :types, %{
 }
 
 config :students_crm_v2_web, StudentsCrmV2Web.Auth.Guardian,
-  allowed_algos: ["RS256"],
-  issuer: System.get_env("AUTH0_API_IDENTIFIER"),
+  allowed_algos: ["HS256"],
+  issuer: System.get_env("TOKEN_ISSUER"),
   verify_issuer: true,
-  verify_module: Guardian.JWT,
-  secret_key: %{
-    "alg" => "RS256",
-    "kty" => "RSA",
-    "use" => "sig",
-    "x5c" => [System.get_env("AUTH0_PUBLIC_KEY_X5C")],
-    "n" => System.get_env("AUTH0_PUBLIC_KEY_N"),
-    "e" => System.get_env("AUTH0_PUBLIC_KEY_E"),
-    "kid" => System.get_env("AUTH0_PUBLIC_KEY_KID"),
-    "x5t" => System.get_env("AUTH0_PUBLIC_KEY_X5T")
-  }
+  secret_key: System.get_env("TOKEN_SECRET_KEY")
 
 config :students_crm_v2_web, StudentsCrmV2Web.Auth.Pipeline,
   error_handler: StudentsCrmV2Web.Auth.ErrorHandler,

@@ -20,10 +20,6 @@ module.exports = function(environment) {
 
     'ember-simple-auth': {
       authenticationRoute: 'login',
-      auth0: {
-        clientID: 'HxPuZr7OTTI6er0XXX3BX2xpGax39oDx',
-        domain: 'krishna-academy-ua.eu.auth0.com',
-      },
     },
 
     APP: {
@@ -40,24 +36,6 @@ module.exports = function(environment) {
 
     moment: {
       includeLocales: ['uk'],
-    },
-
-    lockOptions: {
-      auth: {
-        audience: 'http://dev.students-crm.localhost',
-        params: {
-          responseType: 'token id_token',
-          scope: 'openid profile email user_metadata',
-        },
-      },
-      // container: 'login-form',
-      language: 'ua',
-      languageDictionary: {
-        title: '',
-      },
-      theme: {
-        logo: 'https://res.cloudinary.com/dsd89mcu3/image/upload/v1532100648/Logo_Academy_2017_black_150px_ogcv0o.png'
-      },
     },
   };
 
@@ -87,6 +65,10 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: `${ENV.API_HOST}/api/v1/token-auth/`,
+  };
 
   return ENV;
 };
