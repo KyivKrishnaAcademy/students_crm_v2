@@ -12,15 +12,13 @@ export default {
 
   'login.methodSelectionStep.label': 'Оберіть метод входу',
   'login.methodValueStep.label': 'Куди висилати код?',
-  'login.methodValueStep.required.email': NEED_TO_FILL,
-  'login.methodValueStep.required.phone': NEED_TO_FILL,
   'login.methodValueStep.value.email': 'Вкажіть Вашу електронну пошту',
   'login.methodValueStep.value.phone': 'Вкажіть Ваш номер телефону',
+  'login.methodValueStep.valueRequired': NEED_TO_FILL,
   'login.title': 'Вхід',
   'login.tokenStep.label': 'Верифікація коду',
   'login.tokenStep.token': 'Введіть код який Ви отримали',
   'login.tokenStep.tokenRequired': NEED_TO_FILL,
-  'loginMethodValueLabelRequired': NEED_TO_FILL,
 
   'main-sidenav.home': 'Домашня',
   'main-sidenav.logout': 'Вийти',
