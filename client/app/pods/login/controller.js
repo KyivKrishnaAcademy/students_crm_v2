@@ -20,17 +20,23 @@ export default Controller.extend({
     return `login.methodValueStep.required.${this.loginMethod}`;
   }),
 
-  generateLoginToken: task(function * (nextStep, loginMethod, mothodValue) {
-    const url = `${config.API_HOST}/${config.API_NAMESPACE}/token-generate`;
+  post(path, data) {
+    const url = `${config.API_HOST}/${config.API_NAMESPACE}${path}`;
 
-    yield fetch(url, {
+    return fetch(url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ [loginMethod]: mothodValue })
-    }).then(() => nextStep());
+      body: JSON.stringify(data)
+    })
+  },
+
+  generateLoginToken: task(function * (nextStep, loginMethod, mothodValue) {
+    yield this
+      .post("/token-generate", { [loginMethod]: mothodValue })
+      .then(() => nextStep());
   }).drop(),
 
   verifyLoginToken: task(function * (loginToken) {
