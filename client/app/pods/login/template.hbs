@@ -64,6 +64,10 @@
         <p class="text-center">{{t "login.userNotFoundStep.pleaseChose"}}</p>
 
         {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center" as |nextStep previousStep goTo|}}
+          {{#paper-button primary=true raised=true onClick=(action "resetSteps" goTo)}}
+            {{t "login.userNotFoundStep.searchByAnotherContact"}}
+          {{/paper-button}}
+
           {{#paper-button primary=true raised=true onClick=(perform registerUser registerPayload)}}
             {{t "login.userNotFoundStep.createNew"}}
           {{/paper-button}}

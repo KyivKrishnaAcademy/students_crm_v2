@@ -50,7 +50,7 @@
     "ember-paper": "^1.0.0-beta.18",
     "ember-paper-link": "0.0.5",
     "ember-paper-pikaday": "<2.1.0",
-    "ember-paper-stepper": "0.0.7",
+    "ember-paper-stepper": "^0.0.10",
     "ember-resolver": "^4.0.0",
     "ember-simple-auth": "^1.7.0",
     "ember-simple-auth-token": "^4.0.4",

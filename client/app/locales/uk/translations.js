@@ -22,6 +22,7 @@ export default {
   'login.userNotFoundStep.createNew': 'Створити нового користувача',
   'login.userNotFoundStep.label': 'Немає користувача за таким контактом',
   'login.userNotFoundStep.pleaseChose': 'Оберіть що робити далі будь ласка',
+  'login.userNotFoundStep.searchByAnotherContact': 'Шукати за іншим контактом',
 
   'main-sidenav.home': 'Домашня',
   'main-sidenav.logout': 'Вийти',

@@ -65,5 +65,17 @@ export default Controller.extend({
 
       next();
     },
+
+    resetSteps(goTo) {
+      setProperties(this, {
+        isUserNotFoundStepShown: false,
+        loginMethod: '',
+        loginToken: '',
+        mothodValue: '',
+        registerPayload: null,
+      });
+
+      goTo(0);
+    },
   },
 });
