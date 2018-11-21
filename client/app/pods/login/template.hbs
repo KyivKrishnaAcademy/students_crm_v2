@@ -38,7 +38,7 @@
 
     {{#stepper.step label=(t "login.tokenStep.label") as |step|}}
       {{#paper-form
-        onSubmit=(perform verifyLoginToken loginToken)
+        onSubmit=(perform verifyLoginToken loginToken step.nextStep)
       as |form|}}
         {{#step.body class="layout-column"}}
           {{form.input
@@ -57,5 +57,18 @@
         {{/step.actions}}
       {{/paper-form}}
     {{/stepper.step}}
+
+    {{#if isUserNotFoundStepShown}}
+      {{#stepper.step label=(t "login.userNotFoundStep.label") as |step|}}
+        <p class="text-center">{{t "login.userNotFoundStep.label"}}</p>
+        <p class="text-center">{{t "login.userNotFoundStep.pleaseChose"}}</p>
+
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center" as |nextStep previousStep goTo|}}
+          {{#paper-button primary=true raised=true onClick=(perform registerUser registerPayload)}}
+            {{t "login.userNotFoundStep.createNew"}}
+          {{/paper-button}}
+        {{/step.actions}}
+      {{/stepper.step}}
+    {{/if}}
   {{/paper-stepper}}
 </div>

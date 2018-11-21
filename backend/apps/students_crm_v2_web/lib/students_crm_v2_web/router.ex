@@ -49,6 +49,7 @@ defmodule StudentsCrmV2Web.Router do
 
     post("/token-auth", TokenController, :exchange)
     post("/token-generate", TokenController, :generate)
+    post("/token-register", TokenController, :register)
   end
 
   if Mix.env() == :dev do

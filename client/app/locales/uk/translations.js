@@ -19,6 +19,9 @@ export default {
   'login.tokenStep.label': 'Верифікація коду',
   'login.tokenStep.token': 'Введіть код який Ви отримали',
   'login.tokenStep.tokenRequired': NEED_TO_FILL,
+  'login.userNotFoundStep.createNew': 'Створити нового користувача',
+  'login.userNotFoundStep.label': 'Немає користувача за таким контактом',
+  'login.userNotFoundStep.pleaseChose': 'Оберіть що робити далі будь ласка',
 
   'main-sidenav.home': 'Домашня',
   'main-sidenav.logout': 'Вийти',

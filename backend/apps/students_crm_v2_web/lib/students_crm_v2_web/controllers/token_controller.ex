@@ -28,6 +28,21 @@ defmodule StudentsCrmV2Web.TokenController do
     end
   end
 
+  def register(conn, %{"contact" => contact, "newLoginToken" => loginToken}) do
+    with {:ok, cached_contact = {type, value}} <- LoginTokenCache.get(loginToken),
+         true <- Map.equal?(contact, %{type => value}),
+         {:ok, _} <- StudentsCrmV2.register_user_by_contact(cached_contact),
+         login_token <- LoginTokenCache.generate(cached_contact) do
+      render(conn, "login_token.json", data: login_token)
+    else
+      {:error, :no_token_found} ->
+        send_resp(conn, 498, "")
+
+      err ->
+        err
+    end
+  end
+
   def generate(conn, params) do
     send_email(params)
     # send_sms(params)

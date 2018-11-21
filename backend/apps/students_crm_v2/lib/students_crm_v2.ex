@@ -20,6 +20,7 @@ defmodule StudentsCrmV2 do
   defdelegate agree_to_privacy_policy(id, author), to: User.Agree, as: :execute
   defdelegate get_user_by_contact(contact), to: User.GetByContact, as: :execute
   defdelegate list_users(), to: User.List, as: :execute
+  defdelegate register_user_by_contact(params), to: User.RegisterByContact, as: :execute
   defdelegate register_user(params), to: User.Register, as: :execute
   defdelegate show_user(id), to: User.Show, as: :execute
   defdelegate update_user(user_id, params, author), to: User.Update, as: :execute
