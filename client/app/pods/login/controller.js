@@ -16,10 +16,6 @@ export default Controller.extend({
     return `login.methodValueStep.value.${this.loginMethod}`;
   }),
 
-  loginMethodValueLabelRequired: computed('loginMethod', function() {
-    return `login.methodValueStep.required.${this.loginMethod}`;
-  }),
-
   post(path, data) {
     const url = `${config.API_HOST}/${config.API_NAMESPACE}${path}`;
 
