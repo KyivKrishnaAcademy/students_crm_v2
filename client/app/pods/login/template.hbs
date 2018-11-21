@@ -30,9 +30,9 @@
           }}
         {{/step.body}}
 
-        <div class="layout-column layout-align-start-center">
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center"}}
           {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
-        </div>
+        {{/step.actions}}
       {{/paper-form}}
     {{/stepper.step}}
 
@@ -52,9 +52,9 @@
           }}
         {{/step.body}}
 
-        <div class="layout-column layout-align-start-center">
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center"}}
           {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
-        </div>
+        {{/step.actions}}
       {{/paper-form}}
     {{/stepper.step}}
   {{/paper-stepper}}
