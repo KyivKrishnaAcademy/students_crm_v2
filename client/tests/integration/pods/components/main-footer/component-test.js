@@ -12,15 +12,6 @@ module('Integration | Component | main-footer', function(hooks) {
 
     await render(hbs`{{main-footer}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#main-footer}}
-        template block text
-      {{/main-footer}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    assert.ok(RegExp('^Icons made by').test(this.element.textContent.trim()));
   });
 });

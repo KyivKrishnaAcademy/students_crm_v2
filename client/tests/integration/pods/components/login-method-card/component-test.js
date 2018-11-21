@@ -13,14 +13,5 @@ module('Integration | Component | login-method-card', function(hooks) {
     await render(hbs`{{login-method-card}}`);
 
     assert.equal(this.element.textContent.trim(), '');
-
-    // Template block usage:
-    await render(hbs`
-      {{#login-method-card}}
-        template block text
-      {{/login-method-card}}
-    `);
-
-    assert.equal(this.element.textContent.trim(), 'template block text');
   });
 });
