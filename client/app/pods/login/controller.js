@@ -11,7 +11,7 @@ export default Controller.extend({
   isUserNotFoundStepShown: false,
   loginMethod: '',
   loginToken: '',
-  mothodValue: '',
+  methodValue: '',
   registerPayload: null,
 
   loginMethodValueLabel: computed('loginMethod', function() {
@@ -31,9 +31,9 @@ export default Controller.extend({
     })
   },
 
-  generateLoginToken: task(function * (nextStep, loginMethod, mothodValue) {
+  generateLoginToken: task(function * (nextStep, loginMethod, methodValue) {
     yield this
-      .post("/token-generate", { [loginMethod]: mothodValue })
+      .post("/token-generate", { [loginMethod]: methodValue })
       .then(() => nextStep());
   }).drop(),
 
@@ -71,7 +71,7 @@ export default Controller.extend({
         isUserNotFoundStepShown: false,
         loginMethod: '',
         loginToken: '',
-        mothodValue: '',
+        methodValue: '',
         registerPayload: null,
       });
 

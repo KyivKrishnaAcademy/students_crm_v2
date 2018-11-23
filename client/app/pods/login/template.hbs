@@ -16,14 +16,14 @@
 
     {{#stepper.step label=(t "login.methodValueStep.label") as |step|}}
       {{#paper-form
-        onSubmit=(perform generateLoginToken step.nextStep loginMethod mothodValue)
+        onSubmit=(perform generateLoginToken step.nextStep loginMethod methodValue)
       as |form|}}
         {{#step.body class="layout-column"}}
           {{form.input
             label=(t loginMethodValueLabel)
-            onChange=(action (mut mothodValue))
+            onChange=(action (mut methodValue))
             required=true
-            value=mothodValue
+            value=methodValue
             errorMessages=(hash
               required=(t 'login.methodValueStep.valueRequired')
             )
