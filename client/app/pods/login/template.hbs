@@ -73,6 +73,20 @@
           {{/paper-button}}
         {{/step.actions}}
       {{/stepper.step}}
+    {{else if isTokenExpiredStepShown}}
+      {{#stepper.step label=(t "login.tokenExpiredStep.label") as |step|}}
+        <p class="text-center">{{t "login.tokenExpiredStep.desc"}}</p>
+
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center" as |nextStep previousStep goTo|}}
+          {{#paper-button primary=true raised=true onClick=(action "enterLoginTokenAgain" previousStep)}}
+            {{t "login.tokenExpiredStep.enterAgain"}}
+          {{/paper-button}}
+
+          {{#paper-button primary=true raised=true onClick=(action "resetSteps" goTo)}}
+            {{t "login.tokenExpiredStep.sendNewToken"}}
+          {{/paper-button}}
+        {{/step.actions}}
+      {{/stepper.step}}
     {{/if}}
   {{/paper-stepper}}
 </div>

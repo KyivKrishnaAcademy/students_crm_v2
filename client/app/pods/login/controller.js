@@ -8,6 +8,7 @@ import { task } from 'ember-concurrency';
 export default Controller.extend({
   session: service(),
 
+  isTokenExpiredStepShown: false,
   isUserNotFoundStepShown: false,
   loginMethod: '',
   loginToken: '',
@@ -55,6 +56,11 @@ export default Controller.extend({
             nextStep();
 
             break;
+          case 498:
+            set(this, 'isTokenExpiredStepShown', true);
+            nextStep();
+
+            break;
         }
       });
   }).drop(),
@@ -66,8 +72,15 @@ export default Controller.extend({
       next();
     },
 
+    enterLoginTokenAgain(changeStep) {
+      changeStep();
+
+      set(this, 'isTokenExpiredStepShown', false);
+    },
+
     resetSteps(goTo) {
       setProperties(this, {
+        isTokenExpiredStepShown: false,
         isUserNotFoundStepShown: false,
         loginMethod: '',
         loginToken: '',
