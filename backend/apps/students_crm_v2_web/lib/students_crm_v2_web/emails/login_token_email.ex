@@ -1,14 +1,15 @@
 defmodule StudentsCrmV2Web.LoginTokenEmail do
   @moduledoc false
 
-  import Bamboo.Email
+  use Bamboo.Phoenix, view: StudentsCrmV2Web.EmailView
 
   def prepare(login_token, address) do
     new_email()
-    |> to(address)
     |> from("robodas@veda-kiev.org.ua")
-    |> subject("Your login token!!!")
-    |> html_body("<strong>#{login_token}</strong>")
-    |> text_body(login_token)
+    |> subject("Ваш код для входу")
+    |> put_layout({StudentsCrmV2Web.LayoutView, :email})
+    |> to(address)
+    |> assign(:login_token, login_token)
+    |> render(:login_token, main_title: "Код для входу")
   end
 end

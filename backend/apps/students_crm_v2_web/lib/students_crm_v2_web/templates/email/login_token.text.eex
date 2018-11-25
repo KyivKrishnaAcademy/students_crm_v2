@@ -1,0 +1,3 @@
+Введіть цей код на сторінці входу: <%= @login_token %>
+
+Або перейдіть за цим посиланням: http://localhost:4200/login?loginToken=<%= @login_token %>
