@@ -5,4 +5,10 @@ import TokenAuthorizerMixin from 'ember-simple-auth-token/mixins/token-authorize
 export default JSONAPIAdapter.extend(TokenAuthorizerMixin, {
   host: config.API_HOST,
   namespace: config.API_NAMESPACE,
+
+  authorize(xhr) {
+    this._super(...arguments);
+
+    xhr.setRequestHeader('Tenant', config.tenant);
+  },
 });

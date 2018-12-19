@@ -1,6 +1,8 @@
 defmodule StudentsCrmV2Web.Router do
   use StudentsCrmV2Web, :router
 
+  alias StudentsCrmV2Web.TenantPlug
+
   pipeline :browser do
     plug(:accepts, ["html"])
     plug(:put_secure_browser_headers)
@@ -10,16 +12,19 @@ defmodule StudentsCrmV2Web.Router do
     plug(:accepts, ["json-api", "json"])
     plug(StudentsCrmV2Web.Auth.Pipeline)
     plug(JaSerializer.Deserializer)
+    plug(TenantPlug)
   end
 
   pipeline :api_authenticated_blank do
     plug(:accepts, ["json-api", "json"])
     plug(StudentsCrmV2Web.Auth.BlankPipeline)
     plug(JaSerializer.Deserializer)
+    plug(TenantPlug)
   end
 
   pipeline :api_simple_json do
     plug(:accepts, ["json"])
+    plug(TenantPlug)
   end
 
   scope "/", StudentsCrmV2Web do

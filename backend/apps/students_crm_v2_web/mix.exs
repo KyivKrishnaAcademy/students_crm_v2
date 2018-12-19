@@ -38,7 +38,7 @@ defmodule StudentsCrmV2Web.Mixfile do
   defp deps do
     [
       {:bamboo, "~> 1.1"},
-      {:cors_plug, "~> 1.2"},
+      {:cors_plug, "~> 2.0"},
       {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:guardian, "~> 1.0"},

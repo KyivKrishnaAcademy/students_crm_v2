@@ -26,7 +26,8 @@ export default Controller.extend({
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Tenant': config.tenant,
       },
       body: JSON.stringify(data)
     })

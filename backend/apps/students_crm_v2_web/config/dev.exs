@@ -13,7 +13,23 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   check_origin: false,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin", cd: Path.expand("../assets", __DIR__)]]
 
-config :cors_plug, origin: ["http://localhost:4200"]
+config :cors_plug,
+  origin: ["http://localhost:4200"],
+  headers: [
+    "Accept",
+    "Authorization",
+    "Cache-Control",
+    "Content-Type",
+    "DNT",
+    "If-Modified-Since",
+    "Keep-Alive",
+    "Origin",
+    "Tenant",
+    "User-Agent",
+    "X-CSRF-Token",
+    "X-Mx-ReqToken",
+    "X-Requested-With"
+  ]
 
 config :students_crm_v2_web, StudentsCrmV2Web.Guardian,
   secret_key: "TMjEPCFMsWViGnKBeYzest4Hm/zmuf10KoiuZPu7wVO5FPuFQok8Kzo2vfwQew70"

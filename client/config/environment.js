@@ -37,6 +37,8 @@ module.exports = function(environment) {
     moment: {
       includeLocales: ['uk'],
     },
+
+    tenant: process.env.TENANT,
   };
 
   if (environment === 'development') {
@@ -48,6 +50,7 @@ module.exports = function(environment) {
 
     ENV.API_HOST = 'http://api.localhost:4000';
     ENV.API_NAMESPACE = 'api/v1';
+    ENV.tenant= 'kyiv';
   }
 
   if (environment === 'test') {
