@@ -39,16 +39,17 @@ defmodule StudentsCrmV2Web.Mixfile do
     [
       {:bamboo, "~> 1.1"},
       {:cors_plug, "~> 2.0"},
-      {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:guardian, "~> 1.0"},
       {:ja_serializer, "~> 0.13"},
-      {:jason, "~> 1.1.0"},
+      {:jason, "~> 1.1"},
       {:login_token_cache, in_umbrella: true},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix, "~> 1.3.0"},
+      {:phoenix_html, "~> 2.13"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.4.0"},
+      {:plug_cowboy, "~> 2.0"},
+      {:plug, "~> 1.7"},
       {:students_crm_v2, in_umbrella: true}
     ]
   end
