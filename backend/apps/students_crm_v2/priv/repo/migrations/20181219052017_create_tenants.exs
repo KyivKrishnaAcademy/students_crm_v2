@@ -3,7 +3,7 @@ defmodule StudentsCrmV2.Repo.Migrations.CreateTenants do
 
   def change do
     create table(:tenants) do
-      add :name, :string
+      add(:name, :string)
 
       timestamps()
     end

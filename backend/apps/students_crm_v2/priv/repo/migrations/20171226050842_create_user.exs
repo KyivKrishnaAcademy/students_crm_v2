@@ -3,7 +3,7 @@ defmodule StudentsCrmV2.Repo.Migrations.CreateUser do
 
   def change do
     create table(:users) do
-      add :locale, :string, size: 2
+      add(:locale, :string, size: 2)
 
       timestamps()
     end

@@ -3,10 +3,10 @@ defmodule StudentsCrmV2.Repo.Migrations.CreateDocuments do
 
   def change do
     create table(:documents) do
-      add :kind, :string
-      add :asset, :string
+      add(:kind, :string)
+      add(:asset, :string)
 
-      add :user_id, references("users"), on_delete: :delete_all
+      add(:user_id, references("users"), on_delete: :delete_all)
 
       timestamps()
     end

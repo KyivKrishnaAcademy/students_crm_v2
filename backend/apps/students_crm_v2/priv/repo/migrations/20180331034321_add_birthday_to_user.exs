@@ -3,7 +3,7 @@ defmodule StudentsCrmV2.Repo.Migrations.AddBirthdayToUser do
 
   def change do
     alter table(:users) do
-      add :birthday, :date
+      add(:birthday, :date)
     end
   end
 end

@@ -3,7 +3,7 @@ defmodule StudentsCrmV2.Repo.Migrations.AddDisplayNameToUser do
 
   def change do
     alter table(:users) do
-      add :display_name, :string
+      add(:display_name, :string)
     end
   end
 end

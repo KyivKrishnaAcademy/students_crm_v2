@@ -3,7 +3,7 @@ defmodule StudentsCrmV2.Repo.Migrations.AddGenderToUser do
 
   def change do
     alter table(:users) do
-      add :gender, :string
+      add(:gender, :string)
     end
   end
 end
