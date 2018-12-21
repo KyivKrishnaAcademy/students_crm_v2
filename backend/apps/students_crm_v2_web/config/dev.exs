@@ -71,3 +71,8 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   ]
 
 config :students_crm_v2_web, StudentsCrmV2Web.Mailer, adapter: Bamboo.LocalAdapter
+
+config :students_crm_v2_web, :urls, %{
+  host: "localhost:4200",
+  protocol: "http"
+}

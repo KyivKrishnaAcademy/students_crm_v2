@@ -19,6 +19,7 @@ defmodule StudentsCrmV2 do
   defdelegate show_document(id, current_user), to: Document.Show, as: :execute
 
   defdelegate get_tenant_by_name(name), to: Tenant.GetByName, as: :execute
+  defdelegate list_tenants(), to: Tenant.List, as: :execute
 
   defdelegate agree_to_privacy_policy(id, author), to: User.Agree, as: :execute
   defdelegate get_user_by_contact(contact), to: User.GetByContact, as: :execute
