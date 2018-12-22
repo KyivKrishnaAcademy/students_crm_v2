@@ -1,5 +1,5 @@
 <div>
   <%= for tenant <- @tenants do %>
-    <p><a href="<%= tenant_root_url(tenant) %>"><%= tenant.name %></a></p>
+    <p><a href="<%= subdomain_root_url(tenant.name) %>"><%= tenant.name %></a></p>
   <% end %>
 </div>

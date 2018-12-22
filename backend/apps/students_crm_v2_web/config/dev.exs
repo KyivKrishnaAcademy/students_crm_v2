@@ -22,7 +22,7 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   ]
 
 config :cors_plug,
-  origin: ["http://localhost:4200"],
+  origin: ~r/^http:\/\/([a-z]+\.|)localhost:4200$/i,
   headers: [
     "Accept",
     "Authorization",
@@ -72,7 +72,8 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
 
 config :students_crm_v2_web, StudentsCrmV2Web.Mailer, adapter: Bamboo.LocalAdapter
 
-config :students_crm_v2_web, :urls, %{
-  host: "localhost:4200",
-  protocol: "http"
+config :students_crm_v2_web, :url_params, %{
+  host: "localhost",
+  port: 4200,
+  scheme: "http"
 }

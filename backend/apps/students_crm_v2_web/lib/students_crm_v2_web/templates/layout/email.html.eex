@@ -53,7 +53,7 @@
                 <tr>
                   <td align='center' valign='bottom'>
                     <%# <a href="http://students.veda-kiev.org.ua/?utm_campaign=schedules_notification&utm_content=footer_logo&utm_medium=email&utm_source=next_day_schedule"> %>
-                    <a href="http://localhost:4200">
+                    <a href="<%= subdomain_root_url(@tenant_name) %>">
                       <img src='https://res.cloudinary.com/dsd89mcu3/image/upload/v1538280388/Logo_Academy_2017_black_50px_ksnsco.png'>
                     </a>
                   </td>

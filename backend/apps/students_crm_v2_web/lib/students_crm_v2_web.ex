@@ -35,6 +35,7 @@ defmodule StudentsCrmV2Web do
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [view_module: 1]
+      import StudentsCrmV2Web.UrlHelper, only: [subdomain_root_url: 1, subdomain_root_url: 3]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML

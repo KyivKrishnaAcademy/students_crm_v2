@@ -44,18 +44,18 @@ defmodule StudentsCrmV2Web.TokenController do
   end
 
   def generate(conn, params) do
-    send_email(params)
+    send_email(params, conn.assigns.tenant.name)
     # send_sms(params)
 
     send_resp(conn, :ok, "")
   end
 
-  defp send_email(%{"email" => email}) do
+  defp send_email(%{"email" => email}, tenant_name) do
     {"email", email}
     |> LoginTokenCache.generate()
-    |> LoginTokenEmail.prepare(email)
+    |> LoginTokenEmail.prepare(email, tenant_name)
     |> Mailer.deliver_later()
   end
 
-  defp send_email(_), do: nil
+  defp send_email(_, _), do: nil
 end

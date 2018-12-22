@@ -3,7 +3,8 @@
 <%= render @view_module, @view_template, assigns %>
 
 --
-http://localhost:4200
+<%= subdomain_root_url(@tenant_name) %>
+
 Київська духовна академія свідомості Крішни
 +38 (067) 245-87-00
 +38 (063) 321-00-33
