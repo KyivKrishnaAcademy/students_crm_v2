@@ -71,6 +71,9 @@ module.exports = function(environment) {
 
   ENV['ember-simple-auth-token'] = {
     serverTokenEndpoint: `${ENV.API_HOST}/api/v1/token-auth/`,
+    headers: {
+      tenant: ENV.tenant,
+    },
   };
 
   return ENV;
