@@ -11,9 +11,33 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin", cd: Path.expand("../assets", __DIR__)]]
+  watchers: [
+    node: [
+      "node_modules/webpack/bin/webpack.js",
+      "--mode",
+      "development",
+      "--watch-stdin",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
 
-config :cors_plug, origin: ["http://localhost:4200"]
+config :cors_plug,
+  origin: ~r/^http:\/\/([a-z]+\.|)localhost:4200$/i,
+  headers: [
+    "Accept",
+    "Authorization",
+    "Cache-Control",
+    "Content-Type",
+    "DNT",
+    "If-Modified-Since",
+    "Keep-Alive",
+    "Origin",
+    "Tenant",
+    "User-Agent",
+    "X-CSRF-Token",
+    "X-Mx-ReqToken",
+    "X-Requested-With"
+  ]
 
 config :students_crm_v2_web, StudentsCrmV2Web.Guardian,
   secret_key: "TMjEPCFMsWViGnKBeYzest4Hm/zmuf10KoiuZPu7wVO5FPuFQok8Kzo2vfwQew70"
@@ -45,3 +69,11 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
       ~r{lib/students_crm_v2_web/templates/.*(eex)$}
     ]
   ]
+
+config :students_crm_v2_web, StudentsCrmV2Web.Mailer, adapter: Bamboo.LocalAdapter
+
+config :students_crm_v2_web, :url_params, %{
+  host: "localhost",
+  port: 4200,
+  scheme: "http"
+}

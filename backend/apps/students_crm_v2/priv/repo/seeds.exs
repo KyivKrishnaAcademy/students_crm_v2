@@ -9,3 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias StudentsCrmV2.Models.Tenant
+alias StudentsCrmV2.Repo
+
+Repo.insert!(%Tenant{name: "kyiv"})

@@ -1,0 +1,3 @@
+Введіть цей код на сторінці входу: <%= @login_token %>
+
+Або перейдіть за цим посиланням: <%= subdomain_root_url(@tenant_name, "/login", loginToken: @login_token) %>

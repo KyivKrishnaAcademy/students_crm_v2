@@ -1,0 +1,14 @@
+<tr>
+  <td align='left' valign='middle'>
+    Введіть цей код на сторінці входу: <b><%= @login_token %></b>
+  </td>
+</tr>
+
+<tr>
+  <td align='left' valign='middle'>
+    Або перейдіть за цим посиланням:
+    <a href="<%= subdomain_root_url(@tenant_name, ~s(/login), loginToken: @login_token) %>">
+      <%= subdomain_root_url(@tenant_name, ~s(/login), loginToken: @login_token) %>
+    </a>
+  </td>
+</tr>

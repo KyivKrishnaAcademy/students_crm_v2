@@ -1,7 +1,7 @@
 defmodule StudentsCrmV2Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :students_crm_v2_web
 
-  socket("/socket", StudentsCrmV2Web.UserSocket)
+  # socket("/socket", StudentsCrmV2Web.UserSocket, websocket: true)
 
   # Serve at "/" the static files from "priv/static" directory.
   #

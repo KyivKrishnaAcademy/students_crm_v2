@@ -1,1 +1,92 @@
-<div id="login-form"></div>
+<div class="main-content layout-wrap">
+  <h1 class="text-center">{{t "login.title"}}</h1>
+
+  {{#paper-stepper
+    vertical=true
+    currentStep=currentStep
+    onStepChange=(action (mut currentStep))
+    class="flex-xs flex-offset-gt-xs-10 flex-gt-xs-80 flex-offset-gt-sm-20 flex-gt-sm-60 flex-offset-gt-md-30 flex-gt-md-40"
+  as |stepper|}}
+    {{#stepper.step label=(t "login.methodSelectionStep.label") as |step|}}
+      {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center" as |nextStep previousStep|}}
+        {{login-method-card onClick=(action "selectLoginMethodAndNext" "email" nextStep) svgName="email"}}
+        {{login-method-card onClick=(action "selectLoginMethodAndNext" "phone" nextStep) svgName="sms"}}
+      {{/step.actions}}
+    {{/stepper.step}}
+
+    {{#stepper.step label=(t "login.methodValueStep.label") as |step|}}
+      {{#paper-form
+        onSubmit=(perform generateLoginToken step.nextStep loginMethod methodValue)
+      as |form|}}
+        {{#step.body class="layout-column"}}
+          {{form.input
+            label=(t loginMethodValueLabel)
+            onChange=(action (mut methodValue))
+            required=true
+            value=methodValue
+            errorMessages=(hash
+              required=(t 'login.methodValueStep.valueRequired')
+            )
+          }}
+        {{/step.body}}
+
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center"}}
+          {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
+        {{/step.actions}}
+      {{/paper-form}}
+    {{/stepper.step}}
+
+    {{#stepper.step label=(t "login.tokenStep.label") as |step|}}
+      {{#paper-form
+        onSubmit=(perform verifyLoginToken loginToken step.nextStep)
+      as |form|}}
+        {{#step.body class="layout-column"}}
+          {{form.input
+            label=(t "login.tokenStep.token")
+            onChange=(action (mut loginToken))
+            required=true
+            value=loginToken
+            errorMessages=(hash
+              required=(t "login.tokenStep.tokenRequired")
+            )
+          }}
+        {{/step.body}}
+
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center"}}
+          {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
+        {{/step.actions}}
+      {{/paper-form}}
+    {{/stepper.step}}
+
+    {{#if isUserNotFoundStepShown}}
+      {{#stepper.step label=(t "login.userNotFoundStep.label") as |step|}}
+        <p class="text-center">{{t "login.userNotFoundStep.label"}}</p>
+        <p class="text-center">{{t "login.userNotFoundStep.pleaseChose"}}</p>
+
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center" as |nextStep previousStep goTo|}}
+          {{#paper-button primary=true raised=true onClick=(action "resetSteps" goTo)}}
+            {{t "login.userNotFoundStep.searchByAnotherContact"}}
+          {{/paper-button}}
+
+          {{#paper-button primary=true raised=true onClick=(perform registerUser registerPayload)}}
+            {{t "login.userNotFoundStep.createNew"}}
+          {{/paper-button}}
+        {{/step.actions}}
+      {{/stepper.step}}
+    {{else if isTokenExpiredStepShown}}
+      {{#stepper.step label=(t "login.tokenExpiredStep.label") as |step|}}
+        <p class="text-center">{{t "login.tokenExpiredStep.desc"}}</p>
+
+        {{#step.actions class="layout-column layout-gt-sm-row layout-align-space-around-center" as |nextStep previousStep goTo|}}
+          {{#paper-button primary=true raised=true onClick=(action "enterLoginTokenAgain" previousStep)}}
+            {{t "login.tokenExpiredStep.enterAgain"}}
+          {{/paper-button}}
+
+          {{#paper-button primary=true raised=true onClick=(action "resetSteps" goTo)}}
+            {{t "login.tokenExpiredStep.sendNewToken"}}
+          {{/paper-button}}
+        {{/step.actions}}
+      {{/stepper.step}}
+    {{/if}}
+  {{/paper-stepper}}
+</div>

@@ -47,7 +47,7 @@ defmodule StudentsCrmV2.Umbrella.Mixfile do
 
   defp dialyzer do
     [
-      flags: [:error_handling, :race_conditions, :underspecs, :unmatched_returns],
+      flags: [:error_handling, :race_conditions, :underspecs],
       plt_add_deps: :transitive,
       ignore_warnings: ".dialyzer_ignore.exs"
     ]

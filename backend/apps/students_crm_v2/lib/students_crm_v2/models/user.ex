@@ -3,10 +3,7 @@ defmodule StudentsCrmV2.Models.User do
 
   use Ecto.Schema
 
-  alias StudentsCrmV2.Models.{
-    Authentication,
-    Phone
-  }
+  alias StudentsCrmV2.Models.Contact
 
   @type t :: %__MODULE__{}
 
@@ -17,8 +14,7 @@ defmodule StudentsCrmV2.Models.User do
     field(:locale, :string)
     field(:privacy_agreed, :boolean)
 
-    has_many(:authentications, Authentication)
-    has_many(:phones, Phone)
+    has_many(:contacts, Contact)
 
     timestamps()
   end

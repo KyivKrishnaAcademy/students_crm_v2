@@ -1,4 +1,4 @@
-defmodule StudentsCrmV2.Models.Authentication do
+defmodule StudentsCrmV2.Models.Contact do
   @moduledoc false
 
   use Ecto.Schema
@@ -7,8 +7,10 @@ defmodule StudentsCrmV2.Models.Authentication do
 
   @type t :: %__MODULE__{}
 
-  schema "authentications" do
-    field(:sub, :string)
+  schema "contacts" do
+    field(:kind, :string)
+    field(:value, :string)
+    field(:verified, :boolean)
 
     belongs_to(:user, User)
 

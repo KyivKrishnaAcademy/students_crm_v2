@@ -21,8 +21,9 @@ defmodule StudentsCrmV2Web do
     quote do
       use Phoenix.Controller, namespace: StudentsCrmV2Web
       import Plug.Conn
-      import StudentsCrmV2Web.Router.Helpers
       import StudentsCrmV2Web.Gettext
+
+      alias StudentsCrmV2Web.Router.Helpers, as: Routes
     end
   end
 
@@ -34,13 +35,15 @@ defmodule StudentsCrmV2Web do
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [view_module: 1]
+      import StudentsCrmV2Web.UrlHelper, only: [subdomain_root_url: 1, subdomain_root_url: 3]
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import StudentsCrmV2Web.Router.Helpers
       import StudentsCrmV2Web.ErrorHelpers
       import StudentsCrmV2Web.Gettext
+
+      alias StudentsCrmV2Web.Router.Helpers, as: Routes
     end
   end
 

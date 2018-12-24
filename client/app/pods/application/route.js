@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-route-mixin';
+import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
 import { inject as service } from '@ember/service';
 
@@ -9,13 +9,13 @@ export default Route.extend(ApplicationRouteMixin, {
 
   beforeModel() {
     this.moment.setLocale('uk');
-
-    return this._loadCurrentUser();
+    this._loadCurrentUser();
+    this._super(...arguments);
   },
 
   sessionAuthenticated() {
-    this._super(...arguments);
     this._loadCurrentUser();
+    this._super(...arguments);
   },
 
   _loadCurrentUser() {

@@ -1,6 +1,8 @@
 defmodule StudentsCrmV2Web.Router do
   use StudentsCrmV2Web, :router
 
+  alias StudentsCrmV2Web.TenantPlug
+
   pipeline :browser do
     plug(:accepts, ["html"])
     plug(:put_secure_browser_headers)
@@ -10,12 +12,19 @@ defmodule StudentsCrmV2Web.Router do
     plug(:accepts, ["json-api", "json"])
     plug(StudentsCrmV2Web.Auth.Pipeline)
     plug(JaSerializer.Deserializer)
+    plug(TenantPlug)
   end
 
   pipeline :api_authenticated_blank do
     plug(:accepts, ["json-api", "json"])
     plug(StudentsCrmV2Web.Auth.BlankPipeline)
     plug(JaSerializer.Deserializer)
+    plug(TenantPlug)
+  end
+
+  pipeline :api_simple_json do
+    plug(:accepts, ["json"])
+    plug(TenantPlug)
   end
 
   scope "/", StudentsCrmV2Web do
@@ -38,5 +47,17 @@ defmodule StudentsCrmV2Web.Router do
     end
 
     resources("/documents", DocumentController, only: [:create, :show])
+  end
+
+  scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
+    pipe_through(:api_simple_json)
+
+    post("/token-auth", TokenController, :exchange)
+    post("/token-generate", TokenController, :generate)
+    post("/token-register", TokenController, :register)
+  end
+
+  if Mix.env() == :dev do
+    forward("/sent_emails", Bamboo.SentEmailViewerPlug)
   end
 end

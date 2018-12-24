@@ -1,0 +1,80 @@
+<head>
+  <style>
+    @import url('http://fonts.googleapis.com/css?family=Open+Sans');
+
+    #emailContainer{
+      font-family:'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <table border='0' cellpadding='0' cellspacing='0' height='100%' width='100%'>
+    <tr id='emailContainer'>
+      <td align='center' valign='top'>
+        <table border='0' cellpadding='10' cellspacing='0' width='600'>
+          <tr id='emailHeader'>
+            <td align='center' valign='top'>
+              <table border='0' cellpadding='10' cellspacing='0' width='100%'>
+                <tr>
+                  <td align='center' valign='top'>
+                    <h1><%= @main_title %></h1>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr id='emailBody'>
+            <td align='center' valign='top'>
+              <table border='0' cellpadding='10' cellspacing='0' width='100%'>
+                <%= render @view_module, @view_template, assigns %>
+              </table>
+            </td>
+          </tr>
+
+          <tr id='emailFooter'>
+            <td align='center' valign='top'>
+              <table border='0' cellpadding='10' cellspacing='0' width='100%'>
+                <tr>
+                  <td align='center' valign='bottom'>
+                    <hr>
+                  </td>
+                </tr>
+
+                <%# <tr>
+                  <td align='center' valign='bottom'>
+                    <a rel="noopener noreferrer" target="_blank" href="http://students.veda-kiev.org.ua/unsubscribe/V-pjmazThz6CPxHmoIcPCQ/cHVnYWNoLm1AZ21haWwuY29t?utm_campaign=unsubscribes&utm_content=footer&utm_medium=email&utm_source=next_day_schedule&utm_term=notify_schedules">
+                      Відписатися від оновлень розкладу
+                    </a>
+                  </td>
+                </tr> %>
+
+                <tr>
+                  <td align='center' valign='bottom'>
+                    <%# <a href="http://students.veda-kiev.org.ua/?utm_campaign=schedules_notification&utm_content=footer_logo&utm_medium=email&utm_source=next_day_schedule"> %>
+                    <a href="<%= subdomain_root_url(@tenant_name) %>">
+                      <img src='https://res.cloudinary.com/dsd89mcu3/image/upload/v1538280388/Logo_Academy_2017_black_50px_ksnsco.png'>
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td align='center' valign='top'>
+                    Київська духовна академія свідомості Крішни
+                    <br>
+                    +38 (067) 245-87-00
+                    <br>
+                    +38 (063) 321-00-33
+                    <br>
+                    +38 (044) 331-19-64
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>

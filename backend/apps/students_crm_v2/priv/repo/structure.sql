@@ -35,12 +35,14 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: authentications; Type: TABLE; Schema: public; Owner: -
+-- Name: contacts; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE authentications (
+CREATE TABLE contacts (
     id bigint NOT NULL,
-    sub character varying(255),
+    kind character varying(255),
+    value character varying(255),
+    verified boolean DEFAULT false,
     user_id bigint,
     inserted_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -48,10 +50,10 @@ CREATE TABLE authentications (
 
 
 --
--- Name: authentications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE authentications_id_seq
+CREATE SEQUENCE contacts_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -60,10 +62,10 @@ CREATE SEQUENCE authentications_id_seq
 
 
 --
--- Name: authentications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE authentications_id_seq OWNED BY authentications.id;
+ALTER SEQUENCE contacts_id_seq OWNED BY contacts.id;
 
 
 --
@@ -100,24 +102,32 @@ ALTER SEQUENCE documents_id_seq OWNED BY documents.id;
 
 
 --
--- Name: phones; Type: TABLE; Schema: public; Owner: -
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE phones (
-    id bigint NOT NULL,
-    phone character varying(255) NOT NULL,
-    user_id bigint,
-    inserted_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    telegram_uid integer
+CREATE TABLE schema_migrations (
+    version bigint NOT NULL,
+    inserted_at timestamp without time zone
 );
 
 
 --
--- Name: phones_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: tenants; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE phones_id_seq
+CREATE TABLE tenants (
+    id bigint NOT NULL,
+    name character varying(255),
+    inserted_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: tenants_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tenants_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -126,20 +136,10 @@ CREATE SEQUENCE phones_id_seq
 
 
 --
--- Name: phones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: tenants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE phones_id_seq OWNED BY phones.id;
-
-
---
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE schema_migrations (
-    version bigint NOT NULL,
-    inserted_at timestamp without time zone
-);
+ALTER SEQUENCE tenants_id_seq OWNED BY tenants.id;
 
 
 --
@@ -178,10 +178,10 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: authentications id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY authentications ALTER COLUMN id SET DEFAULT nextval('authentications_id_seq'::regclass);
+ALTER TABLE ONLY contacts ALTER COLUMN id SET DEFAULT nextval('contacts_id_seq'::regclass);
 
 
 --
@@ -192,10 +192,10 @@ ALTER TABLE ONLY documents ALTER COLUMN id SET DEFAULT nextval('documents_id_seq
 
 
 --
--- Name: phones id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: tenants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY phones ALTER COLUMN id SET DEFAULT nextval('phones_id_seq'::regclass);
+ALTER TABLE ONLY tenants ALTER COLUMN id SET DEFAULT nextval('tenants_id_seq'::regclass);
 
 
 --
@@ -206,11 +206,11 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: authentications authentications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: contacts contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY authentications
-    ADD CONSTRAINT authentications_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY contacts
+    ADD CONSTRAINT contacts_pkey PRIMARY KEY (id);
 
 
 --
@@ -222,19 +222,19 @@ ALTER TABLE ONLY documents
 
 
 --
--- Name: phones phones_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY phones
-    ADD CONSTRAINT phones_pkey PRIMARY KEY (id);
-
-
---
 -- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: tenants tenants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tenants
+    ADD CONSTRAINT tenants_pkey PRIMARY KEY (id);
 
 
 --
@@ -246,25 +246,18 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: phones_phone_index; Type: INDEX; Schema: public; Owner: -
+-- Name: contacts_kind_value_index; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX phones_phone_index ON phones USING btree (phone);
-
-
---
--- Name: phones_telegram_uid_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX phones_telegram_uid_index ON phones USING btree (telegram_uid);
+CREATE UNIQUE INDEX contacts_kind_value_index ON contacts USING btree (kind, value);
 
 
 --
--- Name: authentications authentications_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: contacts contacts_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY authentications
-    ADD CONSTRAINT authentications_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE ONLY contacts
+    ADD CONSTRAINT contacts_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
 
 
 --
@@ -276,16 +269,8 @@ ALTER TABLE ONLY documents
 
 
 --
--- Name: phones phones_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY phones
-    ADD CONSTRAINT phones_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726);
+INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047), (20181219052017);
 
