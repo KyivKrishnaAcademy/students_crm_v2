@@ -1,4 +1,6 @@
 defmodule StudentsCrmV2Web.UrlHelper do
+  @moduledoc false
+
   def subdomain_root_url(subdomain), do: subdomain_root_url(subdomain, nil, %{})
 
   def subdomain_root_url(subdomain, path, query_params) do

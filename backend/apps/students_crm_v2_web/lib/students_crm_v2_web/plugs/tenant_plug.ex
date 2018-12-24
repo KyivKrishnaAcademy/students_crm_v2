@@ -1,4 +1,6 @@
 defmodule StudentsCrmV2Web.TenantPlug do
+  @moduledoc false
+
   import Plug.Conn, only: [assign: 3, get_req_header: 2, send_resp: 3, halt: 1]
 
   def init(options), do: options
