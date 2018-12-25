@@ -10,6 +10,10 @@ export default Route.extend({
   female: t('register.generalInfo.gender.female'),
   male: t('register.generalInfo.gender.male'),
 
+  beforeModel() {
+    return this.currentUser.load();
+  },
+
   model() {
     let step = + this.get('currentUser.user.privacyAgreed');
 
