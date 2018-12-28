@@ -21,10 +21,17 @@ const Validations = buildValidations({
 export default Model.extend(Validations, {
   birthday: attr('string', { defaultValue: '' }),
   displayName: attr('string', { defaultValue: '' }),
+  education: attr('string', { defaultValue: '' }),
+  favoriteLectots: attr('string', { defaultValue: '' }),
   gender: attr('string', { defaultValue: '' }),
   locale: attr('string'),
+  maritalStatus: attr('string', { defaultValue: '' }),
+  middleName: attr('string', { defaultValue: '' }),
+  name: attr('string', { defaultValue: '' }),
   privacyAgreed: attr('boolean'),
   registered: attr('boolean'),
+  surname: attr('string', { defaultValue: '' }),
+  work: attr('string', { defaultValue: '' }),
 
   agreeToPrivacyPolicy: modelAction('agree', { pushToStore: true }),
 });

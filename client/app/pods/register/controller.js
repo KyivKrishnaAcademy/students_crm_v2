@@ -8,6 +8,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
   session: service(),
 
+  isAdditionalFormInvalid: false,
   isGeneralFormInvalid: false,
 
   selectedGender: computed('model.user.gender', function() {
@@ -22,7 +23,7 @@ export default Controller.extend({
     nextStep();
   }).drop(),
 
-  generalInfoSubmit: task(function * (nextStep) {
+  saveAndNext: task(function * (nextStep) {
     yield this.model.user.save();
 
     nextStep();
@@ -39,12 +40,20 @@ export default Controller.extend({
   }).drop(),
 
   actions: {
+    additionalFormValidityChange(isValid, isTouched, isInvalidAndTouched) {
+      this.set('isAdditionalFormInvalid', isInvalidAndTouched);
+    },
+
     generalFormValidityChange(isValid, isTouched, isInvalidAndTouched) {
       this.set('isGeneralFormInvalid', isInvalidAndTouched);
     },
 
     selectGender(gender) {
       this.set('model.user.gender', gender && gender.value);
+    },
+
+    selectMaritalStatus(maritalStatus) {
+      this.set('model.user.maritalStatus', maritalStatus && maritalStatus.value);
     },
 
     uploadIdentificationDocument(file) {
