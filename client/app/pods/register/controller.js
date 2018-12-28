@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 
-import config from 'students-crm-v2/config/environment';
-import { computed, get } from '@ember/object';
+import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
@@ -29,16 +28,6 @@ export default Controller.extend({
     nextStep();
   }).drop(),
 
-  uploadFile: task(function * (file, kind) {
-    const { API_HOST, API_NAMESPACE } = config;
-    const accessToken = get(this, 'session.data.authenticated.accessToken');
-
-    yield file.upload(`${API_HOST}/${API_NAMESPACE}/documents`, {
-      data: { kind },
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-  }).drop(),
-
   actions: {
     additionalFormValidityChange(isValid, isTouched, isInvalidAndTouched) {
       this.set('isAdditionalFormInvalid', isInvalidAndTouched);
@@ -54,10 +43,6 @@ export default Controller.extend({
 
     selectMaritalStatus(maritalStatus) {
       this.set('model.user.maritalStatus', maritalStatus && maritalStatus.value);
-    },
-
-    uploadIdentificationDocument(file) {
-      get(this, 'uploadFile').perform(file, 'identification');
     },
   },
 });

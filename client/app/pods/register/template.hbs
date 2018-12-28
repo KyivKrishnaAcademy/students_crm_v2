@@ -163,34 +163,5 @@
         </div>
       {{/extended-paper-form}}
     {{/stepper.step}}
-
-    {{#stepper.step label=(t "register.ducumentsUpload") as |step|}}
-      {{#step.body}}
-        <p>{{t "register.ducumentsUpload.identificationDocument"}}</p>
-
-        {{#file-upload
-          name="identificationDocument"
-          accept="image/*,application/pdf"
-          multiple=false
-          onfileadd=(action "uploadIdentificationDocument")
-        as |queue|}}
-          {{#if queue.files.length}}
-            {{paper-progress-linear value=queue.progress}}
-          {{else}}
-            <a class="md-default-theme md-button md-primary md-raised">{{t "register.ducumentsUpload.selectFile"}}</a>
-          {{/if}}
-        {{/file-upload}}
-      {{/step.body}}
-
-      {{#step.actions class="layout-row layout-align-space-around offset-top-1" as |nextStep previousStep|}}
-        {{#paper-button raised=true onClick=(action previousStep)}}
-          {{t "register.back"}}
-        {{/paper-button}}
-
-        {{#paper-button primary=true raised=true onClick=(action nextStep)}}
-          {{t "register.next"}}
-        {{/paper-button}}
-      {{/step.actions}}
-    {{/stepper.step}}
   {{/paper-stepper}}
 </div>
