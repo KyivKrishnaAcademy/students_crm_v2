@@ -110,13 +110,15 @@
         onSubmit=(perform saveAndNext step.nextStep)
       as |form|}}
         {{#step.body class="layout-column"}}
-          {{form.input
+          {{#form.input
             errors=model.user.validations.attrs.displayName.messages
             isTouched=(gt model.user.errors.displayName.length 0)
             label=(t 'register.additionalInfo.displayName')
             onChange=(action (mut model.user.displayName))
             value=model.user.displayName
           }}
+            <div class="hint">{{t 'register.additionalInfo.displayNameHint'}}</div>
+          {{/form.input}}
 
           {{#form.select
             errors=model.user.validations.attrs.maritalStatus.messages

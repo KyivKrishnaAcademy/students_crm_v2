@@ -32,6 +32,7 @@ export default {
   'privacy.privacyAgreement': PRIVACY_AGREEMENT,
 
   'register.additionalInfo.displayName': "Ім'я для відображення",
+  'register.additionalInfo.displayNameHint': "Заповнюйте якщо хочете щоб на дипломах було не ім'я по паспорту а щось інше",
   'register.additionalInfo.education': 'Спеціальність за освітою',
   'register.additionalInfo.favoriteLectots': 'Імена лекторів, яких Вам подобається слухати найбільше',
   'register.additionalInfo.maritalStatus': 'Сімейний стан',
