@@ -9,13 +9,21 @@ const Validations = buildValidations({
   birthday: [
     validator('ds-error'),
     validator('date', {
-      before: moment().subtract(10, 'years').format('YYYY-MM-DD'),
+      before: moment().subtract(16, 'years').format('YYYY-MM-DD'),
       descriptionKey: 'register.generalInfo.birthday',
       format: 'YYYY-MM-DD',
     }),
   ],
   displayName: validator('ds-error'),
+  education: validator('ds-error'),
+  favoriteLectots: validator('ds-error'),
   gender: validator('ds-error'),
+  maritalStatus: validator('ds-error'),
+  middleName: validator('ds-error'),
+  name: validator('ds-error'),
+  privacyAgreed: validator('ds-error'),
+  surname: validator('ds-error'),
+  work: validator('ds-error'),
 });
 
 export default Model.extend(Validations, {
