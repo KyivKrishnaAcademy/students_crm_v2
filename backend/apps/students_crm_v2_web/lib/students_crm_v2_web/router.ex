@@ -15,13 +15,6 @@ defmodule StudentsCrmV2Web.Router do
     plug(TenantPlug)
   end
 
-  pipeline :api_authenticated_blank do
-    plug(:accepts, ["json-api", "json"])
-    plug(StudentsCrmV2Web.Auth.BlankPipeline)
-    plug(JaSerializer.Deserializer)
-    plug(TenantPlug)
-  end
-
   pipeline :api_simple_json do
     plug(:accepts, ["json"])
     plug(TenantPlug)
@@ -34,12 +27,6 @@ defmodule StudentsCrmV2Web.Router do
   end
 
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
-    pipe_through(:api_authenticated_blank)
-
-    post("/sessions", SessionController, :post)
-  end
-
-  scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
     pipe_through(:api_authenticated)
 
     resources "/users", UserController, only: [:index, :update] do
@@ -47,6 +34,8 @@ defmodule StudentsCrmV2Web.Router do
     end
 
     resources("/documents", DocumentController, only: [:create, :show])
+
+    post("/sessions", SessionController, :post)
   end
 
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do

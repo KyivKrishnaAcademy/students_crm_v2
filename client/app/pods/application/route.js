@@ -9,18 +9,13 @@ export default Route.extend(ApplicationRouteMixin, {
 
   beforeModel() {
     this.moment.setLocale('uk');
-    this._loadCurrentUser();
     this._super(...arguments);
+
+    return this.currentUser.load();
   },
 
   sessionAuthenticated() {
-    this._loadCurrentUser();
+    this.currentUser.load();
     this._super(...arguments);
-  },
-
-  _loadCurrentUser() {
-    return this.currentUser
-      .load()
-      .catch(() => this.session.invalidate());
   },
 });
