@@ -107,7 +107,7 @@
     as |step|}}
       {{#extended-paper-form
         onValidityChange=(action "additionalFormValidityChange")
-        onSubmit=(perform saveAndNext step.nextStep)
+        onSubmit=(perform saveAndNext step.nextStep "lastStep")
       as |form|}}
         {{#step.body class="layout-column"}}
           {{#form.input

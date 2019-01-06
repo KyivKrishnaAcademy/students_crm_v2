@@ -22,10 +22,14 @@ export default Controller.extend({
     nextStep();
   }).drop(),
 
-  saveAndNext: task(function * (nextStep) {
+  saveAndNext: task(function * (nextStep, stepLabel) {
     yield this.model.user.save();
 
-    nextStep();
+    if (stepLabel === "lastStep") {
+      this.transitionToRoute('index');
+    } else {
+      nextStep();
+    }
   }).drop(),
 
   actions: {
