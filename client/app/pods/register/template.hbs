@@ -1,169 +1,167 @@
-<div class="main-content layout-wrap">
-  <h1 class="text-center">{{t "register.title"}}</h1>
+<h1 class="text-center">{{t "register.title"}}</h1>
 
-  {{#paper-stepper
-    vertical=true
-    currentStep=model.currentStep
-    onStepChange=(action (mut model.currentStep))
-    class="flex-xs flex-offset-gt-xs-10 flex-gt-xs-80 flex-offset-gt-sm-20 flex-gt-sm-60 flex-offset-gt-md-30 flex-gt-md-40"
-  as |stepper|}}
-    {{#stepper.step label=(t "register.privacyAgreement") as |step|}}
-      {{#step.body}}
-        {{privacy-agreement}}
+{{#paper-stepper
+  vertical=true
+  currentStep=model.currentStep
+  onStepChange=(action (mut model.currentStep))
+  class="flex-xs flex-offset-gt-xs-10 flex-gt-xs-80 flex-offset-gt-sm-20 flex-gt-sm-60 flex-offset-gt-md-30 flex-gt-md-40"
+as |stepper|}}
+  {{#stepper.step label=(t "register.privacyAgreement") as |step|}}
+    {{#step.body}}
+      {{privacy-agreement}}
+    {{/step.body}}
+
+    <div class="layout-column layout-align-start-center">
+      {{#paper-checkbox value=iAgree onChange=(action (mut iAgree))}}
+        <strong>{{t "register.iAgree"}}</strong>
+      {{/paper-checkbox}}
+
+      {{#step.actions as |nextStep|}}
+        {{#paper-button primary=true raised=true onClick=(perform agreeToPrivacy nextStep) disabled=(not iAgree)}}
+          {{t "register.next"}}
+        {{/paper-button}}
+      {{/step.actions}}
+    </div>
+  {{/stepper.step}}
+
+  {{#stepper.step
+    error=(if isGeneralFormInvalid (t "register.pleaseFix"))
+    label=(t "register.generalInfo")
+  as |step|}}
+    {{#extended-paper-form
+      onValidityChange=(action "generalFormValidityChange")
+      onSubmit=(perform saveAndNext step.nextStep)
+    as |form|}}
+      {{#step.body class="layout-column"}}
+        {{form.input
+          errors=model.user.validations.attrs.name.messages
+          isTouched=(gt model.user.errors.name.length 0)
+          label=(t 'register.generalInfo.name')
+          onChange=(action (mut model.user.name))
+          required=true
+          value=model.user.name
+          errorMessages=(hash
+            required=(t 'validations.NeedToFill')
+          )
+        }}
+
+        {{form.input
+          errors=model.user.validations.attrs.middleName.messages
+          isTouched=(gt model.user.errors.middleName.length 0)
+          label=(t 'register.generalInfo.middleName')
+          onChange=(action (mut model.user.middleName))
+          value=model.user.middleName
+        }}
+
+        {{form.input
+          errors=model.user.validations.attrs.surname.messages
+          isTouched=(gt model.user.errors.surname.length 0)
+          label=(t 'register.generalInfo.surname')
+          onChange=(action (mut model.user.surname))
+          required=true
+          value=model.user.surname
+          errorMessages=(hash
+            required=(t 'validations.NeedToFill')
+          )
+        }}
+
+        {{#form.select
+          errors=model.user.validations.attrs.gender.messages
+          isTouched=(gt model.user.errors.gender.length 0)
+          label=(t 'register.generalInfo.gender')
+          onChange=(action "selectGender")
+          options=model.genders
+          required=true
+          selected=selectedGender
+          errorMessages=(hash
+            required=(t 'validations.NeedToSelect')
+          )
+        as |gender|}}
+          {{gender.label}}
+        {{/form.select}}
+
+        {{form.date-picker
+          errors=model.user.validations.attrs.birthday.messages
+          isTouched=(gt model.user.errors.birthday.length 0)
+          label=(t 'register.generalInfo.birthday')
+          onChange=(action (mut model.user.birthday))
+          required=true
+          value=model.user.birthday
+          yearRange='1900,currentYear'
+          errorMessages=(hash
+            required=(t 'validations.NeedToSelect')
+          )
+        }}
       {{/step.body}}
 
       <div class="layout-column layout-align-start-center">
-        {{#paper-checkbox value=iAgree onChange=(action (mut iAgree))}}
-          <strong>{{t "register.iAgree"}}</strong>
-        {{/paper-checkbox}}
-
-        {{#step.actions as |nextStep|}}
-          {{#paper-button primary=true raised=true onClick=(perform agreeToPrivacy nextStep) disabled=(not iAgree)}}
-            {{t "register.next"}}
-          {{/paper-button}}
-        {{/step.actions}}
+        {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
       </div>
-    {{/stepper.step}}
+    {{/extended-paper-form}}
+  {{/stepper.step}}
 
-    {{#stepper.step
-      error=(if isGeneralFormInvalid (t "register.pleaseFix"))
-      label=(t "register.generalInfo")
-    as |step|}}
-      {{#extended-paper-form
-        onValidityChange=(action "generalFormValidityChange")
-        onSubmit=(perform saveAndNext step.nextStep)
-      as |form|}}
-        {{#step.body class="layout-column"}}
-          {{form.input
-            errors=model.user.validations.attrs.name.messages
-            isTouched=(gt model.user.errors.name.length 0)
-            label=(t 'register.generalInfo.name')
-            onChange=(action (mut model.user.name))
-            required=true
-            value=model.user.name
-            errorMessages=(hash
-              required=(t 'validations.NeedToFill')
-            )
-          }}
+  {{#stepper.step
+    error=(if isAdditionalFormInvalid (t "register.pleaseFix"))
+    label=(t "register.additionalInfo")
+  as |step|}}
+    {{#extended-paper-form
+      onValidityChange=(action "additionalFormValidityChange")
+      onSubmit=(perform saveAndNext step.nextStep "lastStep")
+    as |form|}}
+      {{#step.body class="layout-column"}}
+        {{#form.input
+          errors=model.user.validations.attrs.displayName.messages
+          isTouched=(gt model.user.errors.displayName.length 0)
+          label=(t 'register.additionalInfo.displayName')
+          onChange=(action (mut model.user.displayName))
+          value=model.user.displayName
+        }}
+          <div class="hint">{{t 'register.additionalInfo.displayNameHint'}}</div>
+        {{/form.input}}
 
-          {{form.input
-            errors=model.user.validations.attrs.middleName.messages
-            isTouched=(gt model.user.errors.middleName.length 0)
-            label=(t 'register.generalInfo.middleName')
-            onChange=(action (mut model.user.middleName))
-            value=model.user.middleName
-          }}
+        {{#form.select
+          errors=model.user.validations.attrs.maritalStatus.messages
+          isTouched=(gt model.user.errors.maritalStatus.length 0)
+          label=(t 'register.additionalInfo.maritalStatus')
+          onChange=(action "selectMaritalStatus")
+          options=model.maritalStatuses
+          selected=selectedMaritalStatus
+        as |maritalStatus|}}
+          {{maritalStatus.label}}
+        {{/form.select}}
 
-          {{form.input
-            errors=model.user.validations.attrs.surname.messages
-            isTouched=(gt model.user.errors.surname.length 0)
-            label=(t 'register.generalInfo.surname')
-            onChange=(action (mut model.user.surname))
-            required=true
-            value=model.user.surname
-            errorMessages=(hash
-              required=(t 'validations.NeedToFill')
-            )
-          }}
+        {{form.input
+          errors=model.user.validations.attrs.favoriteLectots.messages
+          isTouched=(gt model.user.errors.favoriteLectots.length 0)
+          label=(t 'register.additionalInfo.favoriteLectots')
+          onChange=(action (mut model.user.favoriteLectots))
+          value=model.user.favoriteLectots
+        }}
 
-          {{#form.select
-            errors=model.user.validations.attrs.gender.messages
-            isTouched=(gt model.user.errors.gender.length 0)
-            label=(t 'register.generalInfo.gender')
-            onChange=(action "selectGender")
-            options=model.genders
-            required=true
-            selected=selectedGender
-            errorMessages=(hash
-              required=(t 'validations.NeedToSelect')
-            )
-          as |gender|}}
-            {{gender.label}}
-          {{/form.select}}
+        {{form.input
+          errors=model.user.validations.attrs.education.messages
+          isTouched=(gt model.user.errors.education.length 0)
+          label=(t 'register.additionalInfo.education')
+          onChange=(action (mut model.user.education))
+          value=model.user.education
+        }}
 
-          {{form.date-picker
-            errors=model.user.validations.attrs.birthday.messages
-            isTouched=(gt model.user.errors.birthday.length 0)
-            label=(t 'register.generalInfo.birthday')
-            onChange=(action (mut model.user.birthday))
-            required=true
-            value=model.user.birthday
-            yearRange='1900,currentYear'
-            errorMessages=(hash
-              required=(t 'validations.NeedToSelect')
-            )
-          }}
-        {{/step.body}}
+        {{form.input
+          errors=model.user.validations.attrs.work.messages
+          isTouched=(gt model.user.errors.work.length 0)
+          label=(t 'register.additionalInfo.work')
+          onChange=(action (mut model.user.work))
+          value=model.user.work
+        }}
+      {{/step.body}}
 
-        <div class="layout-column layout-align-start-center">
-          {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
-        </div>
-      {{/extended-paper-form}}
-    {{/stepper.step}}
+      <div class="layout-row layout-align-space-around offset-top-1">
+        {{#paper-button raised=true onClick=(action step.previousStep)}}
+          {{t "register.back"}}
+        {{/paper-button}}
 
-    {{#stepper.step
-      error=(if isAdditionalFormInvalid (t "register.pleaseFix"))
-      label=(t "register.additionalInfo")
-    as |step|}}
-      {{#extended-paper-form
-        onValidityChange=(action "additionalFormValidityChange")
-        onSubmit=(perform saveAndNext step.nextStep "lastStep")
-      as |form|}}
-        {{#step.body class="layout-column"}}
-          {{#form.input
-            errors=model.user.validations.attrs.displayName.messages
-            isTouched=(gt model.user.errors.displayName.length 0)
-            label=(t 'register.additionalInfo.displayName')
-            onChange=(action (mut model.user.displayName))
-            value=model.user.displayName
-          }}
-            <div class="hint">{{t 'register.additionalInfo.displayNameHint'}}</div>
-          {{/form.input}}
-
-          {{#form.select
-            errors=model.user.validations.attrs.maritalStatus.messages
-            isTouched=(gt model.user.errors.maritalStatus.length 0)
-            label=(t 'register.additionalInfo.maritalStatus')
-            onChange=(action "selectMaritalStatus")
-            options=model.maritalStatuses
-            selected=selectedMaritalStatus
-          as |maritalStatus|}}
-            {{maritalStatus.label}}
-          {{/form.select}}
-
-          {{form.input
-            errors=model.user.validations.attrs.favoriteLectots.messages
-            isTouched=(gt model.user.errors.favoriteLectots.length 0)
-            label=(t 'register.additionalInfo.favoriteLectots')
-            onChange=(action (mut model.user.favoriteLectots))
-            value=model.user.favoriteLectots
-          }}
-
-          {{form.input
-            errors=model.user.validations.attrs.education.messages
-            isTouched=(gt model.user.errors.education.length 0)
-            label=(t 'register.additionalInfo.education')
-            onChange=(action (mut model.user.education))
-            value=model.user.education
-          }}
-
-          {{form.input
-            errors=model.user.validations.attrs.work.messages
-            isTouched=(gt model.user.errors.work.length 0)
-            label=(t 'register.additionalInfo.work')
-            onChange=(action (mut model.user.work))
-            value=model.user.work
-          }}
-        {{/step.body}}
-
-        <div class="layout-row layout-align-space-around offset-top-1">
-          {{#paper-button raised=true onClick=(action step.previousStep)}}
-            {{t "register.back"}}
-          {{/paper-button}}
-
-          {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
-        </div>
-      {{/extended-paper-form}}
-    {{/stepper.step}}
-  {{/paper-stepper}}
-</div>
+        {{#form.submit-button raised=true primary=true}}{{t "register.next"}}{{/form.submit-button}}
+      </div>
+    {{/extended-paper-form}}
+  {{/stepper.step}}
+{{/paper-stepper}}
