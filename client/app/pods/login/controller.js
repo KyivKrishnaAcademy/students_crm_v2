@@ -5,15 +5,18 @@ import fetch from 'fetch';
 import config from 'students-crm-v2/config/environment';
 import { task } from 'ember-concurrency';
 
-export default Controller.extend({
-  session: service(),
-
+export const controllerDefaults = {
+  currentStep: 0,
   isTokenExpiredStepShown: false,
   isUserNotFoundStepShown: false,
   loginMethod: '',
   loginToken: '',
   methodValue: '',
   registerPayload: null,
+};
+
+export default Controller.extend(controllerDefaults, {
+  session: service(),
 
   loginMethodValueLabel: computed('loginMethod', function() {
     return `login.methodValueStep.value.${this.loginMethod}`;
@@ -80,14 +83,7 @@ export default Controller.extend({
     },
 
     resetSteps(goTo) {
-      setProperties(this, {
-        isTokenExpiredStepShown: false,
-        isUserNotFoundStepShown: false,
-        loginMethod: '',
-        loginToken: '',
-        methodValue: '',
-        registerPayload: null,
-      });
+      setProperties(this, controllerDefaults);
 
       goTo(0);
     },
