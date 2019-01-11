@@ -1,0 +1,39 @@
+{{#paper-button
+  href=(href-to route (query-params pageNumber=1 pageSize=pageSize))
+  raised=true
+  mini=true
+  primary=true
+  disabled=previousDisabled
+}}
+  {{fa-icon "angle-double-left" class="pagination-nav"}}
+{{/paper-button}}
+
+{{#paper-button
+  href=(href-to route (query-params pageNumber=previousPage pageSize=pageSize))
+  raised=true
+  mini=true
+  primary=true
+  disabled=previousDisabled
+}}
+  {{fa-icon "angle-left" class="pagination-nav"}}
+{{/paper-button}}
+
+{{#paper-button
+  href=(href-to route (query-params pageNumber=nextPage pageSize=pageSize))
+  raised=true
+  mini=true
+  primary=true
+  disabled=nextDisabled
+}}
+  {{fa-icon "angle-right" class="pagination-nav"}}
+{{/paper-button}}
+
+{{#paper-button
+  href=(href-to route (query-params pageNumber=lastPage pageSize=pageSize))
+  raised=true
+  mini=true
+  primary=true
+  disabled=nextDisabled
+}}
+  {{fa-icon "angle-double-right" class="pagination-nav"}}
+{{/paper-button}}
