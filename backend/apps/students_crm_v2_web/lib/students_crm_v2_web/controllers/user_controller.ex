@@ -6,8 +6,10 @@ defmodule StudentsCrmV2Web.UserController do
   alias StudentsCrmV2Web.Auth.Guardian.Plug, as: AuthPlug
   alias StudentsCrmV2Web.CurrentUserView
 
-  def index(conn, _params) do
-    render(conn, "index.json-api", data: StudentsCrmV2.list_users())
+  def index(conn, params) do
+    {data, pagination} = StudentsCrmV2.list_users(params)
+
+    render(conn, "index.json-api", data: data, opts: [meta: pagination])
   end
 
   def update(conn, %{"data" => %{"attributes" => params}, "id" => user_id}) do
