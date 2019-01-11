@@ -15,6 +15,7 @@ defmodule StudentsCrmV2.Models.User do
 
     field(:birthday, :date)
 
+    field(:complex_name, :string)
     field(:display_name, :string)
     field(:education, :string)
     field(:favorite_lectots, :string)
