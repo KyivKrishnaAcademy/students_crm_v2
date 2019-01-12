@@ -28,6 +28,7 @@ const Validations = buildValidations({
 
 export default Model.extend(Validations, {
   birthday: attr('string', { defaultValue: '' }),
+  complexName: attr('string', { defaultValue: '' }),
   displayName: attr('string', { defaultValue: '' }),
   education: attr('string', { defaultValue: '' }),
   favoriteLectots: attr('string', { defaultValue: '' }),
