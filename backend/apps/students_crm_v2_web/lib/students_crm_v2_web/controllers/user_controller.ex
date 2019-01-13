@@ -7,7 +7,10 @@ defmodule StudentsCrmV2Web.UserController do
   alias StudentsCrmV2Web.CurrentUserView
 
   def index(conn, params) do
-    {data, pagination} = StudentsCrmV2.list_users(params)
+    {data, pagination} =
+      params
+      |> Map.put("tenant_id", conn.assigns.tenant.id)
+      |> StudentsCrmV2.list_users()
 
     render(conn, "index.json-api", data: data, opts: [meta: pagination])
   end

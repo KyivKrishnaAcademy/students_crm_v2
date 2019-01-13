@@ -1,16 +1,29 @@
 defmodule StudentsCrmV2.Interactions.User.List do
   @moduledoc false
 
-  alias StudentsCrmV2.Models.User
   alias StudentsCrmV2.Repo
+
+  alias StudentsCrmV2.Models.{
+    TenantUser,
+    User
+  }
 
   @spec execute(params :: map()) :: {[User.t()] | no_return(), map()}
   def execute(params) do
     page_number = page_param(params, "number", "1")
     page_size = page_param(params, "size", "50")
-    query = User
+    tenant_id = Map.get(params, "tenant_id")
+    query = by_tenant(User, tenant_id)
 
     {page(query, page_number, page_size), %{total: count(query)}}
+  end
+
+  defp by_tenant(query, tenant_id) do
+    import Ecto.Query, only: [where: 3, join: 5]
+
+    query
+    |> join(:inner, [u], tu in TenantUser, tu.user_id == u.id)
+    |> where([u, tu], tu.tenant_id == ^tenant_id)
   end
 
   defp page(query, page_number, page_size) do

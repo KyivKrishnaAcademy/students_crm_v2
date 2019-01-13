@@ -28,6 +28,7 @@ defmodule StudentsCrmV2 do
   defdelegate register_user_by_contact(params), to: User.RegisterByContact, as: :execute
   defdelegate show_user(id), to: User.Show, as: :execute
   defdelegate update_user(user_id, params, author), to: User.Update, as: :execute
+  defdelegate user_relate_with_tenant(user_id, tenant_id), to: User.RelateWithTenant, as: :execute
 
   defdelegate document_url(asset, version), to: Uploaders.Document, as: :url
 end

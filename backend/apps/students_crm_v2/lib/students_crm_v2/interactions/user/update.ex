@@ -58,9 +58,9 @@ defmodule StudentsCrmV2.Interactions.User.Update do
     surname = get_trimmed_string(changeset, :surname)
     middle_name = get_trimmed_string(changeset, :middle_name)
     display_name = get_trimmed_string(changeset, :display_name)
-    civil_name = "#{surname} #{name}";
-    civil_name = if (String.length(middle_name) > 0), do: "#{civil_name} #{String.trim(middle_name)}", else: civil_name
-    complex_name = if (String.length(display_name) > 0), do: "#{display_name} (#{civil_name})", else: civil_name
+    civil_name = "#{surname} #{name}"
+    civil_name = if String.length(middle_name) > 0, do: "#{civil_name} #{String.trim(middle_name)}", else: civil_name
+    complex_name = if String.length(display_name) > 0, do: "#{display_name} (#{civil_name})", else: civil_name
 
     change(changeset, complex_name: complex_name)
   end
