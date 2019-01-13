@@ -29,3 +29,24 @@ a[disabled] {
   pointer-events: none;
   cursor: default;
 }
+
+td, th {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+td {
+  vertical-align: top;
+}
+
+tr:nth-child(odd) td {
+  background-color: lighten(paper-color($primary, '50'), 1);
+}
+
+tr:nth-child(even) td {
+  background-color: lighten(paper-color($primary, '50'), 3);
+}
+
+th {
+  background-color: paper-color($primary, '400');
+}

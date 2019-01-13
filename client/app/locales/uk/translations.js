@@ -53,6 +53,8 @@ export default {
   'register.privacyAgreement': PRIVACY_AGREEMENT,
   'register.title': 'Реєстрація',
 
+  'users.heading': 'Люди',
+
   'validations.NeedToFill': 'Небхідно заповнити',
   'validations.NeedToSelect': 'Небхідно обрати',
 };

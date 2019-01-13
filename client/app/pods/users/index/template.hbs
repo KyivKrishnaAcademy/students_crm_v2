@@ -1,4 +1,4 @@
-<h1>Users</h1>
+<h1 class="text-center">{{t "users.heading"}}</h1>
 
 {{pagination-controls
   pageNumber=pageNumber
@@ -8,7 +8,12 @@
 }}
 
 {{#ember-table as |t|}}
-  {{t.head columns=columns}}
+  {{t.head
+    columns=columns
+    widthConstraint="eq-container"
+    fillMode="last-column"
+  }}
+
   {{t.body rows=users}}
 {{/ember-table}}
 
