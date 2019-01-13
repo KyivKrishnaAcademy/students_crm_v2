@@ -7,6 +7,7 @@ export default {
   },
 
   'header-toolbar.login': 'Увійти',
+  'header-toolbar.menu': 'Меню',
 
   'login.methodSelectionStep.label': 'Оберіть метод входу',
   'login.methodValueStep.label': 'Куди висилати код?',
@@ -52,6 +53,8 @@ export default {
   'register.pleaseFix': "Виправте помилки будь ласка",
   'register.privacyAgreement': PRIVACY_AGREEMENT,
   'register.title': 'Реєстрація',
+
+  'users.heading': 'Люди',
 
   'validations.NeedToFill': 'Небхідно заповнити',
   'validations.NeedToSelect': 'Небхідно обрати',

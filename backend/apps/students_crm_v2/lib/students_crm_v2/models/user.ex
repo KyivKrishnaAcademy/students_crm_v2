@@ -3,7 +3,10 @@ defmodule StudentsCrmV2.Models.User do
 
   use Ecto.Schema
 
-  alias StudentsCrmV2.Models.Contact
+  alias StudentsCrmV2.Models.{
+    Contact,
+    Tenant
+  }
 
   @type t :: %__MODULE__{}
 
@@ -15,6 +18,7 @@ defmodule StudentsCrmV2.Models.User do
 
     field(:birthday, :date)
 
+    field(:complex_name, :string)
     field(:display_name, :string)
     field(:education, :string)
     field(:favorite_lectots, :string)
@@ -27,6 +31,8 @@ defmodule StudentsCrmV2.Models.User do
     field(:work, :string)
 
     has_many(:contacts, Contact)
+
+    many_to_many(:tenants, Tenant, join_through: "tenants_users")
 
     timestamps()
   end

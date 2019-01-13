@@ -29,6 +29,7 @@ defmodule StudentsCrmV2.Interactions.User.Update do
     import Changeset, only: [validate_required: 2, validate_inclusion: 3]
 
     changeset
+    |> set_complex_name()
     |> validate_required(@required_fields)
     |> validate_inclusion(:gender, User.genders())
     |> validate_inclusion(:marital_status, User.marital_statuses())
@@ -48,5 +49,25 @@ defmodule StudentsCrmV2.Interactions.User.Update do
       _ ->
         changeset
     end
+  end
+
+  defp set_complex_name(changeset) do
+    import Changeset, only: [change: 2]
+
+    name = get_trimmed_string(changeset, :name)
+    surname = get_trimmed_string(changeset, :surname)
+    middle_name = get_trimmed_string(changeset, :middle_name)
+    display_name = get_trimmed_string(changeset, :display_name)
+    civil_name = "#{surname} #{name}"
+    civil_name = if String.length(middle_name) > 0, do: "#{civil_name} #{String.trim(middle_name)}", else: civil_name
+    complex_name = if String.length(display_name) > 0, do: "#{display_name} (#{civil_name})", else: civil_name
+
+    change(changeset, complex_name: complex_name)
+  end
+
+  defp get_trimmed_string(changeset, field_name) do
+    import Changeset, only: [get_field: 3]
+
+    changeset |> get_field(field_name, "") |> String.trim()
   end
 end

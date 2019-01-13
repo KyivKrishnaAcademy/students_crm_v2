@@ -4,8 +4,10 @@
   {{main-sidenav}}
 
   {{#paper-card-content class="flex"}}
-    <div class="layout-column">
-      {{outlet}}
+    <div class="layout-column main-content layout-margin">
+      <div class="layout-wrap">
+        {{outlet}}
+      </div>
 
       {{main-footer}}
     </div>

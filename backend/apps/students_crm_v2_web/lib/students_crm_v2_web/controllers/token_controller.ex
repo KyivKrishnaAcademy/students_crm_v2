@@ -11,7 +11,8 @@ defmodule StudentsCrmV2Web.TokenController do
 
     with {:ok, contact} <- cached_contact,
          {:ok, user} <- StudentsCrmV2.get_user_by_contact(contact),
-         {:ok, jwt_token, _claims} <- Guardian.encode_and_sign(user) do
+         {:ok, jwt_token, _claims} <- Guardian.encode_and_sign(user),
+         :ok <- StudentsCrmV2.user_relate_with_tenant(user.id, conn.assigns.tenant.id) do
       render(conn, "exchange.json", data: jwt_token)
     else
       {:error, :no_user_found} ->

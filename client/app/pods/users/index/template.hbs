@@ -1,5 +1,25 @@
-<h1>Users</h1>
+<h1 class="text-center">{{t "users.heading"}}</h1>
 
-{{#each model as |user|}}
-  <p>{{user.locale}}</p>
-{{/each}}
+{{pagination-controls
+  pageNumber=pageNumber
+  pageSize=pageSize
+  route="users.index"
+  total=model.meta.total
+}}
+
+{{#ember-table as |t|}}
+  {{t.head
+    columns=columns
+    widthConstraint="eq-container"
+    fillMode="last-column"
+  }}
+
+  {{t.body rows=users}}
+{{/ember-table}}
+
+{{pagination-controls
+  pageNumber=pageNumber
+  pageSize=pageSize
+  route="users.index"
+  total=model.meta.total
+}}

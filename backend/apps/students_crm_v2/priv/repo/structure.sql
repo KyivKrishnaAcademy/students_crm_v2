@@ -143,6 +143,38 @@ ALTER SEQUENCE tenants_id_seq OWNED BY tenants.id;
 
 
 --
+-- Name: tenants_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE tenants_users (
+    id bigint NOT NULL,
+    tenant_id bigint,
+    user_id bigint,
+    inserted_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: tenants_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tenants_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tenants_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tenants_users_id_seq OWNED BY tenants_users.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -161,7 +193,8 @@ CREATE TABLE users (
     middle_name character varying(255),
     name character varying(255),
     surname character varying(255),
-    work character varying(255)
+    work character varying(255),
+    complex_name character varying(255)
 );
 
 
@@ -206,6 +239,13 @@ ALTER TABLE ONLY tenants ALTER COLUMN id SET DEFAULT nextval('tenants_id_seq'::r
 
 
 --
+-- Name: tenants_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tenants_users ALTER COLUMN id SET DEFAULT nextval('tenants_users_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -245,6 +285,14 @@ ALTER TABLE ONLY tenants
 
 
 --
+-- Name: tenants_users tenants_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tenants_users
+    ADD CONSTRAINT tenants_users_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -257,6 +305,13 @@ ALTER TABLE ONLY users
 --
 
 CREATE UNIQUE INDEX contacts_kind_value_index ON contacts USING btree (kind, value);
+
+
+--
+-- Name: tenants_users_tenant_id_user_id_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX tenants_users_tenant_id_user_id_index ON tenants_users USING btree (tenant_id, user_id);
 
 
 --
@@ -276,8 +331,24 @@ ALTER TABLE ONLY documents
 
 
 --
+-- Name: tenants_users tenants_users_tenant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tenants_users
+    ADD CONSTRAINT tenants_users_tenant_id_fkey FOREIGN KEY (tenant_id) REFERENCES tenants(id) ON DELETE CASCADE;
+
+
+--
+-- Name: tenants_users tenants_users_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tenants_users
+    ADD CONSTRAINT tenants_users_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047), (20181219052017), (20181228082809);
+INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047), (20181219052017), (20181228082809), (20190111055512), (20190113065251);
 

@@ -15,6 +15,10 @@ module.exports = function(defaults) {
       browsers: targets.browsers,
       cascade: false,
     },
+
+    sassOptions: {
+      includePaths: ['app'],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated
