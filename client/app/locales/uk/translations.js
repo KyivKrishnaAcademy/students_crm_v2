@@ -7,6 +7,7 @@ export default {
   },
 
   'header-toolbar.login': 'Увійти',
+  'header-toolbar.menu': 'Меню',
 
   'login.methodSelectionStep.label': 'Оберіть метод входу',
   'login.methodValueStep.label': 'Куди висилати код?',
