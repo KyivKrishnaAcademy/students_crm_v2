@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 
 export const controllerDefaults = {
   pageNumber: 1,
-  pageSize: 3,
+  pageSize: 50,
 };
 
 export default Controller.extend(controllerDefaults, {
