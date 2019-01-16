@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@babel/core": "<7.1.0",
+    "@ember-intl/cp-validations": "^4.0.1",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.3.0",
@@ -42,8 +43,7 @@
     "ember-export-application-global": "^2.0.0",
     "ember-font-awesome": "^4.0.0-rc.4",
     "ember-href-to": "^2.0.1",
-    "ember-i18n": "<5.3.0",
-    "ember-i18n-cp-validations": "<3.2.0",
+    "ember-intl": "^3.5.0",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-moment": "<7.8.0",

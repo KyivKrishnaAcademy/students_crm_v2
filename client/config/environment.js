@@ -30,10 +30,6 @@ module.exports = function(environment) {
     API_HOST: process.env.API_HOST,
     API_NAMESPACE: process.env.API_NAMESPACE,
 
-    i18n: {
-      defaultLocale: 'uk',
-    },
-
     moment: {
       includeLocales: ['uk'],
     },
