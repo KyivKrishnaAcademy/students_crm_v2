@@ -19,11 +19,12 @@ defmodule StudentsCrmV2.Interactions.User.List do
   end
 
   defp by_tenant(query, tenant_id) do
-    import Ecto.Query, only: [where: 3, join: 5]
+    import Ecto.Query, only: [where: 3, join: 5, order_by: 2]
 
     query
     |> join(:inner, [u], tu in TenantUser, tu.user_id == u.id)
     |> where([u, tu], tu.tenant_id == ^tenant_id)
+    |> order_by(asc: :complex_name)
   end
 
   defp page(query, page_number, page_size) do
