@@ -1,14 +1,10 @@
 import Route from '@ember/routing/route';
 
 import { inject as service } from '@ember/service';
-import { translationMacro as t } from 'ember-intl';
 
 export default Route.extend({
   currentUser: service(),
   intl: service(),
-
-  female: t('register.generalInfo.gender.female'),
-  male: t('register.generalInfo.gender.male'),
 
   beforeModel() {
     return this.currentUser.load();
@@ -16,14 +12,15 @@ export default Route.extend({
 
   model() {
     let step = + this.get('currentUser.user.privacyAgreed');
+    let optionMapper = (key, subkey) => ({ value: subkey, label: this.intl.t(`register.generalInfo.${key}.${subkey}`) });
+    let genderOptionMapper = subkey => optionMapper('gender', subkey);
+    let maritalStatusOptionMapper = subkey => optionMapper('maritalStatus', subkey);
 
     return {
       currentStep: step,
       user: this.get('currentUser.user'),
-      genders: [
-        { value: 'female', label: this.female },
-        { value: 'male', label: this.male },
-      ],
+      genders: ['female', 'male'].map(genderOptionMapper),
+      maritalStatuses: ['single', 'in_relationship', 'married', 'divorced', 'widowed'].map(maritalStatusOptionMapper),
     };
   },
 });
