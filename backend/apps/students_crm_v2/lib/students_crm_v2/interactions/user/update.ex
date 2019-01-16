@@ -68,6 +68,9 @@ defmodule StudentsCrmV2.Interactions.User.Update do
   defp get_trimmed_string(changeset, field_name) do
     import Changeset, only: [get_field: 3]
 
-    changeset |> get_field(field_name, "") |> String.trim()
+    field = get_field(changeset, field_name, nil)
+
+    # frontend can send nil so get_field/3 will not use default
+    String.trim(field || "")
   end
 end
