@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
 
 import { inject as service } from '@ember/service';
-import { translationMacro as t } from 'ember-i18n';
+import { translationMacro as t } from 'ember-intl';
 
 export default Route.extend({
   currentUser: service(),
-  i18n: service(),
+  intl: service(),
 
   female: t('register.generalInfo.gender.female'),
   male: t('register.generalInfo.gender.male'),

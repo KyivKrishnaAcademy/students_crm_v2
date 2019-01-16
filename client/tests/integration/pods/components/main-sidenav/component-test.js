@@ -1,10 +1,12 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
+import { setupIntl } from 'ember-intl/test-support';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | main-sidenav', function(hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks, 'uk');
 
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
