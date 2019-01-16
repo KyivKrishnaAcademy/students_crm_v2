@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { map } from '@ember/object/computed';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export const controllerDefaults = {
   pageNumber: 1,
@@ -8,21 +9,22 @@ export const controllerDefaults = {
 };
 
 export default Controller.extend(controllerDefaults, {
+  intl: service(),
+
   queryParams: ['pageNumber', 'pageSize'],
 
-  init() {
-    this._super(...arguments);
-    this.columns = [
+  columns: computed('intl.locale', function() {
+    return [
       {
         name: '#',
         valuePath: 'index',
       },
       {
-        name: 'name',
+        name: this.intl.t('users.tableHeader.name'),
         valuePath: 'complexName',
       },
     ];
-  },
+  }),
 
   indexOffset: computed('pageNumber', 'pageSize', function() {
     return (this.pageNumber - 1) * this.pageSize + 1;
