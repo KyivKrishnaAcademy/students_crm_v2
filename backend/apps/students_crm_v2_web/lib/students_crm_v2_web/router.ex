@@ -29,7 +29,7 @@ defmodule StudentsCrmV2Web.Router do
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
     pipe_through(:api_authenticated)
 
-    resources "/users", UserController, only: [:index, :update] do
+    resources "/users", UserController, only: [:index, :update, :show] do
       post("/agree", PrivacyAgreementController, :post)
     end
 
