@@ -5,6 +5,7 @@
   },
   "header-toolbar.login": "Увійти",
   "header-toolbar.menu": "Меню",
+  "landing.title": "Ваш профайл",
   "login.methodSelectionStep.label": "Оберіть метод входу",
   "login.methodValueStep.label": "Куди висилати код?",
   "login.methodValueStep.value.email": "Вкажіть Вашу електронну пошту",
