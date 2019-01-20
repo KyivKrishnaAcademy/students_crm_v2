@@ -14,7 +14,17 @@
     fillMode="last-column"
   }}
 
-  {{t.body rows=users}}
+  {{#t.body rows=users as |b|}}
+    {{#b.row as |r|}}
+      {{#r.cell as |cellValue columnValue|}}
+        {{#if (eq columnValue.valuePath "complexName")}}
+          {{link-to cellValue.complexName "users.show" cellValue}}
+        {{else}}
+          {{cellValue}}
+        {{/if}}
+      {{/r.cell}}
+    {{/b.row}}
+  {{/t.body}}
 {{/ember-table}}
 
 {{pagination-controls

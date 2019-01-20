@@ -57,6 +57,7 @@
     "ember-source": "~3.3.0",
     "ember-svg-jar": "^1.2.2",
     "ember-table": "^2.0.0-beta.7",
+    "ember-truth-helpers": "^2.1.0",
     "eslint-plugin-ember": "^5.0.0",
     "loader.js": "^4.2.3",
     "qunit-dom": "^0.6.2",

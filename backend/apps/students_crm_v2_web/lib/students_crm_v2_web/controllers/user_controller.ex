@@ -23,4 +23,10 @@ defmodule StudentsCrmV2Web.UserController do
       |> render("show.json-api", data: user)
     end
   end
+
+  def show(conn, %{"id" => user_id}) do
+    with {:ok, user} <- StudentsCrmV2.show_user(user_id) do
+      render(conn, "show.json-api", data: user)
+    end
+  end
 end

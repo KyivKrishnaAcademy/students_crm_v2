@@ -31,11 +31,9 @@ export default Controller.extend(controllerDefaults, {
   }),
 
   users: map('model', function(user, index) {
-    let { complexName } = user;
-
     return {
-      complexName,
       index: this.indexOffset + index,
+      complexName: user,
     };
   }),
 });
