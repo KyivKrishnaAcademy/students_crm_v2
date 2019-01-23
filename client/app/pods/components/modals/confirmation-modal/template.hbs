@@ -1,0 +1,27 @@
+{{#modals/base-modal
+  class="flex-50"
+  modalId=modalId
+}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+      <h2>{{title}}</h2>
+
+      <span class="flex"></span>
+
+      {{#paper-button iconButton=true onClick=(action "onCancel")}}
+        {{paper-icon icon="close"}}
+      {{/paper-button}}
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
+
+  {{#paper-dialog-content}}
+    <p>
+      {{content}}
+    </p>
+  {{/paper-dialog-content}}
+
+  {{#paper-dialog-actions class="layout-row layout-align-end-center"}}
+    {{#paper-button onClick=(action "onCancel")}}{{t 'generalActions.cancel'}}{{/paper-button}}
+    {{#paper-button onClick=(action onConfirm)}}{{t 'generalActions.yesDoIt'}}{{/paper-button}}
+  {{/paper-dialog-actions}}
+{{/modals/base-modal}}

@@ -3,6 +3,8 @@
     "before": "{description} повинно бути до {before}",
     "wrongDateFormat": "{description} повинно бути у форматі {format}"
   },
+  "generalActions.cancel": "Відмінити",
+  "generalActions.yesDoIt": "Так, виконати це!",
   "header-toolbar.login": "Увійти",
   "header-toolbar.menu": "Меню",
   "landing.title": "Ваш профайл",
