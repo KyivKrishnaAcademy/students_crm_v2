@@ -4,6 +4,7 @@
     "wrongDateFormat": "{description} повинно бути у форматі {format}"
   },
   "generalActions.cancel": "Відмінити",
+  "generalActions.delete": "Видалити",
   "generalActions.yesDoIt": "Так, виконати це!",
   "header-toolbar.login": "Увійти",
   "header-toolbar.menu": "Меню",
@@ -65,6 +66,8 @@
   "userProfileDetaild.surname": "Призвище",
   "userProfileDetaild.work": "Теперішня професія",
   "users.heading": "Люди",
+  "users.show.deleteConfirmationContent": "Ця дія незворотня! Ви впевнені що хочете видалити цього користувача назавжди?",
+  "users.show.deleteConfirmationTitle": "Видалення користувача",
   "users.tableHeader.name": "Ім'я",
   "validations.NeedToFill": "Небхідно заповнити",
   "validations.NeedToSelect": "Небхідно обрати"

@@ -1,3 +1,16 @@
 <h1>{{model.complexName}}</h1>
 
 {{user-profile-details user=model}}
+
+<div class="layout-row layout-align-end-center">
+  {{#paper-button raised=true warn=true onClick=(action "showDestroyConfirmation")}}
+    {{t 'generalActions.delete'}}
+  {{/paper-button}}
+</div>
+
+{{modals/confirmation-modal
+  modalId=userDestroyModalId
+  title=(t "users.show.deleteConfirmationTitle")
+  content=(t "users.show.deleteConfirmationContent")
+  onConfirm=(action "destroyUser")
+}}
