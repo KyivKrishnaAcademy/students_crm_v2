@@ -30,7 +30,7 @@ defmodule StudentsCrmV2.Models.User do
     field(:surname, :string)
     field(:work, :string)
 
-    has_many(:contacts, Contact)
+    has_many(:contacts, Contact, on_delete: :delete_all)
 
     many_to_many(:tenants, Tenant, join_through: "tenants_users")
 
