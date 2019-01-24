@@ -51,3 +51,13 @@ tr:nth-child(even) td {
 th {
   background-color: paper-color($primary, '400');
 }
+
+md-toast {
+  &.md-accent > .md-toast-content {
+    background: paper-color($accent, '400');
+  }
+
+  &.md-warn > .md-toast-content {
+    background: paper-color($warn, '400');
+  }
+}

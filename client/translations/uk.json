@@ -1,6 +1,7 @@
 {
   "errors": {
     "before": "{description} повинно бути до {before}",
+    "unknownServerError": "Невідома помилка на сервері. Звя'жіться з адміністратором будь ласка",
     "wrongDateFormat": "{description} повинно бути у форматі {format}"
   },
   "generalActions.cancel": "Відмінити",
@@ -68,6 +69,7 @@
   "users.heading": "Люди",
   "users.show.deleteConfirmationContent": "Ця дія незворотня! Ви впевнені що хочете видалити цього користувача назавжди?",
   "users.show.deleteConfirmationTitle": "Видалення користувача",
+  "users.show.destroyedSuccessfully": "Користувача видалено",
   "users.tableHeader.name": "Ім'я",
   "validations.NeedToFill": "Небхідно заповнити",
   "validations.NeedToSelect": "Небхідно обрати"
