@@ -29,4 +29,10 @@ defmodule StudentsCrmV2Web.UserController do
       render(conn, "show.json-api", data: user)
     end
   end
+
+  def delete(conn, %{"id" => user_id}) do
+    with {:ok, _} <- StudentsCrmV2.delete_user(user_id) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end

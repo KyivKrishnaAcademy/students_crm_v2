@@ -1,0 +1,9 @@
+{{#if isShown}}
+  {{#paper-dialog
+    class=class
+    clickOutsideToClose=true
+    onClose=(action "onClose")
+  }}
+    {{yield}}
+  {{/paper-dialog}}
+{{/if}}
