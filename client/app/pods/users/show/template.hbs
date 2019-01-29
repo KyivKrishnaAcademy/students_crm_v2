@@ -9,8 +9,8 @@
 </div>
 
 {{modals/confirmation-modal
-  modalId=userDestroyModalId
+  modalId=destroyModalId
   title=(t "users.show.deleteConfirmationTitle")
   content=(t "users.show.deleteConfirmationContent")
-  onConfirm=(perform destroyUser model)
+  onConfirm=(perform destroyModel model)
 }}
