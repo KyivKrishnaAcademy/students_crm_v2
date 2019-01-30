@@ -8,12 +8,15 @@ defmodule StudentsCrmV2 do
   """
 
   alias StudentsCrmV2.Interactions.{
+    AcademicGroup,
     Document,
     Tenant,
     User
   }
 
   alias StudentsCrmV2.Uploaders
+
+  defdelegate list_academic_groups(params), to: AcademicGroup.List, as: :execute
 
   defdelegate create_document(kind, file, user_id, author), to: Document.Create, as: :execute
   defdelegate show_document(id, current_user), to: Document.Show, as: :execute
