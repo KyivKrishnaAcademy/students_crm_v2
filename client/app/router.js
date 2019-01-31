@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('login');
   this.route('privacy');
   this.route('register');
+  this.route('groups', function() {});
 });
 
 export default Router;

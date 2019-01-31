@@ -1,0 +1,35 @@
+<h1 class="text-center">{{t "groups.heading"}}</h1>
+
+{{pagination-controls
+  pageNumber=pageNumber
+  pageSize=pageSize
+  route="groups.index"
+  total=model.meta.total
+}}
+
+{{#ember-table as |t|}}
+  {{t.head
+    columns=columns
+    widthConstraint="eq-container"
+    fillMode="last-column"
+  }}
+
+  {{#t.body rows=users as |b|}}
+    {{#b.row as |r|}}
+      {{#r.cell as |cellValue columnValue|}}
+        {{#if (eq columnValue.valuePath "name")}}
+          {{cellValue.name}}
+        {{else}}
+          {{cellValue}}
+        {{/if}}
+      {{/r.cell}}
+    {{/b.row}}
+  {{/t.body}}
+{{/ember-table}}
+
+{{pagination-controls
+  pageNumber=pageNumber
+  pageSize=pageSize
+  route="groups.index"
+  total=model.meta.total
+}}
