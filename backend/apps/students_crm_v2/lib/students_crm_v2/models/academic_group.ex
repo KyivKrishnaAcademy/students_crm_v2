@@ -13,7 +13,7 @@ defmodule StudentsCrmV2.Models.AcademicGroup do
     field(:name, :string)
     field(:description, :string)
 
-    many_to_many(:tenants, Tenant, join_through: "academic_groups_tenants")
+    belongs_to(:tenant, Tenant)
 
     timestamps()
   end

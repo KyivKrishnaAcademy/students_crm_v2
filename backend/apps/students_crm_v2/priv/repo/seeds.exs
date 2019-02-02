@@ -14,7 +14,6 @@ alias StudentsCrmV2.Repo
 
 alias StudentsCrmV2.Models.{
   AcademicGroup,
-  AcademicGroupTenant,
   Contact,
   Tenant,
   TenantUser,
@@ -34,7 +33,5 @@ Enum.each(1..75, fn n ->
 
   Repo.insert(%TenantUser{tenant: tenant, user: user})
 
-  {:ok, group} = Repo.insert(%AcademicGroup{name: "ШБ19-#{n}"})
-
-  Repo.insert(%AcademicGroupTenant{academic_group: group, tenant: tenant})
+  {:ok, group} = Repo.insert(%AcademicGroup{name: "ШБ19-#{n}", tenant: tenant})
 end)
