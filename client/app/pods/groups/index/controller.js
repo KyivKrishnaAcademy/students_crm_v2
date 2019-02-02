@@ -20,7 +20,7 @@ export default Controller.extend(controllerDefaults, {
         valuePath: 'index',
       },
       {
-        name: this.intl.t('groups.tableHeader.name'),
+        name: this.intl.t('groups.index.tableHeader.name'),
         valuePath: 'name',
       },
     ];
