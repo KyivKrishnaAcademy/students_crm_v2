@@ -16,6 +16,7 @@ defmodule StudentsCrmV2 do
 
   alias StudentsCrmV2.Uploaders
 
+  defdelegate create_academic_group(params, author), to: AcademicGroup.Create, as: :execute
   defdelegate list_academic_groups(params), to: AcademicGroup.List, as: :execute
 
   defdelegate create_document(kind, file, user_id, author), to: Document.Create, as: :execute
