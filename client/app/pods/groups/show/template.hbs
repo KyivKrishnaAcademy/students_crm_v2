@@ -30,3 +30,13 @@
   content=(t "groups.show.deleteConfirmationContent" groupName=model.name htmlSafe=true)
   onConfirm=(perform destroyModel model)
 }}
+
+<div class="layout-row">
+  <div class="flex-30">{{t "groups.show.establishedOnLabel"}}:</div>
+  <div class="flex-70">{{model.establishedOn}}</div>
+</div>
+
+<div class="layout-row">
+  <div class="flex-30">{{t "groups.show.descriptionLabel"}}:</div>
+  <div class="flex-70">{{model.description}}</div>
+</div>
