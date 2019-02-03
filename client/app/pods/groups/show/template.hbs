@@ -1,1 +1,19 @@
 <h1 class="text-center">{{model.name}}</h1>
+
+<div class="layout-column layout-align-center-end">
+  {{#paper-speed-dial open=isSpeedDialOpen onToggle=(action (mut isSpeedDialOpen)) as |dial|}}
+    {{#dial.trigger}}
+      {{#paper-button fab=true}}
+        {{paper-icon "menu"}}
+      {{/paper-button}}
+    {{/dial.trigger}}
+
+    {{#dial.actions as |actions|}}
+      {{#actions.action}}
+        {{#paper-link "groups.edit" model mini=true}}
+          {{paper-icon "edit"}}
+        {{/paper-link}}
+      {{/actions.action}}
+    {{/dial.actions}}
+  {{/paper-speed-dial}}
+</div>

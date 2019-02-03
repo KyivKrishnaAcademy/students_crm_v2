@@ -17,6 +17,8 @@
   "groups.index.tableHeader.name": "Назва",
   "groups.new.heading": "Створити нову групу",
   "groups.new.submitLabel": "Створити",
+  "groups.edit.heading": "Редагування групи",
+  "groups.edit.submitLabel": "Зберегти",
   "header-toolbar.login": "Увійти",
   "header-toolbar.menu": "Меню",
   "landing.title": "Ваш профайл",

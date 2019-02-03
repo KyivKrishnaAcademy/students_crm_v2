@@ -20,12 +20,18 @@ defmodule StudentsCrmV2Web.AcademicGroupController do
     end
   end
 
-  def create(conn, params) do
+  def create(conn, %{"data" => %{"attributes" => attributes}}) do
     with author <- AuthPlug.current_resource(conn),
-         attributes <- get_in(params, ["data", "attributes"]) || %{},
          attributes_with_tenant_id <- Map.put(attributes, "tenant_id", conn.assigns.tenant.id),
-         {:ok, user} <- StudentsCrmV2.create_academic_group(attributes_with_tenant_id, author) do
-      render(conn, "show.json-api", data: user)
+         {:ok, academic_group} <- StudentsCrmV2.create_academic_group(attributes_with_tenant_id, author) do
+      render(conn, "show.json-api", data: academic_group)
+    end
+  end
+
+  def update(conn, %{"data" => %{"attributes" => attributes}, "id" => academic_group_id}) do
+    with author <- AuthPlug.current_resource(conn),
+         {:ok, academic_group} <- StudentsCrmV2.update_academic_group(academic_group_id, attributes, author) do
+      render(conn, "show.json-api", data: academic_group)
     end
   end
 end

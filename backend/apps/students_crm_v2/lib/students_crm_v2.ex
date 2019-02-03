@@ -19,6 +19,7 @@ defmodule StudentsCrmV2 do
   defdelegate create_academic_group(params, author), to: AcademicGroup.Create, as: :execute
   defdelegate list_academic_groups(params), to: AcademicGroup.List, as: :execute
   defdelegate show_academic_group(id), to: AcademicGroup.Show, as: :execute
+  defdelegate update_academic_group(id, params, author), to: AcademicGroup.Update, as: :execute
 
   defdelegate create_document(kind, file, user_id, author), to: Document.Create, as: :execute
   defdelegate show_document(id, current_user), to: Document.Show, as: :execute
