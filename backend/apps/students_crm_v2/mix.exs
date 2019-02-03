@@ -39,6 +39,7 @@ defmodule StudentsCrmV2.Mixfile do
       {:arc_ecto, github: "mpugach/arc_ecto", branch: "explicit_cast"},
       {:arc, "~> 0.10.0"},
       {:ecto, "~> 2.1"},
+      {:gettext, "~> 0.16"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"}
     ]

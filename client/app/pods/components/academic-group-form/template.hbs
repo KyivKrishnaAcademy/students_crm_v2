@@ -1,0 +1,44 @@
+{{#extended-paper-form
+  onSubmit=(perform onSubmit model)
+as |form|}}
+  <div class="layout-column">
+    {{form.input
+      errors=model.validations.attrs.name.messages
+      isTouched=(gt model.errors.name.length 0)
+      label=(t 'groups.form.name')
+      onChange=(action (mut model.name))
+      required=true
+      value=model.name
+      errorMessages=(hash
+        required=(t 'validations.NeedToFill')
+      )
+    }}
+
+    {{form.input
+      errors=model.validations.attrs.description.messages
+      isTouched=(gt model.errors.description.length 0)
+      label=(t 'groups.form.description')
+      onChange=(action (mut model.description))
+      passThru=(hash rows=5 maxRows=5)
+      textarea=true
+      value=model.description
+    }}
+
+    {{form.date-picker
+      errors=model.validations.attrs.establishedOn.messages
+      isTouched=(gt model.errors.establishedOn.length 0)
+      label=(t 'groups.form.establishedOn')
+      onChange=(action (mut model.establishedOn))
+      required=true
+      value=model.establishedOn
+      yearRange='1990,currentYear'
+      errorMessages=(hash
+        required=(t 'validations.NeedToSelect')
+      )
+    }}
+  </div>
+
+  <div class="layout-column layout-align-start-center">
+    {{#form.submit-button raised=true primary=true}}{{submitLabel}}{{/form.submit-button}}
+  </div>
+{{/extended-paper-form}}

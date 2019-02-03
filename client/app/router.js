@@ -13,6 +13,11 @@ Router.map(function() {
   this.route('login');
   this.route('privacy');
   this.route('register');
+  this.route('groups', function() {
+    this.route('new');
+    this.route('show', { path: '/:academic_group_id' });
+    this.route('edit', { path: '/:academic_group_id/edit' });
+  });
 });
 
 export default Router;

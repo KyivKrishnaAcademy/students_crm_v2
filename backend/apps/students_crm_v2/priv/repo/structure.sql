@@ -35,6 +35,40 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: academic_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE academic_groups (
+    id bigint NOT NULL,
+    name character varying(255),
+    description character varying(255),
+    established_on date,
+    tenant_id bigint,
+    inserted_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: academic_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE academic_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: academic_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE academic_groups_id_seq OWNED BY academic_groups.id;
+
+
+--
 -- Name: contacts; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -218,6 +252,13 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
+-- Name: academic_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY academic_groups ALTER COLUMN id SET DEFAULT nextval('academic_groups_id_seq'::regclass);
+
+
+--
 -- Name: contacts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -250,6 +291,14 @@ ALTER TABLE ONLY tenants_users ALTER COLUMN id SET DEFAULT nextval('tenants_user
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: academic_groups academic_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY academic_groups
+    ADD CONSTRAINT academic_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -301,6 +350,13 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: academic_groups_name_tenant_id_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX academic_groups_name_tenant_id_index ON academic_groups USING btree (name, tenant_id);
+
+
+--
 -- Name: contacts_kind_value_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -308,10 +364,25 @@ CREATE UNIQUE INDEX contacts_kind_value_index ON contacts USING btree (kind, val
 
 
 --
+-- Name: tenants_name_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX tenants_name_index ON tenants USING btree (name);
+
+
+--
 -- Name: tenants_users_tenant_id_user_id_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX tenants_users_tenant_id_user_id_index ON tenants_users USING btree (tenant_id, user_id);
+
+
+--
+-- Name: academic_groups academic_groups_tenant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY academic_groups
+    ADD CONSTRAINT academic_groups_tenant_id_fkey FOREIGN KEY (tenant_id) REFERENCES tenants(id);
 
 
 --
@@ -350,5 +421,5 @@ ALTER TABLE ONLY tenants_users
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047), (20181219052017), (20181228082809), (20190111055512), (20190113065251);
+INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047), (20181219052017), (20181228082809), (20190111055512), (20190113065251), (20190130161113), (20190130181523);
 

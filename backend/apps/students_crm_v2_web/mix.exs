@@ -39,7 +39,7 @@ defmodule StudentsCrmV2Web.Mixfile do
     [
       {:bamboo, "~> 1.1"},
       {:cors_plug, "~> 2.0"},
-      {:gettext, "~> 0.11"},
+      {:gettext, "~> 0.16"},
       {:guardian, "~> 1.0"},
       {:ja_serializer, "~> 0.13"},
       {:jason, "~> 1.1"},

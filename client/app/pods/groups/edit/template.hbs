@@ -1,0 +1,7 @@
+<h1 class="text-center">{{t "groups.edit.heading"}}</h1>
+
+{{academic-group-form
+  model=model
+  submitLabel=(t "groups.edit.submitLabel")
+  onSunccessCallback=(action "onSunccessTransition" model)
+}}

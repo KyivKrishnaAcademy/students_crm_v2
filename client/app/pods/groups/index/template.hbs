@@ -1,0 +1,39 @@
+<h1 class="text-center">{{t "groups.index.heading"}}</h1>
+
+<div class="layout-row layout-align-end-center">
+  {{paper-link (t "groups.index.newGroup") 'groups.new' raised=true accent=true}}
+</div>
+
+{{pagination-controls
+  pageNumber=pageNumber
+  pageSize=pageSize
+  route="groups.index"
+  total=model.meta.total
+}}
+
+{{#ember-table as |t|}}
+  {{t.head
+    columns=columns
+    widthConstraint="eq-container"
+    fillMode="last-column"
+  }}
+
+  {{#t.body rows=users as |b|}}
+    {{#b.row as |r|}}
+      {{#r.cell as |cellValue columnValue|}}
+        {{#if (eq columnValue.valuePath "name")}}
+          {{link-to cellValue.name "groups.show" cellValue}}
+        {{else}}
+          {{cellValue}}
+        {{/if}}
+      {{/r.cell}}
+    {{/b.row}}
+  {{/t.body}}
+{{/ember-table}}
+
+{{pagination-controls
+  pageNumber=pageNumber
+  pageSize=pageSize
+  route="groups.index"
+  total=model.meta.total
+}}

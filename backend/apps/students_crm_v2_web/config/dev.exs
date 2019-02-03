@@ -64,7 +64,7 @@ config :students_crm_v2_web, StudentsCrmV2Web.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{priv/gettext/.*(po)$},
+      ~r{../*/priv/gettext/.*(po)$},
       ~r{lib/students_crm_v2_web/views/.*(ex)$},
       ~r{lib/students_crm_v2_web/templates/.*(eex)$}
     ]

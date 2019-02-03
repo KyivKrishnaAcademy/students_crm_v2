@@ -1,0 +1,9 @@
+{{t "errors.unknownServerError"}}
+
+{{#if model.isAdapterError}}
+  {{#each model.errors as |error|}}
+    <p>
+      {{error.status}} {{error.title}}: {{error.detail}}
+    </p>
+  {{/each}}
+{{/if}}

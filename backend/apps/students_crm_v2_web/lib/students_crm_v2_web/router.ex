@@ -29,6 +29,8 @@ defmodule StudentsCrmV2Web.Router do
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
     pipe_through(:api_authenticated)
 
+    resources "/academic_groups", AcademicGroupController, only: [:create, :index, :update, :show, :delete]
+
     resources "/users", UserController, only: [:index, :update, :show, :delete] do
       post("/agree", PrivacyAgreementController, :post)
     end
