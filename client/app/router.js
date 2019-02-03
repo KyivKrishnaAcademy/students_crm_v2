@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('privacy');
   this.route('register');
   this.route('groups', function() {
+    this.route('new');
     this.route('show', { path: '/:academic_group_id' });
   });
 });

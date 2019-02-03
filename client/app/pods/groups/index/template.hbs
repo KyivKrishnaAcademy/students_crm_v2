@@ -1,5 +1,9 @@
 <h1 class="text-center">{{t "groups.index.heading"}}</h1>
 
+<div class="layout-row layout-align-end-center">
+  {{paper-link (t "groups.index.newGroup") 'groups.new' raised=true accent=true}}
+</div>
+
 {{pagination-controls
   pageNumber=pageNumber
   pageSize=pageSize
