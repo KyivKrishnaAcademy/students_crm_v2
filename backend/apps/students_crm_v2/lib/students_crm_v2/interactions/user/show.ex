@@ -12,5 +12,6 @@ defmodule StudentsCrmV2.Interactions.User.Show do
   end
 
   defp result(user = %User{}), do: {:ok, user}
+  defp result(nil), do: {:error, :not_found}
   defp result(something), do: {:error, something}
 end

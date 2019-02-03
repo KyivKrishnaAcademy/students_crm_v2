@@ -3,7 +3,7 @@
 {{#if model.isAdapterError}}
   {{#each model.errors as |error|}}
     <p>
-      {{error.title}}: {{error.detail}}
+      {{error.status}} {{error.title}}: {{error.detail}}
     </p>
   {{/each}}
 {{/if}}

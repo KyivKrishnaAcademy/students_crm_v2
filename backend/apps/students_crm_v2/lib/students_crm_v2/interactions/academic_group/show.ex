@@ -12,5 +12,6 @@ defmodule StudentsCrmV2.Interactions.AcademicGroup.Show do
   end
 
   defp result(academic_group = %AcademicGroup{}), do: {:ok, academic_group}
+  defp result(nil), do: {:error, :not_found}
   defp result(something), do: {:error, something}
 end
