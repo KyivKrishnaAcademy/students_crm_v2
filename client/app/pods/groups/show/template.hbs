@@ -14,6 +14,19 @@
           {{paper-icon "edit"}}
         {{/paper-link}}
       {{/actions.action}}
+
+      {{#actions.action}}
+        {{#paper-button mini=true onClick=(action "showDestroyConfirmation")}}
+          {{paper-icon "delete"}}
+        {{/paper-button}}
+      {{/actions.action}}
     {{/dial.actions}}
   {{/paper-speed-dial}}
 </div>
+
+{{modals/confirmation-modal
+  modalId=destroyModalId
+  title=(t "groups.show.deleteConfirmationTitle" groupName=model.name htmlSafe=true)
+  content=(t "groups.show.deleteConfirmationContent" groupName=model.name htmlSafe=true)
+  onConfirm=(perform destroyModel model)
+}}
