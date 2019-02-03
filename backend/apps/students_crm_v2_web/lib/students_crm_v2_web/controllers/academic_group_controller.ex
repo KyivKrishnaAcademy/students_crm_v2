@@ -14,6 +14,12 @@ defmodule StudentsCrmV2Web.AcademicGroupController do
     render(conn, "index.json-api", data: data, opts: [meta: pagination])
   end
 
+  def show(conn, %{"id" => academic_group_id}) do
+    with {:ok, academic_group} <- StudentsCrmV2.show_academic_group(academic_group_id) do
+      render(conn, "show.json-api", data: academic_group)
+    end
+  end
+
   def create(conn, params) do
     with author <- AuthPlug.current_resource(conn),
          attributes <- get_in(params, ["data", "attributes"]) || %{},

@@ -18,7 +18,7 @@
     {{#b.row as |r|}}
       {{#r.cell as |cellValue columnValue|}}
         {{#if (eq columnValue.valuePath "name")}}
-          {{cellValue.name}}
+          {{link-to cellValue.name "groups.show" cellValue}}
         {{else}}
           {{cellValue}}
         {{/if}}

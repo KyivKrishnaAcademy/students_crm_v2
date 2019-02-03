@@ -13,7 +13,9 @@ Router.map(function() {
   this.route('login');
   this.route('privacy');
   this.route('register');
-  this.route('groups', function() {});
+  this.route('groups', function() {
+    this.route('show', { path: '/:academic_group_id' });
+  });
 });
 
 export default Router;
