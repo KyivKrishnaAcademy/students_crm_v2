@@ -42,4 +42,11 @@ defmodule StudentsCrmV2Web.GroupParticipationController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def remove_from_group(conn, %{"group_participation_id" => group_participation_id}) do
+    with author <- AuthPlug.current_resource(conn),
+         {:ok, group_participation} <- StudentsCrmV2.remove_from_group(group_participation_id, author) do
+      render(conn, "show.json-api", data: group_participation)
+    end
+  end
 end

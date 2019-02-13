@@ -31,7 +31,9 @@ defmodule StudentsCrmV2Web.Router do
 
     resources "/academic_groups", AcademicGroupController, only: [:create, :index, :update, :show, :delete]
 
-    resources "/group_participations", GroupParticipationController, only: [:create, :delete]
+    resources "/group_participations", GroupParticipationController, only: [:create, :delete] do
+      post("/remove_from_group", GroupParticipationController, :remove_from_group)
+    end
 
     resources "/users", UserController, only: [:index, :update, :show, :delete] do
       post("/agree", PrivacyAgreementController, :post)

@@ -29,6 +29,7 @@ defmodule StudentsCrmV2 do
   defdelegate create_group_participation(params, author), to: GroupParticipation.Create, as: :execute
   defdelegate delete_group_participation(id), to: GroupParticipation.Delete, as: :execute
   defdelegate list_group_participations(params, author), to: GroupParticipation.List, as: :execute
+  defdelegate remove_from_group(group_participation_id, author), to: GroupParticipation.RemoveFromGroup, as: :execute
 
   defdelegate get_tenant_by_name(name), to: Tenant.GetByName, as: :execute
   defdelegate list_tenants(), to: Tenant.List, as: :execute
