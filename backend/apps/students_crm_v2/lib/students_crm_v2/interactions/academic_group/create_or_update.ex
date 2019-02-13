@@ -2,7 +2,6 @@ defmodule StudentsCrmV2.Interactions.AcademicGroup.CreateOrUpdate do
   @moduledoc false
 
   alias Ecto.Changeset
-  alias StudentsCrmV2.Repo
 
   alias StudentsCrmV2.Models.{
     AcademicGroup,
