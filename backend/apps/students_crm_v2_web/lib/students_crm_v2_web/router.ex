@@ -33,6 +33,8 @@ defmodule StudentsCrmV2Web.Router do
 
     resources "/users", UserController, only: [:index, :update, :show, :delete] do
       post("/agree", PrivacyAgreementController, :post)
+
+      resources "/group_participations", GroupParticipationController, only: [:index]
     end
 
     resources("/documents", DocumentController, only: [:create, :show])
