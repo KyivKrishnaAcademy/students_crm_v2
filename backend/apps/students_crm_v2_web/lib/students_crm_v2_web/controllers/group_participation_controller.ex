@@ -36,4 +36,10 @@ defmodule StudentsCrmV2Web.GroupParticipationController do
       render(conn, "show.json-api", data: group_participation)
     end
   end
+
+  def delete(conn, %{"id" => group_participation_id}) do
+    with {:ok, _} <- StudentsCrmV2.delete_group_participation(group_participation_id) do
+      send_resp(conn, :no_content, "")
+    end
+  end
 end
