@@ -1,0 +1,70 @@
+<h4>{{t "userGroupParticipations.title.previous"}}</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>{{t "userGroupParticipations.header.groupName"}}</th>
+      <th>{{t "userGroupParticipations.header.leaveReason"}}</th>
+      <th>{{t "userGroupParticipations.header.joinTime"}}</th>
+      <th>{{t "userGroupParticipations.header.leaveTime"}}</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#if isPending}}
+      <tr>
+        <td colspan=6>
+          {{paper-progress-linear}}
+        </td>
+      </tr>
+    {{else if isRejected}}
+      <tr>
+        <td colspan=6 class="text-center">
+          {{t "errors.unknownServerError"}}
+        </td>
+      </tr>
+    {{else}}
+      {{#each groupParticipations as |groupParticipation index|}}
+        <tr>
+          <td>{{increment index}}</td>
+          <td>{{link-to groupParticipation.academicGroup.name "groups.show" groupParticipation.academicGroup}}</td>
+          <td>{{groupParticipation.leaveReasonIntl}}</td>
+          <td>{{moment-format groupParticipation.joinTime "YYYY.MM.DD HH:mm"}}</td>
+          <td>{{moment-format groupParticipation.leaveTime "YYYY.MM.DD HH:mm"}}</td>
+          <td>
+            {{#paper-button
+              iconButton=true
+              mini=true
+              onClick=(action "showDestroyConfirmation" groupParticipation)
+              warn=true
+            }}
+              {{paper-icon "close"}}
+            {{/paper-button}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan=6 class="text-center">
+            {{t "userGroupParticipations.noPreviousParticipations"}}
+          </td>
+        </tr>
+      {{/each}}
+    {{/if}}
+  </tbody>
+</table>
+
+{{modals/confirmation-modal
+  modalId=destroyModalId
+  title=(t "userGroupParticipations.deleteConfirmationTitle"
+    htmlSafe=true
+    groupName=groupParticipationToDestroy.academicGroup.name
+  )
+  content=(t "userGroupParticipations.deleteConfirmationContent"
+    htmlSafe=true
+    groupName=groupParticipationToDestroy.academicGroup.name
+    userName=groupParticipationToDestroy.user.complexName
+  )
+  onConfirm=(perform destroyModel groupParticipationToDestroy)
+}}
