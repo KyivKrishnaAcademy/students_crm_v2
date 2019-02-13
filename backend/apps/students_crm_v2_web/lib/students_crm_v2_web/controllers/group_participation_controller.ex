@@ -13,4 +13,27 @@ defmodule StudentsCrmV2Web.GroupParticipationController do
       render(conn, "index.json-api", data: group_participations)
     end
   end
+
+  def create(
+        conn,
+        %{
+          "data" => %{
+            "relationships" => %{
+              "academic_group" => %{"data" => %{"id" => academic_group_id}},
+              "user" => %{"data" => %{"id" => user_id}}
+            }
+          }
+        }
+      ) do
+    attributes = %{
+      "academic_group_id" => academic_group_id,
+      "tenant_id" => conn.assigns.tenant.id,
+      "user_id" => user_id
+    }
+
+    with author <- AuthPlug.current_resource(conn),
+         {:ok, group_participation} <- StudentsCrmV2.create_group_participation(attributes, author) do
+      render(conn, "show.json-api", data: group_participation)
+    end
+  end
 end
