@@ -9,7 +9,7 @@ defmodule StudentsCrmV2Web.GroupParticipationController do
     params_with_tenant_id = Map.put(params, "tenant_id", conn.assigns.tenant.id)
 
     with author <- AuthPlug.current_resource(conn),
-         group_participations <- StudentsCrmV2.list_group_participations(params_with_tenant_id, author) do
+         {:ok, group_participations} <- StudentsCrmV2.list_group_participations(params_with_tenant_id, author) do
       render(conn, "index.json-api", data: group_participations)
     end
   end
