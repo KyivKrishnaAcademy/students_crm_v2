@@ -9,11 +9,11 @@ export default Controller.extend(DestroyConfirmable, {
 
   destroyModalId: 'destroyAcademicGroup',
 
-  onSunccessToast: computed('intl.locale', function() {
+  onDestroySunccessToast: computed('intl.locale', function() {
     return this.intl.t('groups.show.destroyedSuccessfully', { groupName: this.model.name, htmlSafe: true });
   }),
 
-  onSunccessCallback() {
+  onDestroyCallback() {
     this.transitionToRoute('groups.index');
   },
 });

@@ -9,11 +9,11 @@ export default Controller.extend(DestroyConfirmable, {
 
   destroyModalId: 'destroyUser',
 
-  onSunccessToast: computed('intl.locale', function() {
+  onDestroySunccessToast: computed('intl.locale', function() {
     return this.intl.t('users.show.destroyedSuccessfully');
   }),
 
-  onSunccessCallback() {
+  onDestroyCallback() {
     this.transitionToRoute('users');
   },
 });

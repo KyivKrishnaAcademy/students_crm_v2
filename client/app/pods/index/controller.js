@@ -8,7 +8,7 @@ export default Controller.extend(DestroyConfirmable, {
 
   destroyModalId: 'destroyCurrentUser',
 
-  onSunccessCallback() {
+  onDestroyCallback() {
     this.session.invalidate();
   },
 });
