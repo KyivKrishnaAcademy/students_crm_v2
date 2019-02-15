@@ -3,7 +3,7 @@ import DestroyConfirmable from 'students-crm-v2/mixins/destroy-confirmable';
 
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { set } from '@ember/object';
+import { get, set } from '@ember/object';
 import { task } from 'ember-concurrency';
 
 export default Controller.extend(DestroyConfirmable, {
@@ -26,13 +26,30 @@ export default Controller.extend(DestroyConfirmable, {
     });
   }),
 
-  groupsOptions: computed('model.academicGroups.{isPending,isFulfilled}', function() {
-    let isReady = this.model.academicGroups.isPending && this.model.academicGroups.isFulfilled;
+  groupsOptions: computed(
+    'model.academicGroups.{isPending,isFulfilled}',
+    'model.user.groupParticipations.{isPending,isFulfilled,@each.leaveTime}',
+    function() {
+      let isReady =
+        !this.model.academicGroups.isPending &&
+        this.model.academicGroups.isFulfilled &&
+        !this.model.user.groupParticipations.isPending &&
+        this.model.user.groupParticipations.isFulfilled;
 
-    if (isReady) return this.model.academicGroups.map(group => ({ name: group.name, group: group }));
+      if (!isReady) return [];
 
-    return [];
-  }),
+      let activeGroupIds = this
+        .model
+        .user
+        .groupParticipations
+        .filter(gp => !gp.leaveTime)
+        .map(gp => get(gp.academicGroup, 'id'));
+
+      return this.model.academicGroups.map(
+        group => ({ name: group.name, group: group, disabled: activeGroupIds.indexOf(get(group, 'id')) >= 0 })
+      );
+    }
+  ),
 
   onDestroyCallback() {
     this.transitionToRoute('users');
