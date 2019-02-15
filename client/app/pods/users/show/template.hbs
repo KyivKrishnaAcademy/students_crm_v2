@@ -17,15 +17,15 @@
 
 {{modals/confirmation-modal
   modalId=addToGroupModalId
-  title=(t "users.show.addToGroupConfirmationTitle" htmlSafe=true groupName=selectedGroup.name)
-  content=(t "users.show.addToGroupConfirmationContent" htmlSafe=true groupName=selectedGroup.name userName=model.user.complexName)
-  onConfirm=(perform addToGroup selectedGroup)
+  title=(t "users.show.addToGroupConfirmationTitle" htmlSafe=true groupName=selectedGroupOption.name)
+  content=(t "users.show.addToGroupConfirmationContent" htmlSafe=true groupName=selectedGroupOption.name userName=model.user.complexName)
+  onConfirm=(perform addToGroup selectedGroupOption)
 }}
 
 {{#paper-select
   placeholder="Add to group"
-  value=selectedGroup
-  options=model.academicGroups
+  value=selectedGroupOption
+  options=groupsOptions
   searchField="name"
   searchPlaceholder="Search for a vegetable.."
   searchEnabled=true

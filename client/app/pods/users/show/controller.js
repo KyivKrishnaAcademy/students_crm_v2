@@ -9,7 +9,7 @@ import { task } from 'ember-concurrency';
 export default Controller.extend(DestroyConfirmable, {
   intl: service(),
 
-  selectedGroup: null,
+  selectedGroupOption: null,
 
   destroyModalId: 'destroyUser',
   addToGroupModalId: 'addToGroup',
@@ -18,10 +18,10 @@ export default Controller.extend(DestroyConfirmable, {
     return this.intl.t('users.show.destroyedSuccessfully');
   }),
 
-  onAddToGroupSunccessToast: computed('intl.locale', 'selectedGroup.name', function() {
+  onAddToGroupSunccessToast: computed('intl.locale', 'selectedGroupOption.name', function() {
     return this.intl.t('users.show.addedToGroupSuccessfully', {
       htmlSafe: true,
-      groupName: this.selectedGroup.name,
+      groupName: this.selectedGroupOption.name,
       userName: this.model.user.complexName,
     });
   }),
@@ -42,7 +42,7 @@ export default Controller.extend(DestroyConfirmable, {
     try {
       yield this
         .store
-        .createRecord('group-participation', { user: this.model.user, academicGroup: selectedOption})
+        .createRecord('group-participation', { user: this.model.user, academicGroup: selectedOption.group})
         .save();
 
       this.onDestroySunccessToast && this.paperToaster.show(this.onAddToGroupSunccessToast);
@@ -55,7 +55,7 @@ export default Controller.extend(DestroyConfirmable, {
 
   actions: {
     showAddToGroupConfirmation(selectedOption) {
-      set(this, 'selectedGroup', selectedOption);
+      set(this, 'selectedGroupOption', selectedOption);
       this.modalsManager.showModal(this.addToGroupModalId);
     },
   },
