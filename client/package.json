@@ -48,7 +48,7 @@
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-moment": "<7.8.0",
-    "ember-paper": "^1.0.0-beta.21",
+    "ember-paper": "^1.0.0-beta.22",
     "ember-paper-link": "0.0.6",
     "ember-paper-pikaday": "<2.1.0",
     "ember-paper-stepper": "^0.0.10",
