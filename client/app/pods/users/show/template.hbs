@@ -1,12 +1,12 @@
 <h1>{{model.user.complexName}}</h1>
 
-{{user-profile-details user=model.user}}
-
 <div class="layout-row layout-align-end-center">
   {{#paper-button raised=true warn=true onClick=(action "showDestroyConfirmation")}}
     {{t 'generalActions.delete'}}
   {{/paper-button}}
 </div>
+
+{{user-profile-details user=model.user}}
 
 {{modals/confirmation-modal
   modalId=destroyModalId
@@ -22,17 +22,21 @@
   onConfirm=(perform addToGroup selectedGroupOption)
 }}
 
-{{#paper-select
-  placeholder="Add to group"
-  value=selectedGroupOption
-  options=groupsOptions
-  searchField="name"
-  searchPlaceholder="Search for a vegetable.."
-  searchEnabled=true
-  onChange=(action "showAddToGroupConfirmation")
-  as |group|
-}}
-  {{group.name}}
-{{/paper-select}}
+<div class="flex-xs-100 flex-sm-50 flex-md-40 flex-30">
+  <h4>{{t "users.show.addToGroup"}}</h4>
+
+  {{#power-select
+    placeholder=(t "users.show.chooseGroupToAddTo")
+    value=selectedGroupOption
+    options=groupsOptions
+    searchField="name"
+    searchPlaceholder=(t "users.show.searchByGroupName")
+    searchEnabled=true
+    onchange=(action "showAddToGroupConfirmation")
+    as |group|
+  }}
+    {{group.name}}
+  {{/power-select}}
+</div>
 
 {{user-group-participations user=model.user}}
