@@ -15,7 +15,9 @@ Router.map(function() {
   this.route('register');
   this.route('groups', function() {
     this.route('new');
-    this.route('show', { path: '/:academic_group_id' });
+    this.route('show', { path: '/:academic_group_id' }, function() {
+      this.route('list');
+    });
     this.route('edit', { path: '/:academic_group_id/edit' });
   });
 });

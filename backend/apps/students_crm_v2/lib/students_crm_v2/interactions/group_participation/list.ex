@@ -14,10 +14,11 @@ defmodule StudentsCrmV2.Interactions.GroupParticipation.List do
   def execute(%{"user_id" => user_id, "tenant_id" => tenant_id}, _author) do
     import Ecto.Query, only: [where: 3]
 
-    result = GroupParticipation
-    |> where([gp], gp.user_id == ^user_id and gp.tenant_id == ^tenant_id)
-    |> Repo.all()
-    |> Repo.preload([:academic_group, :user])
+    result =
+      GroupParticipation
+      |> where([gp], gp.user_id == ^user_id and gp.tenant_id == ^tenant_id)
+      |> Repo.all()
+      |> Repo.preload([:academic_group, :user])
 
     {:ok, result}
   end

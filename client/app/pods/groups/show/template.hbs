@@ -1,6 +1,6 @@
-<h1 class="text-center">{{model.name}}</h1>
+<div class="layout-row layout-align-center-end">
+  <h1 class="flex text-center">{{model.name}}</h1>
 
-<div class="layout-column layout-align-center-end">
   {{#paper-speed-dial open=isSpeedDialOpen onToggle=(action (mut isSpeedDialOpen)) as |dial|}}
     {{#dial.trigger}}
       {{#paper-button fab=true}}
@@ -31,12 +31,14 @@
   onConfirm=(perform destroyModel model)
 }}
 
-<div class="layout-row">
-  <div class="flex-30">{{t "groups.show.establishedOnLabel"}}:</div>
-  <div class="flex-70">{{model.establishedOn}}</div>
-</div>
+{{#paper-tabs selected=router.currentRouteName borderBottom=true primary=true class="offset-bottom-1" as |tabs|}}
+  {{#tabs.tab value="groups.show.index" class="ololo" href=(href-to "groups.show.index" model)}}
+    {{t "groups.show.tabHeaders.index"}}
+  {{/tabs.tab}}
 
-<div class="layout-row">
-  <div class="flex-30">{{t "groups.show.descriptionLabel"}}:</div>
-  <div class="flex-70">{{model.description}}</div>
-</div>
+  {{#tabs.tab value="groups.show.list" href=(href-to "groups.show.list" model)}}
+    {{t "groups.show.tabHeaders.list"}}
+  {{/tabs.tab}}
+{{/paper-tabs}}
+
+{{outlet}}

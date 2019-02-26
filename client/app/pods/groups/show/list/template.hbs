@@ -1,0 +1,19 @@
+{{#ember-table as |t|}}
+  {{t.head
+    columns=columns
+    widthConstraint="eq-container"
+    fillMode="last-column"
+  }}
+
+  {{#t.body rows=students as |b|}}
+    {{#b.row as |r|}}
+      {{#r.cell as |cellValue columnValue|}}
+        {{#if (eq columnValue.valuePath "complexName")}}
+          {{link-to cellValue.complexName "users.show" cellValue}}
+        {{else}}
+          {{cellValue}}
+        {{/if}}
+      {{/r.cell}}
+    {{/b.row}}
+  {{/t.body}}
+{{/ember-table}}

@@ -66,3 +66,11 @@ md-toast {
 md-fab-speed-dial {
   height: 70px;
 }
+
+md-tabs.md-primary md-tabs-wrapper md-tabs-canvas md-pagination-wrapper a {
+  color: black;
+
+  &[aria-selected] {
+    color: black;
+  }
+}

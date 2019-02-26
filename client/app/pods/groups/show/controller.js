@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend(DestroyConfirmable, {
   intl: service(),
+  router: service(),
 
   destroyModalId: 'destroyAcademicGroup',
 
