@@ -10,6 +10,7 @@ defmodule StudentsCrmV2 do
   alias StudentsCrmV2.Interactions.{
     AcademicGroup,
     Document,
+    GroupParticipation,
     Tenant,
     User
   }
@@ -24,6 +25,11 @@ defmodule StudentsCrmV2 do
 
   defdelegate create_document(kind, file, user_id, author), to: Document.Create, as: :execute
   defdelegate show_document(id, current_user), to: Document.Show, as: :execute
+
+  defdelegate create_group_participation(params, author), to: GroupParticipation.Create, as: :execute
+  defdelegate delete_group_participation(id), to: GroupParticipation.Delete, as: :execute
+  defdelegate list_group_participations(params, author), to: GroupParticipation.List, as: :execute
+  defdelegate remove_from_group(group_participation_id, author), to: GroupParticipation.RemoveFromGroup, as: :execute
 
   defdelegate get_tenant_by_name(name), to: Tenant.GetByName, as: :execute
   defdelegate list_tenants(), to: Tenant.List, as: :execute

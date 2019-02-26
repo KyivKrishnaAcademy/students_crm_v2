@@ -1,6 +1,4 @@
-<h1>{{model.complexName}}</h1>
-
-{{user-profile-details user=model}}
+<h1>{{model.user.complexName}}</h1>
 
 <div class="layout-row layout-align-end-center">
   {{#paper-button raised=true warn=true onClick=(action "showDestroyConfirmation")}}
@@ -8,9 +6,37 @@
   {{/paper-button}}
 </div>
 
+{{user-profile-details user=model.user}}
+
 {{modals/confirmation-modal
   modalId=destroyModalId
   title=(t "users.show.deleteConfirmationTitle")
   content=(t "users.show.deleteConfirmationContent")
-  onConfirm=(perform destroyModel model)
+  onConfirm=(perform destroyModel model.user)
 }}
+
+{{modals/confirmation-modal
+  modalId=addToGroupModalId
+  title=(t "users.show.addToGroupConfirmationTitle" htmlSafe=true groupName=selectedGroupOption.name)
+  content=(t "users.show.addToGroupConfirmationContent" htmlSafe=true groupName=selectedGroupOption.name userName=model.user.complexName)
+  onConfirm=(perform addToGroup selectedGroupOption)
+}}
+
+<div class="flex-xs-100 flex-sm-50 flex-md-40 flex-30">
+  <h4>{{t "users.show.addToGroup"}}</h4>
+
+  {{#power-select
+    placeholder=(t "users.show.chooseGroupToAddTo")
+    value=selectedGroupOption
+    options=groupsOptions
+    searchField="name"
+    searchPlaceholder=(t "users.show.searchByGroupName")
+    searchEnabled=true
+    onchange=(action "showAddToGroupConfirmation")
+    as |group|
+  }}
+    {{group.name}}
+  {{/power-select}}
+</div>
+
+{{user-group-participations user=model.user}}

@@ -136,6 +136,42 @@ ALTER SEQUENCE documents_id_seq OWNED BY documents.id;
 
 
 --
+-- Name: group_participations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE group_participations (
+    id bigint NOT NULL,
+    join_time timestamp without time zone,
+    leave_reason character varying(255),
+    leave_time timestamp without time zone,
+    academic_group_id bigint,
+    tenant_id bigint,
+    user_id bigint,
+    inserted_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: group_participations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE group_participations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: group_participations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE group_participations_id_seq OWNED BY group_participations.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -273,6 +309,13 @@ ALTER TABLE ONLY documents ALTER COLUMN id SET DEFAULT nextval('documents_id_seq
 
 
 --
+-- Name: group_participations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY group_participations ALTER COLUMN id SET DEFAULT nextval('group_participations_id_seq'::regclass);
+
+
+--
 -- Name: tenants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -315,6 +358,14 @@ ALTER TABLE ONLY contacts
 
 ALTER TABLE ONLY documents
     ADD CONSTRAINT documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: group_participations group_participations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY group_participations
+    ADD CONSTRAINT group_participations_pkey PRIMARY KEY (id);
 
 
 --
@@ -402,6 +453,30 @@ ALTER TABLE ONLY documents
 
 
 --
+-- Name: group_participations group_participations_academic_group_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY group_participations
+    ADD CONSTRAINT group_participations_academic_group_id_fkey FOREIGN KEY (academic_group_id) REFERENCES academic_groups(id) ON DELETE CASCADE;
+
+
+--
+-- Name: group_participations group_participations_tenant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY group_participations
+    ADD CONSTRAINT group_participations_tenant_id_fkey FOREIGN KEY (tenant_id) REFERENCES tenants(id) ON DELETE CASCADE;
+
+
+--
+-- Name: group_participations group_participations_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY group_participations
+    ADD CONSTRAINT group_participations_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: tenants_users tenants_users_tenant_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -421,5 +496,5 @@ ALTER TABLE ONLY tenants_users
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047), (20181219052017), (20181228082809), (20190111055512), (20190113065251), (20190130161113), (20190130181523);
+INSERT INTO public."schema_migrations" (version) VALUES (20171226050842), (20171228051744), (20171229053724), (20180323045434), (20180325072350), (20180326114416), (20180331034321), (20180404040807), (20180830043726), (20181030062439), (20181113052717), (20181113053047), (20181219052017), (20181228082809), (20190111055512), (20190113065251), (20190130161113), (20190130181523), (20190204050433);
 

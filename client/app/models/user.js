@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { modelAction } from 'ember-custom-actions';
 import { validator, buildValidations } from 'ember-cp-validations';
+import { hasMany } from 'ember-data/relationships';
 
 const Validations = buildValidations({
   birthday: [
@@ -41,6 +42,8 @@ export default Model.extend(Validations, {
   registered: attr('boolean'),
   surname: attr('string', { defaultValue: '' }),
   work: attr('string', { defaultValue: '' }),
+
+  groupParticipations: hasMany(),
 
   agreeToPrivacyPolicy: modelAction('agree', { pushToStore: true }),
 });

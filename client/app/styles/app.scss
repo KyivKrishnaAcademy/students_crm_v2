@@ -5,6 +5,7 @@
 @import 'ember-paper-stepper';
 @import 'pods';
 @import 'font-awesome';
+@import 'power-select';
 
 .text-center {
   text-align: center;
@@ -37,7 +38,7 @@ th {
 }
 
 td {
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 tr:nth-child(odd) td {
@@ -64,4 +65,12 @@ md-toast {
 
 md-fab-speed-dial {
   height: 70px;
+}
+
+md-tabs.md-primary md-tabs-wrapper md-tabs-canvas md-pagination-wrapper a {
+  color: black;
+
+  &[aria-selected] {
+    color: black;
+  }
 }

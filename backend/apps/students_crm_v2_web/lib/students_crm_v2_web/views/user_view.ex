@@ -9,4 +9,6 @@ defmodule StudentsCrmV2Web.UserView do
     :gender,
     :locale
   ])
+
+  has_many(:group_participations, links: [related: "/api/v1/users/:id/group_participations"])
 end

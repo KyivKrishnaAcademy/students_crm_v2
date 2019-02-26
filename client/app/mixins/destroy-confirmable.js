@@ -9,15 +9,15 @@ export default Mixin.create(AdapterErrorToastable, {
   paperToaster: service(),
 
   destroyModalId: null,
-  onSunccessToast: null,
-  onSunccessCallback: null,
+  onDestroySunccessToast: null,
+  onDestroyCallback: null,
 
   destroyModel: task(function * (model) {
     try {
       yield model.destroyRecord();
 
-      this.onSunccessToast && this.paperToaster.show(this.onSunccessToast);
-      this.onSunccessCallback && this.onSunccessCallback();
+      this.onDestroySunccessToast && this.paperToaster.show(this.onDestroySunccessToast);
+      this.onDestroyCallback && this.onDestroyCallback();
     } catch(error) {
       this.toastAdapterError(error);
     } finally {

@@ -29,10 +29,18 @@ defmodule StudentsCrmV2Web.Router do
   scope "/api/v1", StudentsCrmV2Web, as: :api_v1 do
     pipe_through(:api_authenticated)
 
-    resources "/academic_groups", AcademicGroupController, only: [:create, :index, :update, :show, :delete]
+    resources "/academic_groups", AcademicGroupController, only: [:create, :index, :update, :show, :delete] do
+      resources "/students", UserController, only: [:index]
+    end
+
+    resources "/group_participations", GroupParticipationController, only: [:create, :delete] do
+      post("/remove_from_group", GroupParticipationController, :remove_from_group)
+    end
 
     resources "/users", UserController, only: [:index, :update, :show, :delete] do
       post("/agree", PrivacyAgreementController, :post)
+
+      resources "/group_participations", GroupParticipationController, only: [:index]
     end
 
     resources("/documents", DocumentController, only: [:create, :show])

@@ -1,6 +1,7 @@
 <h2>{{t "landing.title"}}</h2>
 
 {{user-profile-details user=model}}
+{{user-group-participations user=model}}
 
 <div class="layout-row layout-align-end-center">
   {{#paper-button raised=true warn=true onClick=(action "showDestroyConfirmation")}}

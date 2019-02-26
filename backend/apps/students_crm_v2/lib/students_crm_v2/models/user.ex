@@ -5,6 +5,7 @@ defmodule StudentsCrmV2.Models.User do
 
   alias StudentsCrmV2.Models.{
     Contact,
+    GroupParticipation,
     Tenant
   }
 
@@ -31,6 +32,7 @@ defmodule StudentsCrmV2.Models.User do
     field(:work, :string)
 
     has_many(:contacts, Contact, on_delete: :delete_all)
+    has_many(:group_participations, GroupParticipation, on_delete: :delete_all)
 
     many_to_many(:tenants, Tenant, join_through: "tenants_users")
 
