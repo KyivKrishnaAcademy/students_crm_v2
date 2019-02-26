@@ -18,6 +18,8 @@ defmodule StudentsCrmV2Web.CurrentUserView do
     :work
   ])
 
+  has_many(:group_participations, links: [related: "/api/v1/users/:id/group_participations"])
+
   def type, do: "user"
 
   def registered(user, _conn) do
